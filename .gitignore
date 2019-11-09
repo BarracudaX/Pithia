@@ -2,3 +2,5 @@
 /PithiaGui/build/
 /SwingTesting/nbproject/private/
 /SwingTesting/build/
+*vpp*
+*lock*
