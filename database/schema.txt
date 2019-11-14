@@ -1,0 +1,147 @@
+create table XRHSTES (
+                         onoma_xrhsth varchar(255) not null,
+                         email varchar(255),
+                         epwnhmo varchar(255),
+                         hmeromhnia_gennhshs date,
+                         kwdikos varchar(255),
+                         onoma varchar(255),
+                         primary key (onoma_xrhsth)
+);
+
+create table FOITITES (
+                          onoma_xrhsth varchar(255) not null,
+                          primary key (onoma_xrhsth)
+);
+
+create table KATHIGITES (
+                            onoma_xrhsth varchar(255) not null,
+                            primary key (onoma_xrhsth)
+);
+
+create table Mathimata (
+                           onoma_mathimatos varchar(255) not null,
+                           ONOMA_XRHSTH_KATHIGITI varchar(255) not null,
+                           primary key (onoma_mathimatos)
+);
+
+create table THEWRIES (
+                          eksamhno varchar(255),
+                          onoma_mathimatos varchar(255) not null,
+                          primary key (onoma_mathimatos)
+);
+
+create table ERGASTHRIA (
+    onoma_mathimatos varchar(255) not null,
+    primary key (onoma_mathimatos)
+);
+
+create table PARAKOLOUTHW (
+                              ONOMA_XRHSTH_FOITITI varchar(255) not null,
+                              ONOMA_MATHIMATOS varchar(255) not null,
+                              primary key (ONOMA_XRHSTH_FOITITI, ONOMA_MATHIMATOS)
+);
+
+create table VATHMOLOGIES (
+                              Foititis_onoma_xrhsth varchar(255) not null,
+                              ONOMA_MATHIMATOS varchar(255) not null,
+                              vathmos DOUBLE PRECISION
+);
+
+create table PROAPAITOUMENA (
+                                ONOMA_MATHIMATOS varchar(255) not null,
+                                ONOMA_PROAPAITOUMENOU_MATHIMATOS varchar(255) not null,
+                                primary key (ONOMA_MATHIMATOS, ONOMA_PROAPAITOUMENOU_MATHIMATOS)
+);
+
+
+create table roloi (
+                       role varchar(255) not null,
+                       primary key (role)
+);
+
+create table USER_ROLES (
+                            ONOMA_XRHSTH varchar(255) not null,
+                            ROLOS varchar(255) not null,
+                            primary key (ONOMA_XRHSTH, ROLOS)
+);
+
+create table APOYSIES (
+    Ergasthrio_onoma_mathimatos varchar(255) not null,
+    arithmos_apoysiwn INT,
+    onoma_xrhsth_foitit varchar(255) not null
+);
+
+alter table ERGASTHRIA
+       add constraint FK_ERGASTHRIA_MATHIMATA
+       foreign key (onoma_mathimatos)
+       references Mathimata;
+
+alter table APOYSIES
+       add constraint FK_APOYSIES_FOITITES
+       foreign key (onoma_xrhsth_foitit)
+       references FOITITES;
+
+alter table APOYSIES
+       add constraint FK_APOYSIES_ERGASTHRIA
+       foreign key (Ergasthrio_onoma_mathimatos)
+       references ERGASTHRIA;
+
+alter table FOITITES
+    add constraint FK_FOITITES_XRHSTES
+        foreign key (onoma_xrhsth)
+            references XRHSTES;
+
+alter table VATHMOLOGIES
+    add constraint FK_VATHMOLOGIES_MATHIMATA
+        foreign key (ONOMA_MATHIMATOS)
+            references Mathimata;
+
+alter table VATHMOLOGIES
+    add constraint FK_VATHMOLOGIES_FOITITES
+        foreign key (Foititis_onoma_xrhsth)
+            references FOITITES;
+
+alter table KATHIGITES
+    add constraint FK_KATHIGITES_XRHSTES
+        foreign key (onoma_xrhsth)
+            references XRHSTES;
+
+alter table Mathimata
+    add constraint FK_MATHIMATA_KATHIGITES
+        foreign key (ONOMA_XRHSTH_KATHIGITI)
+            references KATHIGITES;
+
+alter table PROAPAITOUMENA
+    add constraint FK_PROAPAITOUMENA_THEWRIES_PROAPAITOUMENO
+        foreign key (ONOMA_PROAPAITOUMENOU_MATHIMATOS)
+            references THEWRIES;
+
+alter table PROAPAITOUMENA
+    add constraint FK_PROAPAITOUMENA_THEWRIES
+        foreign key (ONOMA_MATHIMATOS)
+            references THEWRIES;
+
+alter table THEWRIES
+    add constraint FK_THEWRIES_MATHIMATA
+        foreign key (onoma_mathimatos)
+            references Mathimata;
+
+alter table USER_ROLES
+    add constraint FK_USER_ROLES_ROLOI
+        foreign key (ROLOS)
+            references roloi;
+
+alter table USER_ROLES
+    add constraint FK_USER_ROLES_XRHSTES
+        foreign key (ONOMA_XRHSTH)
+            references XRHSTES;
+
+alter table PARAKOLOUTHW
+    add constraint FK_PARAKOLOUTHW_MATHIMATA
+        foreign key (ONOMA_MATHIMATOS)
+            references Mathimata;
+
+alter table PARAKOLOUTHW
+    add constraint FK_PARAKOLOUTHW_FOITITES
+        foreign key (ONOMA_XRHSTH_FOITITI)
+            references FOITITES;
