@@ -1,0 +1,14 @@
+
+	@ManyToMany
+	@JoinTable(
+			name = "PROAPAITOUMENA",
+			joinColumns = @JoinColumn(
+					name = "onoma_mathimatos",
+					foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_MATHIMATOS")
+			),
+			inverseJoinColumns = @JoinColumn(
+					name = "onoma_proapaitoumenou_mathimatos",
+					foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_PROAPAITOUMENOU_MATHIMATOS")
+			)
+	)
+	private Set<Thewria> proapaitoumena = new HashSet<>();

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="domain.mathimata.Thewria" />
+		<mapping class="domain.mathimata.VathmosThewrias" />
+		<mapping class="domain.mathimata.Ergasthrio" />
+		<mapping class="domain.mathimata.Apousia" />
+		<mapping class="domain.mathimata.VathmosErgasthriou" />
+		<mapping class="domain.xrhstes.Foititis" />
+		<mapping class="domain.xrhstes.Kathigitis" />
+		<mapping class="domain.xrhstes.Xrhsths" />
+		<mapping class="domain.xrhstes.Rolos" />
+	</session-factory>
+</hibernate-configuration>
