@@ -84,6 +84,20 @@ public class Thewria {
     @Transient
     private DoubleBinaryOperator algorithmos;
 
+    @ManyToMany
+    @JoinTable(
+            name = "PROAPAITOUMENA",
+            joinColumns = @JoinColumn(
+                    name = "onoma_mathimatos",
+                    foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_MATHIMATOS")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "onoma_proapaitoumenou_mathimatos",
+                    foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_PROAPAITOUMENOU_MATHIMATOS")
+            )
+    )
+    private Set<Thewria> proapaitoumena = new HashSet<>();
+
     protected Thewria() {
         super();
     }
@@ -111,10 +125,6 @@ public class Thewria {
         return eksamhno;
     }
 
-    public Set<Ergasthrio> getErgasthria() {
-        return Collections.unmodifiableSet(ergasthria);
-    }
-
     public Optional<Double> getVathmoThewrias(Foititis foititis) {
         for (VathmosThewrias vathmoiThewria : vathmoiThewrias) {
             if (vathmoiThewria.getFoititis().equals(foititis)) {
@@ -126,6 +136,21 @@ public class Thewria {
 
     public final void addFoititi(Foititis foititis) {
         Objects.requireNonNull(foititis,"To antikeimeno foititis einai null.");
+
+        IllegalArgumentException exceptions = new IllegalArgumentException();
+
+        for (Thewria proapaitoumeno : proapaitoumena) {
+            if (!proapaitoumeno.getVathmoThewrias(foititis).isPresent() || proapaitoumeno.getVathmoThewrias(foititis).get() < 5.0) {
+                exceptions.addSuppressed(new IllegalArgumentException(
+                        "O foititis " + foititis + " den exei perasei to proapaitoumeno mathima " +
+                                proapaitoumeno.getOnomaMathimatos()));
+            }
+        }
+
+        if (exceptions.getSuppressed().length != 0) {
+            throw exceptions;
+        }
+
         foitites.add(foititis);
         vathmoiThewrias.add(new VathmosThewrias(this, foititis));
         foititis.addThewria(this);
@@ -180,7 +205,7 @@ public class Thewria {
         return oloiFoitites;
     }
 
-    public Optional<Ergasthrio> getErgasthrioFoititi(Foititis foititis) {
+    public final Optional<Ergasthrio> getErgasthrioFoititi(Foititis foititis) {
         for (Ergasthrio ergasthrio : ergasthria) {
             if (ergasthrio.parakolouthei(foititis)) {
                 return Optional.of(ergasthrio);
@@ -190,12 +215,58 @@ public class Thewria {
         return Optional.empty();
     }
 
-    public void addErgasthrio(Ergasthrio ergasthrio) {
+    public final void addErgasthrio(Ergasthrio ergasthrio) {
         Objects.requireNonNull(ergasthrio,"To ergasthrio foititis einai null.");
         ergasthria.add(ergasthrio);
         kathigitesErgasthriwn.add(ergasthrio.getKathigiti());
         ergasthrio.getKathigiti().addErgasthrioThewriasDidaskei(this);
     }
+
+    public final void addFoititiStoErgasthrio(Foititis foititis, Ergasthrio ergasthrio) {
+        Objects.requireNonNull(foititis, "To antikeimeno foititis einai null.");
+        Objects.requireNonNull(ergasthrio, "To antikeimeno ergasthrio einai null.");
+
+        if (!ergasthria.contains(ergasthrio)) {
+            throw new IllegalArgumentException("To ergasthrio " + ergasthrio + "  den anoikei se auto to mathima.");
+        }
+
+        if (!foitites.contains(foititis)) {
+            throw new IllegalArgumentException("O foititis " + foititis + " den parakolouthei thn thewria.");
+        }
+
+        ergasthrio.addFoititi(foititis);
+    }
+
+    public final void addProapaitoumeno(Thewria proapaitoumeno) {
+        Objects.requireNonNull(proapaitoumeno, "To antikeimeno proapaitoumeno einai null.");
+
+        if (equals(proapaitoumeno)) {
+            throw new IllegalArgumentException("H thewria den mporei na einai proapaitoumeno ston eauto ths.");
+        }
+
+        proapaitoumena.add(proapaitoumeno);
+    }
+
+    public final void removeProapaitoumeno(Thewria proapaitoumeno) {
+        Objects.requireNonNull(proapaitoumeno, "To antikeimeno proapaitoumeno einai null.");
+
+        proapaitoumena.remove(proapaitoumeno);
+    }
+
+    public final void saveAlgorythmo(double posostoThewrias, double posostoErgasthrio) {
+        if (posostoErgasthrio + posostoThewrias > 1.0) {
+            throw new IllegalArgumentException("Ta pososta einai lathos.Pososto thewrias = " + posostoThewrias
+                    + ",pososto ergasthriou = " + posostoErgasthrio + ".Sto sunolo : " + (posostoErgasthrio + posostoThewrias) + " > 1.");
+        }
+
+        algorithmos = new DoubleBinaryOperator() {
+            @Override
+            public double applyAsDouble(double vathmosThewrias, double vathmosErgasthrio) {
+                return (posostoThewrias * vathmosThewrias) + (posostoErgasthrio * vathmosErgasthrio);
+            }
+        };
+    }
+
 
     @Override
     public boolean equals(Object o) {

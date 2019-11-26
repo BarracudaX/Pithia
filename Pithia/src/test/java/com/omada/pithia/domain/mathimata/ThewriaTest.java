@@ -119,12 +119,10 @@ public class ThewriaTest {
     )
     public void prepeiNaProstheseiKainouioErgasthrioSthnThewria(){
         assertFalse(kathigitisErgasthriou.getErgasthria().contains(ergasthrio));
-        assertFalse(sut.getErgasthria().contains(ergasthrio));
 
         sut.addErgasthrio(ergasthrio);
 
         assertTrue(kathigitisErgasthriou.getErgasthria().contains(ergasthrio));
-        assertTrue(sut.getErgasthria().contains(ergasthrio));
     }
 
     @Test
@@ -205,8 +203,13 @@ public class ThewriaTest {
             "Πρέπει να πετάξει το NullPointerException όταν καλούμε μέθοδο add* με null αναφορα."
     )
     public void prepeiNaPetakseiNullPointerExceptionOtanKaloumeAddMethodousMeNullReferences(){
+        sut.addErgasthrio(ergasthrio);
+        sut.addFoititi(foititis);
+        sut.addFoititiStoErgasthrio(foititis,ergasthrio);
         assertThrows(NullPointerException.class, () -> sut.addFoititi(null));
         assertThrows(NullPointerException.class, () -> sut.addErgasthrio(null));
+        assertThrows(NullPointerException.class, () -> sut.addFoititiStoErgasthrio(null,ergasthrio));
+        assertThrows(NullPointerException.class, () -> sut.addFoititiStoErgasthrio(foititis,null));
         assertThrows(NullPointerException.class, () -> sut.addVathmoThewrias(0,null));
     }
 
@@ -219,6 +222,53 @@ public class ThewriaTest {
         sut.addFoititi(foititis);
         assertThrows(IllegalArgumentException.class, () -> sut.addVathmoThewrias(lathosVathmos, foititis));
     }
+
+    @Test
+    @DisplayName(
+            "΄Πρέπει να πετάξει IllegalArgumentException όταν προσθέτουμε έναν φοιτιτή/τρια στο εργαστήριο " +
+                    "αλλά αυτός/η δεν παρακολουθεί την θεωρία."
+    )
+    public void prepeiNaPetakseiIllegalArgumentExceptionOtanProsthetoumeFoititiStoErgasthrioOtanDenExeiDhlwshThnThewria(){
+        sut.addErgasthrio(ergasthrio);
+        assertThrows(IllegalArgumentException.class,() -> sut.addFoititiStoErgasthrio(foititis,ergasthrio));
+
+        sut.addFoititi(foititis);
+        assertDoesNotThrow(() -> sut.addFoititiStoErgasthrio(foititis,ergasthrio));
+    }
+
+    @Test
+    @DisplayName(
+            "Πρέπει να πετάξει IllegalArgumentException όταν προσθέτουμε έναν φοιτιτή/τρια στην θεωρία " +
+                    "αλλά αυτός/η δεν έχει περάσει τα προαπαιτούμενα της θεωρίας."
+    )
+    public void prepeiNaPetakseiIllegalArgumentExceptionOtanProsthetoumeFoititiPouDenExeiPeraseiTaProapaitoumena(){
+        Thewria proapaitoumeno1 = new Thewria("PROAPAITOUMENO", kathigitisThewrias, Eksamhno.F);
+        Thewria proapaitoumeno2 = new Thewria("PROAPAITOUMENO2", kathigitisThewrias, Eksamhno.G);
+        sut.addProapaitoumeno(proapaitoumeno1);
+        sut.addProapaitoumeno(proapaitoumeno2);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> sut.addFoititi(foititis));
+        assertEquals(2,exception.getSuppressed().length);
+
+        proapaitoumeno1.addFoititi(foititis);
+        exception = assertThrows(IllegalArgumentException.class, () -> sut.addFoititi(foititis));
+        assertEquals(2,exception.getSuppressed().length);
+
+        proapaitoumeno1.addVathmoThewrias(4.9,foititis);
+        exception = assertThrows(IllegalArgumentException.class, () -> sut.addFoititi(foititis));
+        assertEquals(2,exception.getSuppressed().length);
+
+        proapaitoumeno1.addVathmoThewrias(5.0,foititis);
+        exception = assertThrows(IllegalArgumentException.class,() -> sut.addFoititi(foititis));
+        assertEquals(1,exception.getSuppressed().length);
+
+        proapaitoumeno2.addFoititi(foititis);
+        proapaitoumeno2.addVathmoThewrias(9.0, foititis);
+
+        assertDoesNotThrow(() -> sut.addFoititi(foititis));
+
+    }
+
 
     private static DoubleStream getLathosVathmous(){
         return DoubleStream.of(-100, -1, -0.99, Double.NaN, 10.01, 11, 100);

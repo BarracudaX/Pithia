@@ -92,7 +92,7 @@ public class Ergasthrio {
         return Optional.empty();
     }
 
-    public final void addFoititi(Foititis foititis) {
+    final void addFoititi(Foititis foititis) {
         Objects.requireNonNull(foititis, "To antikeimeno foititis einai null.");
         foitites.add(foititis);
         apousies.add(new Apousia(foititis, this));
