@@ -48,21 +48,17 @@ create table ERGASTHRIA
 (
     onoma_ergasthriou      varchar(255) not null,
     onoma_xrhsth_kathigiti varchar(255) not null,
-    primary key (onoma_ergasthriou)
+    onoma_thewrias varchar(255) not null,
+    CONSTRAINT FK_ERGASTHRIA_ONOMA_THEWRIAS FOREIGN KEY(onoma_thewrias) REFERENCES THEWRIES,
+    primary key (onoma_ergasthriou,onoma_thewrias)
 );
 
 create table ERGASTHRIA_PARAKOLOUTHOUN
 (
     onoma_ergasthriou    varchar(255) not null,
+    onoma_thewrias varchar(255) not null,
     onoma_xrhsth_foititi varchar(255) not null,
-    primary key (onoma_ergasthriou, onoma_xrhsth_foititi)
-);
-
-create table ERGASTHRIA_THEWRIAS
-(
-    onoma_thewrias    varchar(255) not null,
-    onoma_ergasthriou varchar(255) not null,
-    primary key (onoma_thewrias, onoma_ergasthriou)
+    primary key (onoma_ergasthriou, onoma_xrhsth_foititi,onoma_thewrias)
 );
 
 create table KATHIGITES_ERGASTHRIWN
@@ -75,17 +71,19 @@ create table KATHIGITES_ERGASTHRIWN
 create table APOUSIES
 (
     onoma_ergasthriou    varchar(255) not null,
+    onoma_thewrias varchar(255) not null,
     arithmos_apoysiwn    int4         not null,
     onoma_xrhsth_foititi varchar(255),
-    primary key(onoma_ergasthriou,onoma_xrhsth_foititi)
+    primary key(onoma_ergasthriou,onoma_xrhsth_foititi,onoma_thewrias)
 );
 
 create table VATHMOI_ERGASTHRIOU
 (
     onoma_ergasthriou    varchar(255) not null,
+    onoma_thewrias varchar(255) not null,
     onoma_xrhsth_foititi varchar(255) not null,
     vathmos_ergasthriou  float8,
-    primary key (onoma_ergasthriou,onoma_xrhsth_foititi)
+    primary key (onoma_ergasthriou,onoma_xrhsth_foititi,onoma_thewrias)
 );
 
 create table VATHMOI_THEWRIAS
@@ -104,10 +102,6 @@ create table ROLOI_XRISTWN
 );
 
 
-alter table ERGASTHRIA_THEWRIAS
-    add constraint UNIQUE_ERGASTHRIA_THEWRIAS_ONOMA_ERGASTHRIOU unique (onoma_ergasthriou);
-
-
 alter table APOUSIES
     add constraint FK_APOUSIES_ONOMA_XRHSTH_FOITITI
         foreign key (onoma_xrhsth_foititi)
@@ -116,7 +110,7 @@ alter table APOUSIES
 
 alter table APOUSIES
     add constraint FK_APOUSIES_ONOMA_ERGASTHRIOU
-        foreign key (onoma_ergasthriou)
+        foreign key (onoma_ergasthriou,onoma_thewrias)
             references ERGASTHRIA;
 
 
@@ -134,21 +128,8 @@ alter table ERGASTHRIA_PARAKOLOUTHOUN
 
 alter table ERGASTHRIA_PARAKOLOUTHOUN
     add constraint FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU
-        foreign key (onoma_ergasthriou)
+        foreign key (onoma_ergasthriou,onoma_thewrias)
             references ERGASTHRIA;
-
-
-alter table ERGASTHRIA_THEWRIAS
-    add constraint FK_ERGASTHRIA_THEWRIAS_ONOMA_ERGASTHRIOU
-        foreign key (onoma_ergasthriou)
-            references ERGASTHRIA;
-
-
-alter table ERGASTHRIA_THEWRIAS
-    add constraint FK_ERGASTHRIA_THEWRIAS_ONOMA_THEWRIAS
-        foreign key (onoma_thewrias)
-            references THEWRIES;
-
 
 alter table FOITITES
     add constraint FK_FOITITES_ONOMA_XRHSTH_FOITITI
@@ -217,7 +198,7 @@ alter table VATHMOI_ERGASTHRIOU
 
 alter table VATHMOI_ERGASTHRIOU
     add constraint FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU
-        foreign key (onoma_ergasthriou)
+        foreign key (onoma_ergasthriou,onoma_thewrias)
             references ERGASTHRIA;
 
 

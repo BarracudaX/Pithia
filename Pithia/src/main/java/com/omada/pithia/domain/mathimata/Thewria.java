@@ -40,18 +40,7 @@ public class Thewria {
     )
     private Set<Foititis> foitites = new HashSet<>();
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinTable(
-            name = "ERGASTHRIA_THEWRIAS",
-            joinColumns = @JoinColumn(
-                    name = "onoma_thewrias",
-                    foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_THEWRIAS_ONOMA_THEWRIAS")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "onoma_ergasthriou",
-                    foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_THEWRIAS_ONOMA_ERGASTHRIOU")
-            )
-    )
+    @OneToMany(mappedBy = "thewria",cascade = {CascadeType.ALL})
     private Set<Ergasthrio> ergasthria = new HashSet<>();
 
     @ManyToMany

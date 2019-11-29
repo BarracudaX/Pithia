@@ -55,7 +55,7 @@ public class Configurus {
 	public EntityManagerFactory entityManagerFactory(){
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource());
-		factory.setPackagesToScan("domain");
+		factory.setPackagesToScan("com.omada.pithia.domain.xrhstes","com.omada.pithia.domain.mathimata");
 		factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		factory.setJpaProperties(hibernateProperties());
 		factory.afterPropertiesSet();

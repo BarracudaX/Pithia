@@ -40,7 +40,7 @@ public class ThewriaTest {
     @BeforeEach
     public void setUp(){
         sut = new Thewria("VALID_ONOMA", kathigitisThewrias, Eksamhno.A);
-        ergasthrio = new Ergasthrio("VALID_ONOMA", kathigitisErgasthriou);
+        ergasthrio = new Ergasthrio("VALID_ONOMA", kathigitisErgasthriou,sut);
     }
 
     @Test
@@ -130,8 +130,8 @@ public class ThewriaTest {
             "Πρέπει να επιστρέφει όλα τα εργαστήρια του καθηγητή που ζητήθηκε."
     )
     public void prepeiNaEpistrefeiOlesTaErgasthriaTouKathigiti(){
-        Ergasthrio deuteroErgasthrio = new Ergasthrio("VALID_ERGASTHRIO1", kathigitisErgasthriou);
-        Ergasthrio tritorErgasthrio = new Ergasthrio("VALID_ERGASTHRIO2", kathigitisThewrias);
+        Ergasthrio deuteroErgasthrio = new Ergasthrio("VALID_ERGASTHRIO1", kathigitisErgasthriou,sut);
+        Ergasthrio tritorErgasthrio = new Ergasthrio("VALID_ERGASTHRIO2", kathigitisThewrias,sut);
 
         sut.addErgasthrio(ergasthrio);
         sut.addErgasthrio(deuteroErgasthrio);

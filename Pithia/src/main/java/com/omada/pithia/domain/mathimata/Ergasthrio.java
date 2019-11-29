@@ -14,9 +14,15 @@ public class Ergasthrio {
     
     private static final double MAX_VATHMOS = 10.0;
 
-    @Id
-    @Column(name = "onoma_ergasthriou", updatable = false)
-    private volatile String onomaErgasthriou;
+    @EmbeddedId
+    private ErgasthrioPK ergasthrioPK;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "onoma_thewrias",insertable = false,updatable = false,
+            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_ONOMA_THEWRIAS")
+    )
+    private Thewria thewria;
 
     @ManyToOne
     @JoinColumn(
@@ -28,10 +34,16 @@ public class Ergasthrio {
     @ManyToMany
     @JoinTable(
             name = "ERGASTHRIA_PARAKOLOUTHOUN",
-            joinColumns = @JoinColumn(
-                    name = "onoma_ergasthriou",
-                    foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU")
-            ),
+            joinColumns = {
+                    @JoinColumn(
+                            name = "onoma_ergasthriou",
+                            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU")
+                    ),
+                    @JoinColumn(
+                            name = "onoma_thewrias",
+                            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU")
+                    )
+            },
             inverseJoinColumns = @JoinColumn(
                     name = "onoma_xrhsth_foititi",
                     foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_XRHSTH_FOITITI")
@@ -42,21 +54,34 @@ public class Ergasthrio {
     @ElementCollection
     @CollectionTable(
             name = "APOUSIES",
-            joinColumns = @JoinColumn(
-                    name = "onoma_ergasthriou",
-                    nullable = false,
-                    foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_ERGASTHRIOU")
-            )
+            joinColumns ={
+                    @JoinColumn(
+                            name = "onoma_ergasthriou",
+                            nullable = false,
+                            foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_ERGASTHRIOU")
+                    ),
+                    @JoinColumn(
+                            name = "onoma_thewrias",
+                            nullable = false,
+                            foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_ERGASTHRIOU")
+                    )
+            }
     )
     private volatile Set<Apousia> apousies = new HashSet<>();
 
     @ElementCollection
     @CollectionTable(
             name = "VATHMOI_ERGASTHRIOU",
-            joinColumns = @JoinColumn(
-                    name = "onoma_ergasthriou",
-                    foreignKey = @ForeignKey(name = "FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU")
-            )
+            joinColumns ={
+                    @JoinColumn(
+                            name = "onoma_ergasthriou",
+                            foreignKey = @ForeignKey(name = "FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU")
+                    ),
+                    @JoinColumn(
+                            name = "onoma_thewrias",
+                            foreignKey = @ForeignKey(name = "FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU")
+                    )
+            }
     )
     private volatile Set<VathmosErgasthriou> vathmoiErgasthriou = new HashSet<>();
 
@@ -64,9 +89,10 @@ public class Ergasthrio {
 
     }
 
-    public Ergasthrio(String onomaErgasthriou, Kathigitis kathigitis) {
+    public Ergasthrio(String onomaErgasthriou, Kathigitis kathigitis,Thewria thewria) {
         this.kathigitis = kathigitis;
-        this.onomaErgasthriou = onomaErgasthriou;
+        this.ergasthrioPK = new ErgasthrioPK(onomaErgasthriou, thewria.getOnomaMathimatos());
+        this.thewria = thewria;
     }
 
     public Set<Foititis> getFoitites() {
@@ -78,7 +104,11 @@ public class Ergasthrio {
     }
 
     public String getOnomaErgasthriou() {
-        return onomaErgasthriou;
+        return ergasthrioPK.getOnomaErgasthriou();
+    }
+
+    public Thewria getThewria() {
+        return thewria;
     }
 
     public Optional<Double> getVathmo(Foititis foititis) {
@@ -157,14 +187,14 @@ public class Ergasthrio {
         Ergasthrio that = (Ergasthrio) o;
 
         return getOnomaErgasthriou().equals(that.getOnomaErgasthriou())
-                && getKathigiti().equals(that.getKathigiti());
+                && getThewria().equals(that.getThewria());
     }
 
     @Override
     public int hashCode() {
         int result = getOnomaErgasthriou().hashCode();
 
-        result = result * 31 + getKathigiti().hashCode();
+        result = result * 31 + getThewria().hashCode();
 
         return result;
     }
@@ -173,6 +203,7 @@ public class Ergasthrio {
     public String toString() {
         return "Ergasthrio{"
                 + "onomaErgasthriou='" + getOnomaErgasthriou() + '\''
+                + "thewria="+getThewria()
                 + ", kathigitis=" + getKathigiti();
     }
 }

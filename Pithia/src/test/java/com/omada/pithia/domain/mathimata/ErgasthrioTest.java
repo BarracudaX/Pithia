@@ -6,7 +6,7 @@
 package com.omada.pithia.domain.mathimata;
 
 import static org.junit.jupiter.api.Assertions.*;
-import com.omada.*;
+
 import com.omada.pithia.domain.xrhstes.Foititis;
 import com.omada.pithia.domain.xrhstes.Kathigitis;
 import java.time.LocalDate;
@@ -39,7 +39,7 @@ public class ErgasthrioTest {
     @BeforeEach
     public void setUp(){
         thewriaErgasthriou = new Thewria("VALID_ONOMA", kathigitisThewrias, Eksamhno.B);
-        sut = new Ergasthrio("VALID_ONOMA", kathigitisErgasthriou);
+        sut = new Ergasthrio("VALID_ONOMA", kathigitisErgasthriou,thewriaErgasthriou);
         thewriaErgasthriou.addErgasthrio(sut);
         thewriaErgasthriou.addFoititi(foititis);
     }

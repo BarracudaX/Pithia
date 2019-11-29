@@ -33,6 +33,7 @@ public class Foititis extends Xrhsths {
 	}
 
 	public final Map<String,Double> getVathmous(){
+
 		Map<String, Double> vathmoi = new HashMap<>();
 
 		for (Thewria thewria : thewries) {
@@ -40,8 +41,11 @@ public class Foititis extends Xrhsths {
 
 			Optional<Ergasthrio> ergasthrio = thewria.getErgasthrioFoititi(this);
 
-			ergasthrio.ifPresent(value -> vathmoi.put(thewria.getOnomaMathimatos() + " : " + value.getOnomaErgasthriou(),
-					value.getVathmoErgasthriou(this).get()));
+			ergasthrio.ifPresent(value -> vathmoi.put(
+						thewria.getOnomaMathimatos() + " : " + value.getOnomaErgasthriou(),
+						value.getVathmoErgasthriou(this).get()
+					)
+			);
 		}
 
 		return vathmoi;
