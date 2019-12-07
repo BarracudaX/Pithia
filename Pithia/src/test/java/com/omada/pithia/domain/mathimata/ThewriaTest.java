@@ -39,7 +39,7 @@ public class ThewriaTest {
 
     @BeforeEach
     public void setUp(){
-        sut = new Thewria("VALID_ONOMA", kathigitisThewrias, Eksamhno.A);
+        sut = new Thewria("VALID_ONOMA", kathigitisThewrias, Eksamhno.C);
         ergasthrio = new Ergasthrio("VALID_ONOMA", kathigitisErgasthriou,sut);
     }
 
@@ -242,8 +242,8 @@ public class ThewriaTest {
                     "αλλά αυτός/η δεν έχει περάσει τα προαπαιτούμενα της θεωρίας."
     )
     public void prepeiNaPetakseiIllegalArgumentExceptionOtanProsthetoumeFoititiPouDenExeiPeraseiTaProapaitoumena(){
-        Thewria proapaitoumeno1 = new Thewria("PROAPAITOUMENO", kathigitisThewrias, Eksamhno.F);
-        Thewria proapaitoumeno2 = new Thewria("PROAPAITOUMENO2", kathigitisThewrias, Eksamhno.G);
+        Thewria proapaitoumeno1 = new Thewria("PROAPAITOUMENO", kathigitisThewrias, Eksamhno.A);
+        Thewria proapaitoumeno2 = new Thewria("PROAPAITOUMENO2", kathigitisThewrias, Eksamhno.A);
         sut.addProapaitoumeno(proapaitoumeno1);
         sut.addProapaitoumeno(proapaitoumeno2);
 
@@ -269,6 +269,25 @@ public class ThewriaTest {
 
     }
 
+    @Test
+    @DisplayName(
+            "Πρεπει να πεταξει IllegalArgumentException οταν το προαπαιτουμενο μαθημα ειναι μεγαλυτερου  ή ιδιου εξαμηνου απο την θεωρια."
+    )
+    public void prepeiNaPetakseiIAEOtanToProapaitoumenoEinaiMegaluterouEksamhnouApoThnThewria(){
+        Thewria proapaitoumenoMegaluterouEksamhnou = new Thewria("Proapaitoumen megaluterou eksamhnou",
+                kathigitisThewrias, Eksamhno.G);
+        Thewria proapaitoumenoIdiouEksamhnou = new Thewria("Proapaitoumen megaluterou eksamhnou",
+                kathigitisThewrias, sut.getEksamhno());
+        Thewria proapaitoumenoMeMikroteroEksamhno = new Thewria("Proapaitoumen megaluterou eksamhnou",
+                kathigitisThewrias, Eksamhno.A);
+
+        assertThrows(IllegalArgumentException.class, () -> sut.addProapaitoumeno(proapaitoumenoMegaluterouEksamhnou));
+
+        assertThrows(IllegalArgumentException.class, () -> sut.addProapaitoumeno(proapaitoumenoIdiouEksamhnou));
+
+        assertDoesNotThrow(() -> sut.addProapaitoumeno(proapaitoumenoMeMikroteroEksamhno));
+
+    }
 
     private static DoubleStream getLathosVathmous(){
         return DoubleStream.of(-100, -1, -0.99, Double.NaN, 10.01, 11, 100);

@@ -115,9 +115,9 @@ public class Thewria {
     }
 
     public Optional<Double> getVathmoThewrias(Foititis foititis) {
-        for (VathmosThewrias vathmoiThewria : vathmoiThewrias) {
-            if (vathmoiThewria.getFoititis().equals(foititis)) {
-                return Optional.of(vathmoiThewria.getVathmos());
+        for (VathmosThewrias vathmosThewrias : vathmoiThewrias) {
+            if (vathmosThewrias.getFoititis().equals(foititis)) {
+                return Optional.of(vathmosThewrias.getVathmos());
             }
         }
         return Optional.empty();
@@ -164,7 +164,7 @@ public class Thewria {
         }
 
         throw new IllegalArgumentException("Den mporw na dextw ton vathmo gia foititi/tria" + foititis
-                + " o/h opoios/oia den parakolouthei to mathima");
+                + " o/h opoios/oia den parakolouthei to mathima "+this+".");
 
     }
 
@@ -195,6 +195,7 @@ public class Thewria {
     }
 
     public final Optional<Ergasthrio> getErgasthrioFoititi(Foititis foititis) {
+        Objects.requireNonNull(foititis, "To antikeimeno foitits einai null.");
         for (Ergasthrio ergasthrio : ergasthria) {
             if (ergasthrio.parakolouthei(foititis)) {
                 return Optional.of(ergasthrio);
@@ -205,7 +206,7 @@ public class Thewria {
     }
 
     public final void addErgasthrio(Ergasthrio ergasthrio) {
-        Objects.requireNonNull(ergasthrio,"To ergasthrio foititis einai null.");
+        Objects.requireNonNull(ergasthrio,"To ergasthrio einai null.");
         ergasthria.add(ergasthrio);
         kathigitesErgasthriwn.add(ergasthrio.getKathigiti());
         ergasthrio.getKathigiti().addErgasthrioThewriasDidaskei(this);
@@ -216,11 +217,11 @@ public class Thewria {
         Objects.requireNonNull(ergasthrio, "To antikeimeno ergasthrio einai null.");
 
         if (!ergasthria.contains(ergasthrio)) {
-            throw new IllegalArgumentException("To ergasthrio " + ergasthrio + "  den anoikei se auto to mathima.");
+            throw new IllegalArgumentException("To ergasthrio " + ergasthrio + "  den anoikei sthn thewria "+this+".");
         }
 
         if (!foitites.contains(foititis)) {
-            throw new IllegalArgumentException("O foititis " + foititis + " den parakolouthei thn thewria.");
+            throw new IllegalArgumentException("O foititis " + foititis + " den parakolouthei thn thewria "+this+".");
         }
 
         ergasthrio.addFoititi(foititis);
@@ -231,6 +232,14 @@ public class Thewria {
 
         if (equals(proapaitoumeno)) {
             throw new IllegalArgumentException("H thewria den mporei na einai proapaitoumeno ston eauto ths.");
+        }
+
+        if (!getEksamhno().einaiMegaluteroEksamhno(proapaitoumeno.getEksamhno())) {
+            throw new IllegalArgumentException(
+                    "To proapaitoumeno ths thewrias den mporei na einai megaluterou h idiou eksamhnou me thn thewria."+
+                            "To eksamhno ths thewrias einai : "+getEksamhno()+",enw to eksamhno tou proapaitoumenou einai : "
+                    +proapaitoumeno.getEksamhno()
+            );
         }
 
         proapaitoumena.add(proapaitoumeno);
