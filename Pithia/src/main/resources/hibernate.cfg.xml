@@ -4,14 +4,14 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="com.omada.pithia.domain.mathimata.Thewria" />
-		<mapping class="com.omada.pithia.domain.mathimata.VathmosThewrias" />
-		<mapping class="com.omada.pithia.domain.mathimata.Ergasthrio" />
-		<mapping class="com.omada.pithia.domain.mathimata.Apousia" />
-		<mapping class="com.omada.pithia.domain.mathimata.VathmosErgasthriou" />
-		<mapping class="com.omada.pithia.domain.xrhstes.Foititis" />
-		<mapping class="com.omada.pithia.domain.xrhstes.Kathigitis" />
-		<mapping class="com.omada.pithia.domain.xrhstes.Xrhsths" />
-		<mapping class="com.omada.pithia.domain.xrhstes.Rolos" />
+		<mapping class="com.omada.pithia.model.mathimata.Thewria" />
+		<mapping class="com.omada.pithia.model.mathimata.VathmosThewrias" />
+		<mapping class="com.omada.pithia.model.mathimata.Ergasthrio" />
+		<mapping class="com.omada.pithia.model.mathimata.Apousia" />
+		<mapping class="com.omada.pithia.model.mathimata.VathmosErgasthriou" />
+		<mapping class="com.omada.pithia.model.xrhstes.Foititis" />
+		<mapping class="com.omada.pithia.model.xrhstes.Kathigitis" />
+		<mapping class="com.omada.pithia.model.xrhstes.Xrhsths" />
+		<mapping class="com.omada.pithia.model.xrhstes.Rolos" />
 	</session-factory>
 </hibernate-configuration>
