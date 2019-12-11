@@ -14,5 +14,7 @@ public interface XrhstesService extends Service<Xrhsths,String> {
 
     List<Kathigitis> getKathigites();
 
+    void login(String onomaXrhsth, String password);
 
+    Xrhsths getLoginXrhsth();
 }

@@ -1,22 +1,22 @@
 package com.omada.pithia.ui.controller;
 
+import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.ui.view.Pithia;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ViewSwitchController {
+public class ViewController {
 
     private final Pithia pithia;
 
-    public ViewSwitchController(Pithia pithia) {
+    public ViewController(Pithia pithia) {
         this.pithia = pithia;
     }
 
     public void requestForHomePage() {
         pithia.switchToHomePageGUI();
     }
-
 
     public void requestForMathimataMou() {
         pithia.switchToMathimataMouGUI();
@@ -57,4 +57,16 @@ public class ViewSwitchController {
     public void requestForThewria(Thewria thewria) {
         pithia.switchToThewriaGUI(thewria);
     }
+
+    public void requestForergathrio(Ergasthrio ergasthrio) {
+        pithia.switchToErgasthrioGUI(ergasthrio);
+    }
+    public void requestForShowErrorMessage(String error) {
+        pithia.showError(error);
+    }
+
+    public void requestForShowMessage(String message) {
+        pithia.showMessage(message);
+    }
+
 }

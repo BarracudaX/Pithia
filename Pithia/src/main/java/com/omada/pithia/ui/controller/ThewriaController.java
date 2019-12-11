@@ -1,17 +1,15 @@
 package com.omada.pithia.ui.controller;
 
-import com.omada.pithia.model.mathimata.Thewria;
-
 public class ThewriaController {
 
-    private final ViewSwitchController viewSwitchController;
+    private final ViewController viewController;
 
-    public ThewriaController(ViewSwitchController viewSwitchController) {
-        this.viewSwitchController = viewSwitchController;
+    public ThewriaController(ViewController viewController) {
+        this.viewController = viewController;
     }
 
 
     public void requestForBackPage() {
-        viewSwitchController.requestForThewries();
+        viewController.requestForThewries();
     }
 }

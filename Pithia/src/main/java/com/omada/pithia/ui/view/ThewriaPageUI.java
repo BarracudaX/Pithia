@@ -38,63 +38,22 @@ public class ThewriaPageUI extends JPanel {
 
     private void prepareView(Thewria thewria) {
         setLayout(new GridBagLayout());
-        setBackground(GeneralStyle.GENERAL_BACKGROUND_COLOR);
+        setBackground(GeneralStyle.DARK_COLOR);
 
-        onomaThewrias.setFont(GeneralStyle.GENERAL_FONT);
-        onomaKathigiti.setFont(GeneralStyle.GENERAL_FONT);
-        eksamhno.setFont(GeneralStyle.GENERAL_FONT);
-        sunoloFoititwn.setFont(GeneralStyle.GENERAL_FONT);
-
-        ergasthria.setFont(GeneralStyle.GENERAL_FONT);
-        proapaitoumena.setFont(GeneralStyle.GENERAL_FONT);
-
-        ergasthria.setBackground(GeneralStyle.TEXT_AREA_BACKGROUND_COLOR);
-        proapaitoumena.setBackground(GeneralStyle.TEXT_AREA_BACKGROUND_COLOR);
-
-        onomaThewriasLabel.setFont(GeneralStyle.GENERAL_FONT);
-        onomaKathigitiLabel.setFont(GeneralStyle.GENERAL_FONT);
-        eksamhnoLabel.setFont(GeneralStyle.GENERAL_FONT);
-        sunoloFoititwnLabel.setFont(GeneralStyle.GENERAL_FONT);
-        ergasthriaLabel.setFont(GeneralStyle.GENERAL_FONT);
-        proapaitoumenaLabel.setFont(GeneralStyle.GENERAL_FONT);
-
-        eisagwghVathmwnButton.setFont(GeneralStyle.GENERAL_FONT);
-        dhlwshAlgorithmouButton.setFont(GeneralStyle.GENERAL_FONT);
-        prosthikiProapaitoumenouButton.setFont(GeneralStyle.GENERAL_FONT);
-        backButton.setFont(GeneralStyle.GENERAL_FONT);
-
-        onomaThewrias.setEditable(false);
-        onomaKathigiti.setEditable(false);
-        eksamhno.setEditable(false);
-        sunoloFoititwn.setEditable(false);
-
-        onomaThewriasLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        onomaKathigitiLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        eksamhnoLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        sunoloFoititwnLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        ergasthriaLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        proapaitoumenaLabel.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        eisagwghVathmwnButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        dhlwshAlgorithmouButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        prosthikiProapaitoumenouButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        backButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-
-        eisagwghVathmwnButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-        dhlwshAlgorithmouButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-        prosthikiProapaitoumenouButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-        backButton.setBackground(GeneralStyle.LOGOUT_BACKGROUND_COLOR);
-
-        eisagwghVathmwnButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        dhlwshAlgorithmouButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        prosthikiProapaitoumenouButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        onomaThewriasLabel.setHorizontalAlignment(JLabel.RIGHT);
-        onomaKathigitiLabel.setHorizontalAlignment(JLabel.RIGHT);
-        eksamhnoLabel.setHorizontalAlignment(JLabel.RIGHT);
-        sunoloFoititwnLabel.setHorizontalAlignment(JLabel.RIGHT);
-        ergasthriaLabel.setHorizontalAlignment(JLabel.RIGHT);
-        proapaitoumenaLabel.setHorizontalAlignment(JLabel.RIGHT);
+        GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
+        styleBuilder
+                .setFont(onomaThewrias,onomaKathigiti,eksamhno,sunoloFoititwn,proapaitoumena,ergasthria,
+                    onomaThewriasLabel, onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel,ergasthriaLabel,
+                    eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton,backButton)
+                .setNotEditable(onomaThewrias,onomaKathigiti,eksamhno,sunoloFoititwn)
+                .setBackgroundAsGrey(ergasthria,proapaitoumena)
+                .setForegroundAsWhite(onomaThewriasLabel,onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel,
+                        ergasthriaLabel,eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton,backButton,ergasthria,proapaitoumena)
+                .setBackgroundAsBlue(eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton)
+                .setBackgroundAsRed(backButton)
+                .setCursorAsHand(eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton,backButton)
+                .setHorizontalAlignmentToRight(onomaThewriasLabel,onomaKathigitiLabel,eksamhnoLabel,
+                        sunoloFoititwnLabel,ergasthriaLabel,proapaitoumenaLabel);
 
         DefaultListModel<String> proapaitoumenaList = new DefaultListModel<>();
         DefaultListModel<String> ergasthriaList = new DefaultListModel<>();
@@ -109,22 +68,15 @@ public class ThewriaPageUI extends JPanel {
 
         proapaitoumena.setModel(proapaitoumenaList);
         ergasthria.setModel(ergasthriaList);
-        onomaKathigiti.setText(thewria.getKathigiti().getOnoma() + " " + thewria.getKathigiti().getEpwnhmo());
+        onomaKathigiti.setText(thewria.getKathigiti().getEpwnhmo()+" "+ thewria.getKathigiti().getOnoma());
         eksamhno.setText(thewria.getEksamhno().toString());
         onomaThewrias.setText(thewria.getOnomaMathimatos());
-        sunoloFoititwn.setText(thewria.getFoitites().size() + " φοιτιτες/τριες");
+        sunoloFoititwn.setText(thewria.getFoitites().size() + " φοιτητες/τριες");
 
-        GridBagConstraints backButtonConstraints = new GridBagConstraints();
-        backButtonConstraints.gridx = 0;
-        backButtonConstraints.gridy = 0;
-        backButtonConstraints.gridwidth = 2;
-        backButtonConstraints.fill = GridBagConstraints.BOTH;
-        backButtonConstraints.anchor = GridBagConstraints.CENTER;
-        backButtonConstraints.insets = new Insets(5, 10, 5, 5);
-        backButtonConstraints.weightx = 1;
-        backButtonConstraints.weighty = 1;
-
-        add(backButton, backButtonConstraints);
+        Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
+        builder.setColumn(0).setRow(0).setColumnWidth(2).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)
+                .setInsets(new Insets(5, 5, 10, 5)).setRowWeight(1).setColumnWeight(1);
+        add(backButton, builder.build());
 
         //IMPORTANT TO KEEP THE ORDER OF LABEL AND FIELD PAIR THE SAME
         JLabel[] labels = {onomaThewriasLabel,onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel, ergasthriaLabel};
@@ -132,42 +84,24 @@ public class ThewriaPageUI extends JPanel {
         JButton[] buttons = {dhlwshAlgorithmouButton,eisagwghVathmwnButton,prosthikiProapaitoumenouButton};
 
         for (int row = 1; row < labels.length + 1; row++) {
-            GridBagConstraints constraints = new GridBagConstraints();
-            constraints.gridx = 0;
-            constraints.gridy = row;
-            constraints.fill = GridBagConstraints.BOTH;
-            constraints.anchor = GridBagConstraints.CENTER;
-            constraints.insets = new Insets(5, 10, 5, 5);
-            constraints.weightx = 1;
-            constraints.weighty = 1;
-            add(labels[row - 1], constraints);
+            builder.reset().setColumn(0).setRow(row).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)
+                    .setInsets(new Insets(5,10,5,5)).setColumnWeight(1).setRowWeight(1);
+            add(labels[row - 1], builder.build());
 
-            constraints = new GridBagConstraints();
-            constraints.gridx = 1;
-            constraints.gridy = row;
-            constraints.fill = GridBagConstraints.BOTH;
-            constraints.anchor = GridBagConstraints.CENTER;
-            constraints.insets = new Insets(5, 5, 5, 5);
-            constraints.weightx = 10;
+            builder.reset().setRow(row).setColumn(1).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)
+                    .setInsets(new Insets(5, 5, 5, 5)).setColumnWeight(10);
             if (fields[row - 1] instanceof JList) {
-                constraints.weighty = 10;
+                builder.setRowWeight(10);
             } else {
-                constraints.weighty = 1;
+                builder.setRowWeight(1);
             }
-            add(fields[row - 1], constraints);
+            add(fields[row - 1], builder.build());
         }
 
         for (int row = labels.length + 2; row < labels.length + 1 + buttons.length; row++) {
-            GridBagConstraints constraints = new GridBagConstraints();
-            constraints.gridx = 0;
-            constraints.gridy = row;
-            constraints.fill = GridBagConstraints.BOTH;
-            constraints.anchor = GridBagConstraints.CENTER;
-            constraints.insets = new Insets(5, 5, 5, 5);
-            constraints.weightx = 1;
-            constraints.weighty = 1;
-            constraints.gridwidth = 2;
-            add(buttons[row - (labels.length + 1) ], constraints);
+            builder.reset().setColumn(0).setRow(row).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)
+                    .setInsets(new Insets(5, 5, 5, 5)).setColumnWeight(1).setRowWeight(1).setColumnWidth(2);
+            add(buttons[row - (labels.length + 1)], builder.build());
         }
 
         backButton.addActionListener(this::backButtonClick);

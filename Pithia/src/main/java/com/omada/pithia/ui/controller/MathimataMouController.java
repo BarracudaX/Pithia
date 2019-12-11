@@ -1,17 +1,17 @@
 package com.omada.pithia.ui.controller;
 
 public class MathimataMouController {
-    private final ViewSwitchController viewSwitchController;
+    private final ViewController viewController;
 
-    public MathimataMouController(ViewSwitchController viewSwitchController) {
-        this.viewSwitchController = viewSwitchController;
+    public MathimataMouController(ViewController viewController) {
+        this.viewController = viewController;
     }
 
     public void requestForThewries() {
-        viewSwitchController.requestForThewries();
+        viewController.requestForThewries();
     }
 
     public void requestForErgasthria() {
-        viewSwitchController.requestForErgasthria();
+        viewController.requestForErgasthria();
     }
 }

@@ -6,7 +6,6 @@ import com.omada.pithia.ui.controller.MathimataMouController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.function.Function;
 
 public class MathimataMouPageUI extends JPanel {
 
@@ -31,62 +30,31 @@ public class MathimataMouPageUI extends JPanel {
 
     private void prepareView() {
         this.setLayout(new GridBagLayout());
-        this.setBackground(GeneralStyle.GENERAL_BACKGROUND_COLOR);
+        this.setBackground(GeneralStyle.DARK_COLOR);
 
-        backButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        thewriesButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        ergasthriaButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-
-        backButton.setBackground(GeneralStyle.LOGOUT_BACKGROUND_COLOR);
-        thewriesButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-        ergasthriaButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-
-        backButton.setFont(GeneralStyle.GENERAL_FONT);
-        thewriesButton.setFont(GeneralStyle.GENERAL_FONT);
-        ergasthriaButton.setFont(GeneralStyle.GENERAL_FONT);
-
-        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        thewriesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        ergasthriaButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
+        styleBuilder.setForegroundAsWhite(backButton, thewriesButton, ergasthriaButton)
+                .setBackgroundAsBlue(thewriesButton, ergasthriaButton).setBackgroundAsRed(backButton)
+                .setFont(backButton, thewriesButton, ergasthriaButton)
+                .setCursorAsHand(backButton, thewriesButton, ergasthriaButton);
 
         backButton.addActionListener(this::backButtonClick);
         thewriesButton.addActionListener(this::thewriesClick);
         ergasthriaButton.addActionListener(this::ergasthriaClick);
 
-        GridBagConstraints constraints = new GridBagConstraints();
+        Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
+        builder.setFill(Utils.Fill.BOTH).setColumn(0).setRow(0).setColumnWidth(2).setRowWeight(1).setColumnWeight(1)
+                .setInsets(new Insets(5,5,20,5)).setAnchor(Utils.Anchor.CENTER);
+        add(backButton, builder.build());
 
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridwidth = 2;
-        constraints.weighty = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(5, 5, 20, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        add(backButton, constraints);
-
-        constraints = new GridBagConstraints();
-
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.weighty = 5;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(5, 5, 5, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        add(thewriesButton, constraints);
+        builder.reset().setFill(Utils.Fill.BOTH).setColumn(0).setRow(1).setRowWeight(5).setColumnWeight(1)
+                .setInsets(new Insets(5,5,5,5)).setAnchor(Utils.Anchor.CENTER);
+        add(thewriesButton, builder.build());
 
 
-        constraints = new GridBagConstraints();
-
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        constraints.weighty = 5;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(5, 5, 5, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        add(ergasthriaButton, constraints);
+        builder.reset().setFill(Utils.Fill.BOTH).setColumn(1).setRow(1).setRowWeight(5).setColumnWeight(1)
+                .setInsets(new Insets(5,5,5,5)).setAnchor(Utils.Anchor.CENTER);
+        add(ergasthriaButton, builder.build());
 
     }
 

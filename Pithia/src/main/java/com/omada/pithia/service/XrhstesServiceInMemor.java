@@ -14,6 +14,8 @@ public class XrhstesServiceInMemor implements XrhstesService {
 
     private final Map<String,Xrhsths> xrhstes = new ConcurrentHashMap<>();
 
+    private volatile Xrhsths loginXrhsths;
+
     public XrhstesServiceInMemor() {
 
     }
@@ -74,6 +76,18 @@ public class XrhstesServiceInMemor implements XrhstesService {
         }
 
         return kathigitis;
+    }
+
+    @Override
+    public void login(String onomaXrhsth, String password) {
+        if (canLogin(onomaXrhsth, password)) {
+            loginXrhsths = xrhstes.get(onomaXrhsth);
+        }
+    }
+
+    @Override
+    public Xrhsths getLoginXrhsth() {
+        return loginXrhsths;
     }
 
 

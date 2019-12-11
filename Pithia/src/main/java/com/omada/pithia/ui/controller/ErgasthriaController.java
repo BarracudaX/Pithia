@@ -1,19 +1,24 @@
 package com.omada.pithia.ui.controller;
 
+import com.omada.pithia.model.mathimata.Ergasthrio;
+import com.omada.pithia.service.ErgasthrioService;
+
 public class ErgasthriaController {
 
-    private final ViewSwitchController viewSwitchController;
+    private final ViewController viewController;
 
-    public ErgasthriaController(ViewSwitchController viewSwitchController) {
-        this.viewSwitchController = viewSwitchController;
-    }
+    private final ErgasthrioService service;
 
-
-    public void requestForErgasthrio() {
-        //TODO
+    public ErgasthriaController(ViewController viewController, ErgasthrioService service) {
+        this.service = service;
+        this.viewController = viewController;
     }
 
     public void requestForBack() {
-        viewSwitchController.requestForMathimataMou();
+        viewController.requestForMathimataMou();
+    }
+
+    public void requestForErgasthrio(String ergasthrio) {
+        viewController.requestForergathrio(service.find(ergasthrio));
     }
 }

@@ -5,6 +5,8 @@ import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.model.xrhstes.Kathigitis;
+import com.omada.pithia.model.xrhstes.Rolos;
+import com.omada.pithia.model.xrhstes.Xrhsths;
 import com.omada.pithia.service.*;
 import com.omada.pithia.ui.controller.*;
 
@@ -13,14 +15,13 @@ import java.awt.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Pithia extends JFrame {
 
-    private volatile XrhstesService xrhstesService;
-    private volatile ThewriesService thewriesService;
-    private  volatile ErgasthrioService ergasthrioService;
+    private final XrhstesService xrhstesService;
+    private final ThewriesService thewriesService;
+    private  final ErgasthrioService ergasthrioService;
 
     private static final String LOGIN_PAGE_CARD_NAME = "LOGIN_PAGE";
     private static final String HOME_PAGE_CARD_NAME = "HOME_PAGE";
@@ -33,15 +34,13 @@ public class Pithia extends JFrame {
     private static final String THEWRIES_PAGE_CARD_NAME = "THEWRIES_PAGE";
     private static final String ERGASTHRIA_PAGE_CARD_NAME = "ERGASTHRIA_PAGE";
     private static final String THEWRIA_PAGE_CARD_NAME = "THEWRIA_PAGE";
+    private static final String ERGASTHRIO_PAGE_CARD_NAME = "ERGASTHRIO_PAGE";
 
-    private final HomePageUI homePageUI;
-    private final MathimataMouPageUI mathimataMouPageUI;
     private final FoititesPageUI foititesPageUI;
     private final LoginPageUI loginPageUI;
-    private final ThewriesPageUI thewriesPageUI;
-    private final ErgasthriaPageUI ergasthriaPageUI;
+    private final MathimataMouPageUI mathimataMouPageUI;
 
-    private final ViewSwitchController viewSwitchController;
+    private final ViewController viewController;
     private final MathimataMouController mathimataMouController;
     private final FoititesController foititesController;
     private final LoginController loginController;
@@ -54,26 +53,30 @@ public class Pithia extends JFrame {
 
     private final MyAction backToHomeAction;
 
-    public Pithia() {
-        this.viewSwitchController = new ViewSwitchController(this);
-        this.mathimataMouController = new MathimataMouController(viewSwitchController);
-        this.loginController = new LoginController(viewSwitchController);
-        this.thewriesController = new ThewriesController(viewSwitchController);
-        this.ergasthriaController = new ErgasthriaController(viewSwitchController);
+    public Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthrioService ergasthrioService) {
+        this.xrhstesService = xrhstesService;
+        this.thewriesService = thewriesService;
+        this.ergasthrioService = ergasthrioService;
+
+        this.viewController = new ViewController(this);
+        this.mathimataMouController = new MathimataMouController(viewController);
+        this.loginController = new LoginController(viewController,xrhstesService);
+        this.thewriesController = new ThewriesController(viewController,thewriesService);
+        this.ergasthriaController = new ErgasthriaController(viewController,ergasthrioService);
         this.foititesController = new FoititesController();
         this.backToHomeAction = this::switchToHomePageGUI;
 
         loginPageUI = new LoginPageUI(loginController);
-        homePageUI = new HomePageUI(viewSwitchController);
-        mathimataMouPageUI = new MathimataMouPageUI(mathimataMouController, backToHomeAction);
         foititesPageUI = new FoititesPageUI(foititesController, backToHomeAction);
-        thewriesPageUI = new ThewriesPageUI(thewriesController);
-        ergasthriaPageUI = new ErgasthriaPageUI(ergasthriaController);
+        mathimataMouPageUI = new MathimataMouPageUI(mathimataMouController, backToHomeAction);
     }
 
 
     public static void main(String[] args) throws InvocationTargetException, InterruptedException, IOException {
-        Pithia pithia = new Pithia();
+        XrhstesService xrhstesService = new XrhstesServiceInMemor();
+        ThewriesService thewriesService = new ThewriesServiceInMemory();
+        ErgasthrioService ergasthrioService = new ErgasthrioServiceInMemory();
+        Pithia pithia = new Pithia(xrhstesService,thewriesService,ergasthrioService);
         pithia.start();
     }
 
@@ -84,13 +87,10 @@ public class Pithia extends JFrame {
             mainPanel.setLayout(cardLayout);
 
             mainPanel.add(loginPageUI, LOGIN_PAGE_CARD_NAME);
-            mainPanel.add(homePageUI, HOME_PAGE_CARD_NAME);
-            mainPanel.add(mathimataMouPageUI, MATHIMATA_MOU_PAGE_CARD_NAME);
             mainPanel.add(foititesPageUI, FOITITES_PAGE_CARD_NAME);
-            mainPanel.add(thewriesPageUI, THEWRIES_PAGE_CARD_NAME);
-            mainPanel.add(ergasthriaPageUI, ERGASTHRIA_PAGE_CARD_NAME);
+            mainPanel.add(mathimataMouPageUI, MATHIMATA_MOU_PAGE_CARD_NAME);
 
-            this.getContentPane().setBackground(GeneralStyle.GENERAL_BACKGROUND_COLOR);
+            this.getContentPane().setBackground(GeneralStyle.DARK_COLOR);
             this.setContentPane(mainPanel);
             this.setSize(500, 300);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +100,8 @@ public class Pithia extends JFrame {
     }
 
     public void switchToHomePageGUI() {
+        HomePageUI homePageUI = new HomePageUI(viewController,xrhstesService);
+        mainPanel.add(homePageUI, HOME_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, HOME_PAGE_CARD_NAME);
     }
 
@@ -132,20 +134,30 @@ public class Pithia extends JFrame {
     }
 
     public void switchToThewriesGUI() {
+        ThewriesPageUI thewriesPageUI = new ThewriesPageUI(thewriesController,xrhstesService);
+        mainPanel.add(thewriesPageUI, THEWRIES_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIES_PAGE_CARD_NAME);
     }
 
     public void switchToErgasthriaGUI() {
+        ErgasthriaPageUI ergasthriaPageUI = new ErgasthriaPageUI(ergasthriaController,xrhstesService);
+        mainPanel.add(ergasthriaPageUI, ERGASTHRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIA_PAGE_CARD_NAME);
     }
 
     public void switchToThewriaGUI(Thewria thewria) {
-        ThewriaController controller = new ThewriaController(viewSwitchController);
+        ThewriaController controller = new ThewriaController(viewController);
         ThewriaPageUI thewriaPageUI = new ThewriaPageUI(controller, thewria);
         mainPanel.add(thewriaPageUI, THEWRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel,THEWRIA_PAGE_CARD_NAME);
     }
 
+    public void switchToErgasthrioGUI(Ergasthrio ergasthrio) {
+        ErgasthrioController controller = new ErgasthrioController(viewController);
+        ErgasthrioPageUI ergasthrioPageUI = new ErgasthrioPageUI(controller, ergasthrio);
+        mainPanel.add(ergasthrioPageUI, ERGASTHRIO_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel, ERGASTHRIO_PAGE_CARD_NAME);
+    }
 
     private void prepareData() throws IOException {
         File foititesFile = new File("foitites.txt");
@@ -159,10 +171,6 @@ public class Pithia extends JFrame {
         PrintWriter foititesOutputStream = new PrintWriter(new FileOutputStream(foititesFile));
         PrintWriter thewriesOutputStream = new PrintWriter(new FileOutputStream(thewriesFile));
         PrintWriter kathigitesOutputStream = new PrintWriter(new FileOutputStream(kathigitesFile));
-
-        xrhstesService = new XrhstesServiceInMemor();
-        thewriesService = new ThewriesServiceInMemory();
-        ergasthrioService = new ErgasthrioServiceInMemory();
 
         String[] onomata = {
                 "Μαρια", "Νικος","Πετρος","Βασιλης","Ολγα","Αννα"
@@ -296,13 +304,14 @@ public class Pithia extends JFrame {
             for (int i = 0; i < ThreadLocalRandom.current().nextInt(7); i++) {
                 Kathigitis kathigitisErgasthriou = kathigites[ThreadLocalRandom.current().nextInt(kathigites.length)];
                 Ergasthrio ergasthrio = new Ergasthrio(thewria.getOnomaMathimatos() + " ε" + i, kathigitisErgasthriou, thewria);
+                ergasthrioService.add(ergasthrio);
                 thewria.addErgasthrio(ergasthrio);
             }
             thewriesOutputStream.println(thewria.toString()+"\n");
         }
 
         for (Kathigitis kathigitis : kathigites) {
-            kathigitesOutputStream.println(kathigites.toString()+"\n");
+            kathigitesOutputStream.println(kathigitis.toString()+"\n");
         }
 
         foititesOutputStream.flush();
@@ -313,9 +322,20 @@ public class Pithia extends JFrame {
         thewriesOutputStream.close();
         kathigitesOutputStream.close();
 
+        Xrhsths admin = new Xrhsths("ADMIN", "ADMIN", LocalDate.now().minusYears(20),
+                "admin", "admin", "admin@academia.gr");
+        admin.addRolo(Rolos.DIAXEIRISTIS);
 
+        xrhstesService.add(admin);
     }
 
+    public void showError(String error) {
+        JOptionPane.showMessageDialog(this,error,"Error",JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this,message,"Error",JOptionPane.PLAIN_MESSAGE);
+    }
 
 
 }

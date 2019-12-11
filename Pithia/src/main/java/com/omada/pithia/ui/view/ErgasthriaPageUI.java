@@ -1,8 +1,12 @@
 package com.omada.pithia.ui.view;
 
+import com.omada.pithia.model.mathimata.Ergasthrio;
+import com.omada.pithia.model.xrhstes.Kathigitis;
+import com.omada.pithia.service.XrhstesService;
 import com.omada.pithia.ui.controller.ErgasthriaController;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -10,87 +14,86 @@ public class ErgasthriaPageUI extends JPanel {
 
     private final ErgasthriaController controller;
 
+    private final XrhstesService service;
+
     private final JButton backButton = new JButton("Πισω");
     private final JButton showButton = new JButton("Λεπτρομεριες");
     private final JList<String> ergasthria;
     private final JScrollPane listScrollPane;
 
-    public ErgasthriaPageUI(ErgasthriaController controller) {
+    private volatile String teleutaioErgasthrio = null;
+
+    public ErgasthriaPageUI(ErgasthriaController controller,XrhstesService service) {
         this.controller = controller;
         this.ergasthria = new JList<>();
         this.listScrollPane = new JScrollPane(ergasthria);
+        this.service = service;
         prepareView();
     }
 
     private void prepareView() {
         setLayout(new GridBagLayout());
-        setBackground(GeneralStyle.GENERAL_BACKGROUND_COLOR);
+        setBackground(GeneralStyle.DARK_COLOR);
+
+        GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
 
         ergasthria.setVisibleRowCount(-1);
         ergasthria.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ergasthria.setLayoutOrientation(JList.VERTICAL);
 
-        DefaultListModel<String> defaultListModel = new DefaultListModel<>();
-
-        for (int i = 0; i < 100; i++) {
-            defaultListModel.addElement("Ergasthrio" + i);
-        }
+        DefaultListModel<String> defaultListModel = getErgasthria();
 
         ergasthria.setModel(defaultListModel);
 
-        ergasthria.setBackground(GeneralStyle.TEXT_AREA_BACKGROUND_COLOR);
-        showButton.setBackground(GeneralStyle.BUTTON_BACKGROUND_COLOR);
-        backButton.setBackground(GeneralStyle.LOGOUT_BACKGROUND_COLOR);
-
-        ergasthria.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        backButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-        showButton.setForeground(GeneralStyle.BUTTON_FOREGROUND_COLOR);
-
-        ergasthria.setFont(GeneralStyle.GENERAL_FONT);
-        backButton.setFont(GeneralStyle.GENERAL_FONT);
-        showButton.setFont(GeneralStyle.GENERAL_FONT);
+        styleBuilder.setBackgroundAsGrey(ergasthria).setBackgroundAsBlue(showButton).setBackgroundAsRed(backButton)
+            .setForegroundAsWhite(ergasthria,showButton,backButton).setFont(ergasthria,backButton,showButton)
+            .setCursorAsHand(backButton,showButton);
 
         backButton.addActionListener(this::backButtonClick);
         showButton.addActionListener(this::showButtonClick);
 
-        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        showButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
+        builder.setColumn(0).setRow(0).setInsets(new Insets(5, 5, 20, 5)).setAnchor(Utils.Anchor.CENTER)
+                .setColumnWeight(1).setRowWeight(1).setFill(Utils.Fill.BOTH);
 
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.insets = new Insets(5, 5, 20, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.weighty = 1;
-        constraints.weightx = 1;
-        constraints.fill = GridBagConstraints.BOTH;
-        add(backButton, constraints);
+        add(backButton, builder.build());
 
-        constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.insets = new Insets(5, 5, 20, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.weighty = 1;
-        constraints.weightx = 1;
-        constraints.fill = GridBagConstraints.BOTH;
-        add(showButton, constraints);
+        builder.reset().setColumn(0).setRow(1).setInsets(new Insets(5, 5, 20, 5)).setAnchor(Utils.Anchor.CENTER)
+                .setColumnWeight(1).setRowWeight(1).setFill(Utils.Fill.BOTH);
+        add(showButton, builder.build());
 
+        builder.reset().setColumn(0).setRow(2).setInsets(new Insets(5, 5, 5, 5)).setAnchor(Utils.Anchor.CENTER)
+                .setColumnWeight(1).setRowWeight(15).setFill(Utils.Fill.BOTH);
+        add(listScrollPane, builder.build());
 
-        constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.insets = new Insets(5, 5, 5, 5);
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.weighty = 15;
-        constraints.weightx = 1;
-        constraints.fill = GridBagConstraints.BOTH;
-        add(listScrollPane, constraints);
+        ergasthria.addListSelectionListener(this::epiloghErgasthriou);
+    }
 
+    private void epiloghErgasthriou(ListSelectionEvent listSelectionEvent) {
+        if (!listSelectionEvent.getValueIsAdjusting()) {
+            if (ergasthria.getSelectedIndex() > -1) {
+                teleutaioErgasthrio = ergasthria.getSelectedValue();
+            }
+        }
+    }
+
+    private DefaultListModel<String> getErgasthria() {
+        DefaultListModel<String> ergasthria = new DefaultListModel<>();
+
+        Kathigitis kathigitis = (Kathigitis) service.getLoginXrhsth();
+
+        for (Ergasthrio ergasthrio : kathigitis.getErgasthria()) {
+            ergasthria.addElement(ergasthrio.getOnomaErgasthriou());
+        }
+
+        return ergasthria;
     }
 
     private void showButtonClick(ActionEvent actionEvent) {
-        controller.requestForErgasthrio();
+        if (teleutaioErgasthrio != null) {
+            controller.requestForErgasthrio(teleutaioErgasthrio);
+            teleutaioErgasthrio = null;
+        }
     }
 
     private void backButtonClick(ActionEvent actionEvent) {
