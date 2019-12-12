@@ -15,6 +15,11 @@ import java.awt.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Pithia extends JFrame {
@@ -35,6 +40,9 @@ public class Pithia extends JFrame {
     private static final String ERGASTHRIA_PAGE_CARD_NAME = "ERGASTHRIA_PAGE";
     private static final String THEWRIA_PAGE_CARD_NAME = "THEWRIA_PAGE";
     private static final String ERGASTHRIO_PAGE_CARD_NAME = "ERGASTHRIO_PAGE";
+    private static final String PROAPAITOUMENA_PAGE_CARD_NAME = "PROAPAITOUMENA_PAGE";
+    private static final String EISAGWGH_VATHMOLOGIAS_THEWRIA = "EISAGWGH_VATHMOLOGIAS_THEWRIAS_PAGE";
+    private static final String EISAGWGH_VATHMOLOGIAS_ERGASTHRIO = "EISAGWGH_VATHMOLOGIAS_ERGASTHRIO_PAGE";
 
     private final FoititesPageUI foititesPageUI;
     private final LoginPageUI loginPageUI;
@@ -53,6 +61,7 @@ public class Pithia extends JFrame {
 
     private final MyAction backToHomeAction;
 
+
     public Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthrioService ergasthrioService) {
         this.xrhstesService = xrhstesService;
         this.thewriesService = thewriesService;
@@ -61,8 +70,8 @@ public class Pithia extends JFrame {
         this.viewController = new ViewController(this);
         this.mathimataMouController = new MathimataMouController(viewController);
         this.loginController = new LoginController(viewController,xrhstesService);
-        this.thewriesController = new ThewriesController(viewController,thewriesService);
-        this.ergasthriaController = new ErgasthriaController(viewController,ergasthrioService);
+        this.thewriesController = new ThewriesController(viewController,thewriesService,xrhstesService);
+        this.ergasthriaController = new ErgasthriaController(viewController,ergasthrioService,xrhstesService);
         this.foititesController = new FoititesController();
         this.backToHomeAction = this::switchToHomePageGUI;
 
@@ -84,6 +93,7 @@ public class Pithia extends JFrame {
         prepareData();
 
         SwingUtilities.invokeAndWait(() -> {
+
             mainPanel.setLayout(cardLayout);
 
             mainPanel.add(loginPageUI, LOGIN_PAGE_CARD_NAME);
@@ -100,8 +110,8 @@ public class Pithia extends JFrame {
     }
 
     public void switchToHomePageGUI() {
-        HomePageUI homePageUI = new HomePageUI(viewController,xrhstesService);
-        mainPanel.add(homePageUI, HOME_PAGE_CARD_NAME);
+        HomePageUI view = new HomePageUI(viewController,xrhstesService);
+        mainPanel.add(view, HOME_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, HOME_PAGE_CARD_NAME);
     }
 
@@ -134,29 +144,54 @@ public class Pithia extends JFrame {
     }
 
     public void switchToThewriesGUI() {
-        ThewriesPageUI thewriesPageUI = new ThewriesPageUI(thewriesController,xrhstesService);
+        ThewriesPageUI thewriesPageUI = new ThewriesPageUI(thewriesController);
         mainPanel.add(thewriesPageUI, THEWRIES_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIES_PAGE_CARD_NAME);
+
     }
 
     public void switchToErgasthriaGUI() {
-        ErgasthriaPageUI ergasthriaPageUI = new ErgasthriaPageUI(ergasthriaController,xrhstesService);
+        ErgasthriaPageUI ergasthriaPageUI = new ErgasthriaPageUI(ergasthriaController);
         mainPanel.add(ergasthriaPageUI, ERGASTHRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIA_PAGE_CARD_NAME);
     }
 
     public void switchToThewriaGUI(Thewria thewria) {
-        ThewriaController controller = new ThewriaController(viewController);
-        ThewriaPageUI thewriaPageUI = new ThewriaPageUI(controller, thewria);
-        mainPanel.add(thewriaPageUI, THEWRIA_PAGE_CARD_NAME);
-        cardLayout.show(mainPanel,THEWRIA_PAGE_CARD_NAME);
+        ThewriaController controller = new ThewriaController(viewController,thewria);
+        ThewriaPageUI view = new ThewriaPageUI(controller);
+        mainPanel.add(view, THEWRIA_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel, THEWRIA_PAGE_CARD_NAME);
     }
 
     public void switchToErgasthrioGUI(Ergasthrio ergasthrio) {
-        ErgasthrioController controller = new ErgasthrioController(viewController);
-        ErgasthrioPageUI ergasthrioPageUI = new ErgasthrioPageUI(controller, ergasthrio);
-        mainPanel.add(ergasthrioPageUI, ERGASTHRIO_PAGE_CARD_NAME);
+        ErgasthrioController controller = new ErgasthrioController(viewController,ergasthrio);
+        ErgasthrioPageUI view = new ErgasthrioPageUI(controller);
+        mainPanel.add(view, ERGASTHRIO_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIO_PAGE_CARD_NAME);
+    }
+
+
+    public void switchToProsthikiProapaitoumenou(Thewria thewria) {
+        ProapaitoumenaController controller = new ProapaitoumenaController(viewController,thewria,thewriesService);
+        ProapaitoumenaPageUI view = new ProapaitoumenaPageUI(controller);
+        mainPanel.add(view, PROAPAITOUMENA_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel,PROAPAITOUMENA_PAGE_CARD_NAME);
+    }
+
+    public void switchToEisagwghVathmologias(Thewria thewria) {
+        EisagwghVathmologiasThewriasController controller = new EisagwghVathmologiasThewriasController(viewController, thewria);
+        EisagwghVathmologiasThewriasPageUI view = new EisagwghVathmologiasThewriasPageUI(controller);
+
+        mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_THEWRIA);
+        cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_THEWRIA);
+    }
+
+    public void switchToEisagwghVathmologias(Ergasthrio ergasthrio) {
+        EisagwghVathmologiasErgasthrioController controller = new EisagwghVathmologiasErgasthrioController(viewController, ergasthrio);
+        EisagwghVathmologiasErgasthrioPageUI view = new EisagwghVathmologiasErgasthrioPageUI(controller);
+
+        mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
+        cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
     }
 
     private void prepareData() throws IOException {
@@ -211,11 +246,6 @@ public class Pithia extends JFrame {
                     onomaXrhsth.toString(), kwdikos.toString(), "acdem" + onomaXrhsth.toString() + "@academia.gr"));
         }
 
-        for (Foititis foititis : xrhstesService.getFoitites()) {
-            foititesOutputStream.println(foititis.toString());
-            foititesOutputStream.println("\n");
-        }
-
         Kathigitis adamidis = new Kathigitis("Παναγιωτης", "Αδαμιδης", LocalDate.now().minusYears(35),
                 "88888888", "093909230", "adamidis@academia.gr");
 
@@ -237,7 +267,7 @@ public class Pithia extends JFrame {
         Kathigitis kwstoglou = new Kathigitis("Βασιλειος", "Κωστογλου", LocalDate.now().minusYears(46),
                 "22222222", "2100990129305", "kwstoglou@academia.gr");
 
-        Kathigitis dhmosthenhs = new Kathigitis("Σταματησ", "Δημοσθενης", LocalDate.now().minusYears(47),
+        Kathigitis dhmosthenhs = new Kathigitis("Σταματης", "Δημοσθενης", LocalDate.now().minusYears(47),
                 "11111111", "00929312312", "kwstoglou@academia.gr");
 
         Kathigitis xatzhmisios = new Kathigitis("Περικλης", "Χατζημισιος", LocalDate.now().minusYears(48),
@@ -299,19 +329,47 @@ public class Pithia extends JFrame {
 
         Kathigitis[] kathigites = xrhstesService.getKathigites().toArray(new Kathigitis[0]);
         Thewria[] thewries = thewriesService.getAll().toArray(new Thewria[0]);
-
+        Foititis[] foitites = xrhstesService.getFoitites().toArray(new Foititis[0]);
         for (Thewria thewria : thewries) {
+            //prosthiki random arithmou ergasthriwn
             for (int i = 0; i < ThreadLocalRandom.current().nextInt(7); i++) {
                 Kathigitis kathigitisErgasthriou = kathigites[ThreadLocalRandom.current().nextInt(kathigites.length)];
                 Ergasthrio ergasthrio = new Ergasthrio(thewria.getOnomaMathimatos() + " ε" + i, kathigitisErgasthriou, thewria);
                 ergasthrioService.add(ergasthrio);
                 thewria.addErgasthrio(ergasthrio);
             }
+
+            int arithmosFoithtwn = ThreadLocalRandom.current().nextInt(foitites.length / 2);
+            for (int y = 0; y < arithmosFoithtwn; y++) {
+                thewria.addFoititi(foitites[ThreadLocalRandom.current().nextInt(foitites.length)]);
+            }
             thewriesOutputStream.println(thewria.toString()+"\n");
+        }
+
+        for (Thewria thewria : thewries) {
+
+            if (thewria.getErgasthria().size() == 0 || thewria.getFoitites().size() == 0) {
+                continue;
+            }
+
+            Ergasthrio[] ergasthria = thewria.getErgasthria().toArray(new Ergasthrio[0]);
+
+            Foititis[] foititesThewrias = Arrays.copyOf(thewria.getFoitites().toArray(new Foititis[0]),
+                    ThreadLocalRandom.current().nextInt(thewria.getFoitites().size()));
+
+            for (Foititis foititis : foititesThewrias) {
+                thewria.addFoititiStoErgasthrio(foititis,ergasthria[ThreadLocalRandom.current().nextInt(ergasthria.length)]);
+            }
+
         }
 
         for (Kathigitis kathigitis : kathigites) {
             kathigitesOutputStream.println(kathigitis.toString()+"\n");
+        }
+
+        for (Foititis foititis : foitites) {
+            foititesOutputStream.println(foititis.toString());
+            foititesOutputStream.println("\n");
         }
 
         foititesOutputStream.flush();

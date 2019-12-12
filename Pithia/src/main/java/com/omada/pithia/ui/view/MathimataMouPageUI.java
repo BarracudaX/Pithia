@@ -38,6 +38,9 @@ public class MathimataMouPageUI extends JPanel {
                 .setFont(backButton, thewriesButton, ergasthriaButton)
                 .setCursorAsHand(backButton, thewriesButton, ergasthriaButton);
 
+        thewriesButton.setPreferredSize(new Dimension(200,100));
+        ergasthriaButton.setPreferredSize(new Dimension(200,100));
+
         backButton.addActionListener(this::backButtonClick);
         thewriesButton.addActionListener(this::thewriesClick);
         ergasthriaButton.addActionListener(this::ergasthriaClick);

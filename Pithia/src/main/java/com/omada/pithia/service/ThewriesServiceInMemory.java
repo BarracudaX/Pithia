@@ -39,4 +39,21 @@ public class ThewriesServiceInMemory implements ThewriesService {
     public void remove(Thewria thewria) {
         thewries.remove(thewria);
     }
+
+    @Override
+    public List<Thewria> getPithataProapaitoumena(Thewria thewria) {
+        List<Thewria> proapaitoumena = new ArrayList<>();
+
+        List<Thewria> olesThewries = getAll();
+        olesThewries.remove(thewria);
+        olesThewries.removeAll(thewria.getProapaitoumena());
+
+        for (Thewria pithanoProapaitoumeno : olesThewries) {
+            if (thewria.getEksamhno().einaiMegaluteroEksamhno(pithanoProapaitoumeno.getEksamhno())) {
+                proapaitoumena.add(pithanoProapaitoumeno);
+            }
+        }
+
+        return proapaitoumena;
+    }
 }

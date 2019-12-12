@@ -28,12 +28,12 @@ public class ThewriaPageUI extends JPanel {
 
     private final JButton eisagwghVathmwnButton = new JButton("Εισαγωγη Βαθμολογιας");
     private final JButton dhlwshAlgorithmouButton = new JButton("Δηλωση Αλγοριθμου Τελικου Βαθμου");
-    private final JButton prosthikiProapaitoumenouButton = new JButton("Προστθηκη Προαπαιτουμενου");
+    private final JButton prosthikiProapaitoumenouButton = new JButton("Προσθηκη Προαπαιτουμενου");
     private final JButton backButton = new JButton("Πισω");
 
-    public ThewriaPageUI(ThewriaController controller, Thewria thewria) {
+    public ThewriaPageUI(ThewriaController controller) {
         this.controller = controller;
-        prepareView(thewria);
+        prepareView(controller.getThewria());
     }
 
     private void prepareView(Thewria thewria) {
@@ -105,7 +105,16 @@ public class ThewriaPageUI extends JPanel {
         }
 
         backButton.addActionListener(this::backButtonClick);
+        prosthikiProapaitoumenouButton.addActionListener(this::prosthikiProapaitoumenouClick);
+        eisagwghVathmwnButton.addActionListener(this::eisagwghVathmologiasClick);
+    }
 
+    private void eisagwghVathmologiasClick(ActionEvent actionEvent) {
+        controller.requestForEisagwghVathmologias();
+    }
+
+    private void prosthikiProapaitoumenouClick(ActionEvent actionEvent) {
+        controller.requestForProsthikiProapaitoumenwn();
     }
 
     private void backButtonClick(ActionEvent actionEvent) {

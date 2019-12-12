@@ -2,9 +2,12 @@ package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
+import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.ui.view.Pithia;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+import java.util.Set;
 
 public class ViewController {
 
@@ -69,4 +72,15 @@ public class ViewController {
         pithia.showMessage(message);
     }
 
+    public void requestForProsthikiProapaitoumenwn(Thewria thewria) {
+        pithia.switchToProsthikiProapaitoumenou(thewria);
+    }
+
+    public void requestForEisagwghVathmologiasThewrias(Thewria thewria) {
+        pithia.switchToEisagwghVathmologias(thewria);
+    }
+
+    public void requestForEisagwghVathmologiasErgasthriou(Ergasthrio ergasthrio) {
+        pithia.switchToEisagwghVathmologias(ergasthrio);
+    }
 }

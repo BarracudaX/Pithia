@@ -58,7 +58,7 @@ public class HomePageUI extends JPanel {
                         logariasmosButton,logoutButton
                 ).setCursorAsHand(
                         homeButton,mathimataMouButton,prosthikiMathimatosButton,katastashButton,dhlwshMathimatwnButton,foititesButton,
-                        logariasmosButton,logariasmosButton
+                        logariasmosButton,logoutButton
                 );
 
         homeButton.addActionListener(this::homeButtonClick);

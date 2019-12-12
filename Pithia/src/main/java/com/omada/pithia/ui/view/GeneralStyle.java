@@ -96,6 +96,13 @@ public class GeneralStyle {
             return this;
         }
 
+        public GeneralStyleBuilder setHorizontalAlignmentToCenter(JLabel... labels) {
+            for (JLabel label : labels) {
+                label.setHorizontalAlignment(SwingConstants.CENTER);
+            }
+            return this;
+        }
+
     }
 
 }

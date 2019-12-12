@@ -14,8 +14,6 @@ public class ThewriesPageUI extends JPanel {
 
     private final ThewriesController controller;
 
-    private final XrhstesService service;
-
     private final JButton backButton = new JButton("Πισω");
     private final JButton showButton = new JButton("Λεπτρομεριες");
     private final JList<String> thewries;
@@ -23,11 +21,10 @@ public class ThewriesPageUI extends JPanel {
 
     private volatile String lastThewria = null;
 
-    public ThewriesPageUI(ThewriesController controller,XrhstesService service) {
+    public ThewriesPageUI(ThewriesController controller) {
         this.controller = controller;
         this.thewries = new JList<>();
         this.listScrollPane = new JScrollPane(thewries);
-        this.service = service;
         prepareView();
     }
 
@@ -75,9 +72,7 @@ public class ThewriesPageUI extends JPanel {
     private DefaultListModel<String> getThewries() {
         DefaultListModel<String> thewries = new DefaultListModel<>();
 
-        Kathigitis kathigitis = (Kathigitis) service.getLoginXrhsth();
-
-        for (Thewria thewria : kathigitis.getThewries()) {
+        for (Thewria thewria : controller.getThewries()) {
             thewries.addElement(thewria.getOnomaMathimatos());
         }
 

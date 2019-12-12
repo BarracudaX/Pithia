@@ -9,25 +9,22 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class ErgasthriaPageUI extends JPanel {
 
     private final ErgasthriaController controller;
 
-    private final XrhstesService service;
-
     private final JButton backButton = new JButton("Πισω");
     private final JButton showButton = new JButton("Λεπτρομεριες");
     private final JList<String> ergasthria;
     private final JScrollPane listScrollPane;
-
     private volatile String teleutaioErgasthrio = null;
 
-    public ErgasthriaPageUI(ErgasthriaController controller,XrhstesService service) {
+    public ErgasthriaPageUI(ErgasthriaController controller) {
         this.controller = controller;
         this.ergasthria = new JList<>();
         this.listScrollPane = new JScrollPane(ergasthria);
-        this.service = service;
         prepareView();
     }
 
@@ -41,12 +38,19 @@ public class ErgasthriaPageUI extends JPanel {
         ergasthria.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ergasthria.setLayoutOrientation(JList.VERTICAL);
 
-        DefaultListModel<String> defaultListModel = getErgasthria();
 
-        ergasthria.setModel(defaultListModel);
+        List<Ergasthrio> ergasthriaKathigiti = controller.getErgasthria();
 
-        styleBuilder.setBackgroundAsGrey(ergasthria).setBackgroundAsBlue(showButton).setBackgroundAsRed(backButton)
-            .setForegroundAsWhite(ergasthria,showButton,backButton).setFont(ergasthria,backButton,showButton)
+        DefaultListModel<String> ergasthriaModel = new DefaultListModel<>();
+
+        for (Ergasthrio ergasthrio : ergasthriaKathigiti) {
+            ergasthriaModel.addElement(ergasthrio.getOnomaErgasthriou());
+        }
+
+        this.ergasthria.setModel(ergasthriaModel);
+
+        styleBuilder.setBackgroundAsGrey(this.ergasthria).setBackgroundAsBlue(showButton).setBackgroundAsRed(backButton)
+            .setForegroundAsWhite(this.ergasthria,showButton,backButton).setFont(this.ergasthria,backButton,showButton)
             .setCursorAsHand(backButton,showButton);
 
         backButton.addActionListener(this::backButtonClick);
@@ -66,7 +70,7 @@ public class ErgasthriaPageUI extends JPanel {
                 .setColumnWeight(1).setRowWeight(15).setFill(Utils.Fill.BOTH);
         add(listScrollPane, builder.build());
 
-        ergasthria.addListSelectionListener(this::epiloghErgasthriou);
+        this.ergasthria.addListSelectionListener(this::epiloghErgasthriou);
     }
 
     private void epiloghErgasthriou(ListSelectionEvent listSelectionEvent) {
@@ -75,18 +79,6 @@ public class ErgasthriaPageUI extends JPanel {
                 teleutaioErgasthrio = ergasthria.getSelectedValue();
             }
         }
-    }
-
-    private DefaultListModel<String> getErgasthria() {
-        DefaultListModel<String> ergasthria = new DefaultListModel<>();
-
-        Kathigitis kathigitis = (Kathigitis) service.getLoginXrhsth();
-
-        for (Ergasthrio ergasthrio : kathigitis.getErgasthria()) {
-            ergasthria.addElement(ergasthrio.getOnomaErgasthriou());
-        }
-
-        return ergasthria;
     }
 
     private void showButtonClick(ActionEvent actionEvent) {
