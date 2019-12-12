@@ -20,7 +20,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"service"})
+@ComponentScan(basePackages = {"com.omada.pithia.service"})
 @PropertySource("database.properties")
 public class Configurus {
 

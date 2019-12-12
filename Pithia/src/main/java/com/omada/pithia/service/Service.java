@@ -2,15 +2,15 @@ package com.omada.pithia.service;
 
 import java.util.List;
 
-public interface Service<T,ID> {
+public interface Service<T,K> {
 
-	void save(T t);
+    T find(K key);
 
-	T find(ID id);
+    List<T> getAll();
 
-	void delete(T t);
+    void add(T t);
 
-	List<T> findAll();
+    void update(T t);
 
-	T update(T t);
+    void remove(T t);
 }
