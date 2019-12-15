@@ -61,9 +61,10 @@ public class ViewController {
         pithia.switchToThewriaGUI(thewria);
     }
 
-    public void requestForergathrio(Ergasthrio ergasthrio) {
+    public void requestForErgasthrio(Ergasthrio ergasthrio) {
         pithia.switchToErgasthrioGUI(ergasthrio);
     }
+
     public void requestForShowErrorMessage(String error) {
         pithia.showError(error);
     }
@@ -82,5 +83,13 @@ public class ViewController {
 
     public void requestForEisagwghVathmologiasErgasthriou(Ergasthrio ergasthrio) {
         pithia.switchToEisagwghVathmologias(ergasthrio);
+    }
+
+    public void requestForProsthikiFoititwnStoErgasthrio(Ergasthrio ergasthrio, Thewria thewria) {
+        pithia.switchToProsthikiFoititwnStoErgasthrio(ergasthrio, thewria);
+    }
+
+    public void requestForDiaxeiristhApousiwn(Ergasthrio ergasthrio) {
+        pithia.switchToDiaxeirishApousiwn(ergasthrio);
     }
 }

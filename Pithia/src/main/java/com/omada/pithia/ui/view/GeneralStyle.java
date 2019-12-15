@@ -8,6 +8,7 @@ public class GeneralStyle {
 
     public static final Color BLUE_COLOR = Color.decode("#0d47a1");
     public static final Color RED_COLOR = Color.decode("#CC0000");
+    public static final Color RED_LIGHT_COLOR = Color.decode("#ff4444");
     public static final Color WHITE_COLOR = Color.decode("#ffffff");
     public static final Color DARK_COLOR = Color.decode("#212121");
     public static final Color GREY_COLOR = Color.decode("#2E2E2E");

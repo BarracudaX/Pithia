@@ -4,6 +4,8 @@ import com.omada.pithia.model.xrhstes.Foititis;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.text.NumberFormat;
 
 class InputVathmo extends JPanel {
 
@@ -11,7 +13,7 @@ class InputVathmo extends JPanel {
 
     private final JLabel onomaLabel ;
 
-    private final JTextField vathmosInput = new JTextField();
+    private volatile JFormattedTextField vathmosInput ;
 
     private volatile double vathmos;
 
@@ -19,13 +21,20 @@ class InputVathmo extends JPanel {
         this.foititis = foititis;
         this.onomaLabel = new JLabel(foititis.getOnomaXrhsth() + "(" + foititis.getEpwnhmo() + " " + foititis.getOnoma() + "):");
         this.vathmos = vathmos;
-        this.vathmosInput.setText(String.valueOf(vathmos));
         prepareView();
     }
 
     private void prepareView() {
         setLayout(new GridBagLayout());
         setBackground(GeneralStyle.DARK_COLOR);
+
+        NumberFormat format = NumberFormat.getNumberInstance();
+        format.setMinimumIntegerDigits(1);
+        format.setMaximumIntegerDigits(2);
+        format.setMaximumFractionDigits(1);
+
+        vathmosInput = new JFormattedTextField(format);
+        this.vathmosInput.setValue(vathmos);
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
         styleBuilder.setFont(onomaLabel, vathmosInput).setForegroundAsWhite(onomaLabel, vathmosInput)
@@ -40,17 +49,27 @@ class InputVathmo extends JPanel {
         builder.setColumn(1).setRow(0).setInsets(new Insets(5,5,5,5)).setFill(Utils.Fill.HORIZONTAL)
                 .setAnchor(Utils.Anchor.CENTER).setColumnWeight(10);
         add(vathmosInput, builder.build());
+        vathmosInput.addPropertyChangeListener("value",this::vathmosChanged);
     }
 
-    public double getVathmo(){
-
-        try {
-            return Double.parseDouble(vathmosInput.getText());
-        } catch (NumberFormatException e) {
-
+    private void vathmosChanged(PropertyChangeEvent propertyChangeEvent) {
+        Object source = propertyChangeEvent.getSource();
+        if (source == vathmosInput) {
+            double vathmos = ((Number) vathmosInput.getValue()).doubleValue();
+            if (vathmos < 0 || vathmos > 10) {
+                vathmosInput.setBackground(GeneralStyle.RED_LIGHT_COLOR);
+            }else{
+                vathmosInput.setBackground(GeneralStyle.GREY_COLOR);
+                this.vathmos = vathmos;
+            }
         }
-
-        return -1.0;
     }
 
+    public final double getVathmo(){
+        return vathmos;
+    }
+
+    public final Foititis getFoititis(){
+        return foititis;
+    }
 }

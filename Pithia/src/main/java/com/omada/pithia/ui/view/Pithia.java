@@ -43,6 +43,8 @@ public class Pithia extends JFrame {
     private static final String PROAPAITOUMENA_PAGE_CARD_NAME = "PROAPAITOUMENA_PAGE";
     private static final String EISAGWGH_VATHMOLOGIAS_THEWRIA = "EISAGWGH_VATHMOLOGIAS_THEWRIAS_PAGE";
     private static final String EISAGWGH_VATHMOLOGIAS_ERGASTHRIO = "EISAGWGH_VATHMOLOGIAS_ERGASTHRIO_PAGE";
+    private static final String PROSTHIKI_FOITITWN_STO_ERGASTHRIO = "PROSTHIKI_FOITITWN_STO_ERGASTHRIO_PAGE";
+    private static final String DIAXEIRISH_APOUSIWN = "DIAXEIRISH_APOUSIWN_PAGE";
 
     private final FoititesPageUI foititesPageUI;
     private final LoginPageUI loginPageUI;
@@ -192,6 +194,26 @@ public class Pithia extends JFrame {
 
         mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
         cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
+    }
+
+    public void switchToProsthikiFoititwnStoErgasthrio(Ergasthrio ergasthrio, Thewria thewria) {
+        ProsthikiFoititwnStoErgasthrioController controller
+                = new ProsthikiFoititwnStoErgasthrioController(viewController, thewria, ergasthrio);
+
+        ProsthikiFoititwnStoErgasthrioUI view = new ProsthikiFoititwnStoErgasthrioUI(controller);
+
+        mainPanel.add(view,PROSTHIKI_FOITITWN_STO_ERGASTHRIO);
+        cardLayout.show(mainPanel, PROSTHIKI_FOITITWN_STO_ERGASTHRIO);
+    }
+
+
+    public void switchToDiaxeirishApousiwn(Ergasthrio ergasthrio) {
+        DiaxeirishApousiwnController controller = new DiaxeirishApousiwnController(viewController,ergasthrio);
+
+        DiaxeirishApousiwnPageUI view = new DiaxeirishApousiwnPageUI(controller);
+
+        mainPanel.add(view, DIAXEIRISH_APOUSIWN);
+        cardLayout.show(mainPanel,DIAXEIRISH_APOUSIWN);
     }
 
     private void prepareData() throws IOException {
@@ -392,8 +414,7 @@ public class Pithia extends JFrame {
     }
 
     public void showMessage(String message) {
-        JOptionPane.showMessageDialog(this,message,"Error",JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this,message,"Message",JOptionPane.PLAIN_MESSAGE);
     }
-
 
 }

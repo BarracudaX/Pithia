@@ -27,7 +27,7 @@ public class ErgasthriaController {
     }
 
     public void requestForErgasthrio(String ergasthrio) {
-        viewController.requestForergathrio(ergasthrioService.find(ergasthrio));
+        viewController.requestForErgasthrio(ergasthrioService.find(ergasthrio));
     }
 
     public List<Ergasthrio> getErgasthria() {

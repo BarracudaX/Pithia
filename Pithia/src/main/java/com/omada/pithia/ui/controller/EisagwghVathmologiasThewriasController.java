@@ -5,6 +5,7 @@ import com.omada.pithia.model.xrhstes.Foititis;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class EisagwghVathmologiasThewriasController {
@@ -28,5 +29,13 @@ public class EisagwghVathmologiasThewriasController {
 
     public double getCurrentVathmoThewrias(Foititis foititis) {
         return thewria.getVathmoThewrias(foititis).get();
+    }
+
+    public void requestForApothikeushVathmwn(Map<Foititis, Double> vathmoi) {
+        for (Map.Entry<Foititis, Double> vathmos : vathmoi.entrySet()) {
+            thewria.addVathmoThewrias(vathmos.getValue(), vathmos.getKey());
+        }
+        viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν επιτυχως.");
+        viewController.requestForThewria(thewria);
     }
 }

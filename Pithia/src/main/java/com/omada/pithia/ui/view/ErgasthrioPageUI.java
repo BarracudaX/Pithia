@@ -95,6 +95,16 @@ public class ErgasthrioPageUI extends JPanel {
 
         backButton.addActionListener(this::backButtonClick);
         eisagwghVathmologias.addActionListener(this::eisagwghVathmologiasClick);
+        prosthikiFoititi.addActionListener(this::prosthikiFoititwnClick);
+        apousies.addActionListener(this::apousiesButtonClick);
+    }
+
+    private void apousiesButtonClick(ActionEvent actionEvent) {
+        controller.requestForDiaxeirishApousiwn();
+    }
+
+    private void prosthikiFoititwnClick(ActionEvent actionEvent) {
+        controller.requestForProsthikiFoititwn();
     }
 
     private void eisagwghVathmologiasClick(ActionEvent actionEvent) {

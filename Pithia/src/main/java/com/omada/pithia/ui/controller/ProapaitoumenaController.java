@@ -29,11 +29,11 @@ public class ProapaitoumenaController {
         }
 
         StringBuilder message = new StringBuilder("Συνολικα Προαπαιτουμενα Που Προστεθηκαν:" + telikaProapaitoumena.size()
-                +".Τα προαπαιτουμενα που προστεθηκαν ειναι : ");
+                +".\nΤα προαπαιτουμενα που προστεθηκαν ειναι : \n");
 
         for (Thewria proapaitoumeno : telikaProapaitoumena) {
             thewria.addProapaitoumeno(proapaitoumeno);
-            message.append(proapaitoumeno.getOnomaMathimatos()).append(",");
+            message.append(proapaitoumeno.getOnomaMathimatos()).append("\n");
         }
 
         message.delete(message.length()-1, message.length());

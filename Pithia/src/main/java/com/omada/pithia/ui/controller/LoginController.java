@@ -5,6 +5,7 @@ import com.omada.pithia.service.XrhstesService;
 public class LoginController {
 
     private final ViewController controller;
+
     private final XrhstesService service;
 
     public LoginController(ViewController controller, XrhstesService service) {

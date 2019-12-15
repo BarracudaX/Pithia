@@ -24,4 +24,12 @@ public class ErgasthrioController {
     public Ergasthrio getErgasthrio() {
         return ergasthrio;
     }
+
+    public void requestForProsthikiFoititwn() {
+        viewController.requestForProsthikiFoititwnStoErgasthrio(ergasthrio, ergasthrio.getThewria());
+    }
+
+    public void requestForDiaxeirishApousiwn() {
+        viewController.requestForDiaxeiristhApousiwn(ergasthrio);
+    }
 }

@@ -50,7 +50,9 @@ public class Apousia {
 	}
 
 	public final void meiwshApousiwn(){
-		arithmosApousiwn--;
+		if (arithmosApousiwn > 0) {
+			arithmosApousiwn--;
+		}
 	}
 
 	@Override

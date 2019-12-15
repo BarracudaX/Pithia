@@ -3,8 +3,7 @@ package com.omada.pithia.ui.controller;
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.xrhstes.Foititis;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class EisagwghVathmologiasErgasthrioController {
@@ -27,6 +26,14 @@ public class EisagwghVathmologiasErgasthrioController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForergathrio(ergasthrio);
+        viewController.requestForErgasthrio(ergasthrio);
+    }
+
+    public void requestForApothikeushVathmwn(Map<Foititis, Double> vathmoi) {
+        for (Map.Entry<Foititis, Double> vathmos : vathmoi.entrySet()) {
+            ergasthrio.addVathmoErgasthriou(vathmos.getKey(), vathmos.getValue());
+        }
+        viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια!");
+        viewController.requestForErgasthrio(ergasthrio);
     }
 }
