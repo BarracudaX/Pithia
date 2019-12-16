@@ -93,6 +93,8 @@ public class Xrhsths {
 		this.email = email;
 	}
 
+	public void setKwdikos(String kwdikos) {this.kwdikos = kwdikos;}
+
 	public final void addRolo(Rolos role) {
 		roloi.add(role);
 	}
