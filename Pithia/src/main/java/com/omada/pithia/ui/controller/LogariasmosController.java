@@ -23,5 +23,8 @@ public class LogariasmosController {
              else show error message explaining
              */
         }
+        public void requestForBackPage(){
+            viewController.requestForHomePage();
+        }
 
 }

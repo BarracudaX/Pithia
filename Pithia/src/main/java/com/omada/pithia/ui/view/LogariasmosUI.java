@@ -20,6 +20,7 @@ public class LogariasmosUI extends JPanel {
     private final JTextField neosKwdikos = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
     private final JTextField epanalhpshKwdikou = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
     private final JButton apothikeushKwdikou = new JButton("Apothikeush Kwdikou");
+    private final JButton backButton = new JButton("Epistrofi stin arxiki");
 
 
     public LogariasmosUI(LogariasmosController controller) {
@@ -33,12 +34,12 @@ public class LogariasmosUI extends JPanel {
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
         styleBuilder.setFont(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
-                epanalhpshKwdikou,apothikeushKwdikou)
+                epanalhpshKwdikou,apothikeushKwdikou,backButton)
                 .setForegroundAsWhite(infoLabel,formaAllagisLabel,neosKwdikosLabel
                 ,epanalhpshKwdikouLabel,
-                neosKwdikos , epanalhpshKwdikou,apothikeushKwdikou)
+                neosKwdikos , epanalhpshKwdikou,apothikeushKwdikou,backButton)
                 .setBackgroundAsGrey(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
-                epanalhpshKwdikou,apothikeushKwdikou);
+                epanalhpshKwdikou,apothikeushKwdikou,backButton);
 
         Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
 
@@ -78,8 +79,14 @@ public class LogariasmosUI extends JPanel {
                 .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
         add(apothikeushKwdikou,builder.build());
 
+        builder.reset();
+        builder.setRow(5).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
+                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+        add(backButton,builder.build());
+
 
         apothikeushKwdikou.addActionListener(this::apothikeushKwdikouClick);
+        backButton.addActionListener(this::backButtonClick);
 
     }
 
@@ -88,5 +95,10 @@ public class LogariasmosUI extends JPanel {
                 controller.requestForApothikeusiKwdikou(neosKwdikos.getText(),epanalhpshKwdikou.getText());
 
         }
+    private void backButtonClick(ActionEvent actionEvent) {
+
+        controller.requestForBackPage();
+
+    }
     }
 
