@@ -10,5 +10,5 @@ public class DhlwshAlgorithmouController {
         this.viewController = viewController;
         this.thewria = thewria;
     }
-    public void changeAlgo(Thewria){thewria.saveAlgorythmo(double x,double y);}
+    public void saveAlgorythmo(double x,double y){thewria.saveAlgorythmo( x,y);}
 }

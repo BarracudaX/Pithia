@@ -74,7 +74,7 @@ public class LogariasmosUI extends JPanel {
         add(epanalhpshKwdikou,builder.build());
 
         builder.reset();
-        builder.setRow(3).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
+        builder.setRow(4).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
                 .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
         add(apothikeushKwdikou,builder.build());
 
@@ -85,5 +85,8 @@ public class LogariasmosUI extends JPanel {
 
     private void apothikeushKwdikouClick(ActionEvent actionEvent) {
 
+                controller.requestForApothikeusiKwdikou(neosKwdikos.getText(),epanalhpshKwdikou.getText());
+
+        }
     }
-}
+

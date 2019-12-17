@@ -4,11 +4,10 @@ import com.omada.pithia.ui.controller.DhlwshAlgorithmouController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 
-
-
-    public class DhlwsiAlgorithmouUI extends JPanel {
+public class DhlwsiAlgorithmouUI extends JPanel {
         private final DhlwshAlgorithmouController controller;
 
         private final JLabel posostoThewriasLabel = new JLabel("Ποσοστό Θεωρίας");
@@ -27,12 +26,21 @@ import java.awt.*;
         setLayout(new GridBagLayout());
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
-        styleBuilder.setFont(posostoThewriasLabel,posostoErgastiriouLabel,posostoThewrias,posostoErgastiriou,eisagwghVathmologias)
-                .setForegroundAsWhite(posostoThewriasLabel,posostoErgastiriouLabel,posostoThewrias,posostoErgastiriou,eisagwghVathmologias)
-                .setBackgroundAsBlue(posostoThewriasLabel,posostoErgastiriouLabel,posostoThewrias,posostoErgastiriou,eisagwghVathmologias)
-                .setHorizontalAlignmentToRight(posostoThewriasLabel,posostoErgastiriouLabel)
-                .setTextFieldSize(posostoThewrias,posostoErgastiriou);
+        styleBuilder.setFont(posostoThewriasLabel, posostoErgastiriouLabel, posostoThewrias, posostoErgastiriou, eisagwghVathmologias)
+                .setForegroundAsWhite(posostoThewriasLabel, posostoErgastiriouLabel, posostoThewrias, posostoErgastiriou, eisagwghVathmologias)
+                .setBackgroundAsBlue(posostoThewriasLabel, posostoErgastiriouLabel, posostoThewrias, posostoErgastiriou, eisagwghVathmologias)
+                .setHorizontalAlignmentToRight(posostoThewriasLabel, posostoErgastiriouLabel)
+                .setTextFieldSize(posostoThewrias, posostoErgastiriou);
 
         Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
+
+        eisagwghVathmologias.addActionListener(this::eisagwghVathmologiasClick);
     }
+        private void eisagwghVathmologiasClick(ActionEvent actionEvent) {
+            double x = Double.parseDouble(posostoThewrias.getText());
+            double y = Double.parseDouble(posostoErgastiriou.getText());
+
+                controller.saveAlgorythmo(x,y);
+        }
+
 }

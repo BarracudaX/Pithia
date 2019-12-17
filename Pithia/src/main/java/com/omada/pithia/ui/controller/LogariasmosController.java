@@ -2,20 +2,26 @@ package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.model.xrhstes.Xrhsths;
+import com.omada.pithia.service.XrhstesService;
 
 ;
 public class LogariasmosController {
     private final ViewController viewController;
-    private final Xrhsths xrhsths;
-    private final Object String;
+    private final XrhstesService xrhsths;
 
-    public LogariasmosController(ViewController viewController, Xrhsths xrhsths){
-        this.viewController= viewController;
+
+    public LogariasmosController(ViewController viewController, XrhstesService xrhsths) {
+        this.viewController = viewController;
         this.xrhsths = xrhsths;
-
-        public void requestForApothikeusiKwdikou(Map< xrhsths, String > kwdikos) {
-            if(text1==text2)
-            xrhsths.setKwdikos(kwdikos);
-        }
     }
+        public void requestForApothikeusiKwdikou(String text1,String text2) {
+            String newPass=text1;
+            if(text1==text2) {
+                xrhsths.getLoginXrhsth().setKwdikos(newPass);
+            }
+            /*
+             else show error message explaining
+             */
+        }
+
 }
