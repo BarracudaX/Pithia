@@ -11,8 +11,7 @@ package com.omada.pithia.ui.view;
 
 public class LogariasmosUI extends JPanel {
 
-    private final ViewController controller;
-    private final XrhstesService xrhstesService;
+    private final LogariasmosController controller;
 
     private final JLabel infoLabel = new JLabel("Genikes plirofories");
     private final JLabel formaAllagisLabel = new JLabel("Forma allagis kwdikou");
@@ -23,9 +22,8 @@ public class LogariasmosUI extends JPanel {
     private final JButton apothikeushKwdikou = new JButton("Apothikeush Kwdikou");
 
 
-    public LogariasmosUI(ViewController controller,XrhstesService xrhstesService) {
+    public LogariasmosUI(LogariasmosController controller) {
         this.controller = controller;
-        this.xrhstesService = xrhstesService;
         prepareView();
     }
 
@@ -35,13 +33,17 @@ public class LogariasmosUI extends JPanel {
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
         styleBuilder.setFont(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
-                epanalhpshKwdikou,apothikeushKwdikou).setForegroundAsWhite(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,
-                neosKwdikos , epanalhpshKwdikou,apothikeushKwdikou).setBackgroundAsGrey(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
+                epanalhpshKwdikou,apothikeushKwdikou)
+                .setForegroundAsWhite(infoLabel,formaAllagisLabel,neosKwdikosLabel
+                ,epanalhpshKwdikouLabel,
+                neosKwdikos , epanalhpshKwdikou,apothikeushKwdikou)
+                .setBackgroundAsGrey(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
                 epanalhpshKwdikou,apothikeushKwdikou);
 
         Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
-        builder.setRow(0).setColumn(0).setColumnWidth(2).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+
+        builder.setRow(0).setColumn(0).setColumnWidth(2).setFill(Utils.Fill.BOTH).setInsets(
+                new Insets(5, 5, 20, 5)).setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
         add(infoLabel,builder.build());
 
         builder.reset();
@@ -78,7 +80,10 @@ public class LogariasmosUI extends JPanel {
 
 
         apothikeushKwdikou.addActionListener(this::apothikeushKwdikouClick);
-        private void apothikeushKwdikouClick(ActionEvent actionEvent){ controller.requestForApothikeusiKwdikou();}
+
+    }
+
+    private void apothikeushKwdikouClick(ActionEvent actionEvent) {
 
     }
 }

@@ -17,4 +17,5 @@ public interface XrhstesService extends Service<Xrhsths,String> {
     void login(String onomaXrhsth, String password);
 
     Xrhsths getLoginXrhsth();
+
 }

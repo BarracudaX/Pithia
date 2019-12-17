@@ -138,6 +138,9 @@ public class Pithia extends JFrame {
     }
 
     public void switchToLogariasmosMouGUI() {
+        LogariasmosController controller = new LogariasmosController(viewController,xrhstesService);
+        LogariasmosUI view = new LogariasmosUI(controller);
+        mainPanel.add(view, LOGARIASMOS_MOU_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, LOGARIASMOS_MOU_PAGE_CARD_NAME);
     }
 

@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.sun.javafx.fxml.expression.Expression.add;
 
 public abstract class AbstractDoubleListView extends JPanel{
 
