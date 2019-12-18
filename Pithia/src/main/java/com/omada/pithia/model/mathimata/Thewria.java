@@ -7,89 +7,28 @@ import javax.persistence.*;
 import java.util.*;
 import java.util.function.DoubleBinaryOperator;
 
-@Entity
-@Table(name = "THEWRIES")
-public class Thewria {
+public final class Thewria {
     
     private static final double MIN_VATHMOS = 0.0;
     private static final double MAX_VATHMOS = 10.0;
 
-    @Id
-    @Column(name = "onoma_mathimatos", updatable = false)
-    private String onomaMathimatos;
+    private final String onomaMathimatos;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(
-            nullable = false,
-            name = "onoma_xrhsth_kathigiti",
-            foreignKey = @ForeignKey(name = "FK_THEWRIAS_ONOMA_XRHSTH_KATHIGITI")
-    )
-    private Kathigitis kathigitisThewrias;
+    private final Kathigitis kathigitisThewrias;
 
-    @ManyToMany
-    @JoinTable(
-            name = "THEWRIA_PARAKOLOUTHOUN",
-            joinColumns = @JoinColumn(
-                    name = "onoma_thewrias",
-                    foreignKey = @ForeignKey(name = "FK_THEWRIA_PARAKOLOUTHOUN_ONOMA_THEWRIAS")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "onoma_xrhsth_foititi",
-                    foreignKey = @ForeignKey(name = "FK_THEWRIA_PARAKOLOUTHOUN_ONOMA_XRHSTH_FOITITI")
-            )
-    )
-    private Set<Foititis> foitites = new HashSet<>();
+    private final Set<Foititis> foitites = new HashSet<>();
 
-    @OneToMany(mappedBy = "thewria",cascade = {CascadeType.ALL})
-    private Set<Ergasthrio> ergasthria = new HashSet<>();
+    private final Set<Ergasthrio> ergasthria = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "KATHIGITES_ERGASTHRIWN",
-            joinColumns = @JoinColumn(
-                    name = "onoma_thewrias",
-                    foreignKey = @ForeignKey(name = "FK_KATHIGITES_ERGASTHRIWN_ONOMA_THEWRIAS")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "onoma_xrhsth_kathigiti",
-                    foreignKey = @ForeignKey(name = "FK_KATHIGITES_ERGASTHRIWN_ONOMA_XRHSTH_KATHIGITI")
-            )
-    )
-    private Set<Kathigitis> kathigitesErgasthriwn = new HashSet<>();
+    private final Set<Kathigitis> kathigitesErgasthriwn = new HashSet<>();
 
-    @Enumerated(EnumType.STRING)
-    private Eksamhno eksamhno;
+    private final Eksamhno eksamhno;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "VATHMOI_THEWRIAS",
-            joinColumns = @JoinColumn(
-                    name = "onoma_thewrias",
-                    foreignKey = @ForeignKey(name = "VATHMOI_THEWRIAS_ONOMA_THEWRIAS")
-            )
-    )
-    private Set<VathmosThewrias> vathmoiThewrias = new HashSet<>();
+    private final Map<Foititis,VathmosThewrias> vathmoiThewrias = new HashMap<>();
 
-    @Transient
     private DoubleBinaryOperator algorithmos;
 
-    @ManyToMany
-    @JoinTable(
-            name = "PROAPAITOUMENA",
-            joinColumns = @JoinColumn(
-                    name = "onoma_mathimatos",
-                    foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_MATHIMATOS")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "onoma_proapaitoumenou_mathimatos",
-                    foreignKey = @ForeignKey(name = "FK_PROAPAITOUMENA_ONOMA_PROAPAITOUMENOU_MATHIMATOS")
-            )
-    )
-    private Set<Thewria> proapaitoumena = new HashSet<>();
-
-    protected Thewria() {
-        super();
-    }
+    private final Set<Thewria> proapaitoumena = new HashSet<>();
 
     public Thewria(String onomaMathimatos, Kathigitis kathigitisThewrias, Eksamhno eksamhno) {
         this.onomaMathimatos = onomaMathimatos;
@@ -123,11 +62,11 @@ public class Thewria {
     }
 
     public Optional<Double> getVathmoThewrias(Foititis foititis) {
-        for (VathmosThewrias vathmosThewrias : vathmoiThewrias) {
-            if (vathmosThewrias.getFoititis().equals(foititis)) {
-                return Optional.of(vathmosThewrias.getVathmos());
-            }
+        VathmosThewrias vathmosThewrias = vathmoiThewrias.get(foititis);
+        if (vathmosThewrias != null) {
+            return Optional.of(vathmosThewrias.getVathmos());
         }
+
         return Optional.empty();
     }
 
@@ -137,7 +76,8 @@ public class Thewria {
         IllegalArgumentException exceptions = new IllegalArgumentException();
 
         for (Thewria proapaitoumeno : proapaitoumena) {
-            if (!proapaitoumeno.getVathmoThewrias(foititis).isPresent() || proapaitoumeno.getVathmoThewrias(foititis).get() < 5.0) {
+            if (!proapaitoumeno.getVathmoThewrias(foititis).isPresent()
+                    || proapaitoumeno.getVathmoThewrias(foititis).get() < 5.0) {
                 exceptions.addSuppressed(new IllegalArgumentException(
                         "O foititis " + foititis + " den exei perasei to proapaitoumeno mathima " +
                                 proapaitoumeno.getOnomaMathimatos()));
@@ -149,7 +89,7 @@ public class Thewria {
         }
 
         foitites.add(foititis);
-        vathmoiThewrias.add(new VathmosThewrias(this, foititis));
+        vathmoiThewrias.put(foititis,new VathmosThewrias(this, foititis,0));
         foititis.addThewria(this);
     }
 
@@ -162,18 +102,11 @@ public class Thewria {
                     +MIN_VATHMOS+","+MAX_VATHMOS+"]"
             );
         }
-        
-        for (Iterator<VathmosThewrias> it_vathmoi = vathmoiThewrias.iterator(); it_vathmoi.hasNext();) {
-            VathmosThewrias vathmos = it_vathmoi.next();
-            if (vathmos.getFoititis().equals(foititis)) {
-                vathmos.setVathmos(vathmosThewrias);
-                return;
-            }
+
+        if (vathmoiThewrias.replace(foititis,new VathmosThewrias(this,foititis,vathmosThewrias)) == null) {
+            throw new IllegalArgumentException("Den mporw na dextw ton vathmo gia foititi/tria" + foititis
+                    + " o/h opoios/oia den parakolouthei to mathima "+this+".");
         }
-
-        throw new IllegalArgumentException("Den mporw na dextw ton vathmo gia foititi/tria" + foititis
-                + " o/h opoios/oia den parakolouthei to mathima "+this+".");
-
     }
 
     public Collection<? extends Ergasthrio> getErgasthriaKathigiti(Kathigitis kathigitis) {

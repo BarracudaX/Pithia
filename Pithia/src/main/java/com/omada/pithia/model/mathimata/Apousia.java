@@ -4,33 +4,17 @@ import com.omada.pithia.model.xrhstes.Foititis;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Embeddable
-public class Apousia {
+public final class Apousia {
 
-	@ManyToOne
-	@JoinColumn(
-			name = "onoma_xrhsth_foititi",
-			foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_XRHSTH_FOITITI")
-	)
-	private volatile Foititis foititis;
+	private final Foititis foititis;
 
-	@Column(name = "arithmos_apoysiwn",nullable = false)
 	private volatile int arithmosApousiwn;
 
-	@org.hibernate.annotations.Parent
-	private volatile Ergasthrio ergasthrio;
-
-	protected Apousia(){
-
-	}
+	private final Ergasthrio ergasthrio;
 
 	public Apousia(Foititis foititis, Ergasthrio ergasthrio) {
 		this.ergasthrio = ergasthrio;
 		this.foititis = foititis;
-	}
-
-	public void setErgasthrio(Ergasthrio ergasthrio) {
-		this.ergasthrio = ergasthrio;
 	}
 
 	public Ergasthrio getErgasthrio() {
@@ -55,7 +39,6 @@ public class Apousia {
 		}
 	}
 
-	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
@@ -64,7 +47,6 @@ public class Apousia {
 				Objects.equals(getErgasthrio(), apousia.getErgasthrio());
 	}
 
-	@Override
 	public int hashCode() {
 		return Objects.hash(foititis, getErgasthrio());
 	}

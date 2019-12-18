@@ -6,93 +6,28 @@ import com.omada.pithia.model.xrhstes.Kathigitis;
 import javax.persistence.*;
 import java.util.*;
 
-@Entity
-@Table(name = "ERGASTHRIA")
-public class Ergasthrio {
+public final class Ergasthrio {
     
     private static final double MIN_VATHMOS = 0.0;
     
     private static final double MAX_VATHMOS = 10.0;
 
-    @EmbeddedId
-    private ErgasthrioPK ergasthrioPK;
+    private final String onomaErgasthriou;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "onoma_thewrias",insertable = false,updatable = false,
-            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_ONOMA_THEWRIAS")
-    )
-    private Thewria thewria;
+    private final Thewria thewria;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "onoma_xrhsth_kathigiti",
-            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_ONOMA_XRHSTH_KATHIGITI")
-    )
-    private volatile Kathigitis kathigitis;
+    private final Kathigitis kathigitis;
 
-    @ManyToMany
-    @JoinTable(
-            name = "ERGASTHRIA_PARAKOLOUTHOUN",
-            joinColumns = {
-                    @JoinColumn(
-                            name = "onoma_ergasthriou",
-                            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU")
-                    ),
-                    @JoinColumn(
-                            name = "onoma_thewrias",
-                            foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_ERGASTHRIOU")
-                    )
-            },
-            inverseJoinColumns = @JoinColumn(
-                    name = "onoma_xrhsth_foititi",
-                    foreignKey = @ForeignKey(name = "FK_ERGASTHRIA_PARAKOLOUTHOUN_ONOMA_XRHSTH_FOITITI")
-            )
-    )
-    private volatile Set<Foititis> foitites = new HashSet<>();
+    private final Set<Foititis> foitites = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(
-            name = "APOUSIES",
-            joinColumns ={
-                    @JoinColumn(
-                            name = "onoma_ergasthriou",
-                            nullable = false,
-                            foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_ERGASTHRIOU")
-                    ),
-                    @JoinColumn(
-                            name = "onoma_thewrias",
-                            nullable = false,
-                            foreignKey = @ForeignKey(name = "FK_APOUSIES_ONOMA_ERGASTHRIOU")
-                    )
-            }
-    )
-    private volatile Set<Apousia> apousies = new HashSet<>();
+    private final Set<Apousia> apousies = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(
-            name = "VATHMOI_ERGASTHRIOU",
-            joinColumns ={
-                    @JoinColumn(
-                            name = "onoma_ergasthriou",
-                            foreignKey = @ForeignKey(name = "FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU")
-                    ),
-                    @JoinColumn(
-                            name = "onoma_thewrias",
-                            foreignKey = @ForeignKey(name = "FK_VATHMOI_ERGASTHRIOU_ONOMA_ERGASTHRIOU")
-                    )
-            }
-    )
-    private volatile Set<VathmosErgasthriou> vathmoiErgasthriou = new HashSet<>();
-
-    protected Ergasthrio() {
-
-    }
+    private final Map<Foititis,VathmosErgasthriou> vathmoiErgasthriou = new HashMap<>();
 
     public Ergasthrio(String onomaErgasthriou, Kathigitis kathigitis,Thewria thewria) {
         this.kathigitis = kathigitis;
-        this.ergasthrioPK = new ErgasthrioPK(onomaErgasthriou, thewria.getOnomaMathimatos());
         this.thewria = thewria;
+        this.onomaErgasthriou = onomaErgasthriou;
     }
 
     public Set<Foititis> getFoitites() {
@@ -104,32 +39,21 @@ public class Ergasthrio {
     }
 
     public String getOnomaErgasthriou() {
-        return ergasthrioPK.getOnomaErgasthriou();
+        return onomaErgasthriou;
     }
 
     public Thewria getThewria() {
         return thewria;
     }
 
-    public Optional<Double> getVathmo(Foititis foititis) {
-
-        for (VathmosErgasthriou vathmosErgasthriou : vathmoiErgasthriou) {
-            if (vathmosErgasthriou.getFoititis().equals(foititis)) {
-                return Optional.of(vathmosErgasthriou.getVathmos());
-            }
-        }
-
-        return Optional.empty();
-    }
-
     final void addFoititi(Foititis foititis) {
         Objects.requireNonNull(foititis, "To antikeimeno foititis einai null.");
         foitites.add(foititis);
         apousies.add(new Apousia(foititis, this));
-        vathmoiErgasthriou.add(new VathmosErgasthriou(foititis, this));
+        vathmoiErgasthriou.put(foititis,new VathmosErgasthriou(foititis, this,0));
     }
 
-    public final Optional<Apousia> getApousiesFoititi(Foititis foititis) {
+    public Optional<Apousia> getApousiesFoititi(Foititis foititis) {
         for (Apousia apousia : apousies) {
             if (apousia.getFoititis().equals(foititis)) {
                 return Optional.of(apousia);
@@ -138,17 +62,17 @@ public class Ergasthrio {
         return Optional.empty();
     }
 
-    public final Optional<Double> getVathmoErgasthriou(Foititis foititis) {
-        for (VathmosErgasthriou vathmosErgasthriou : vathmoiErgasthriou) {
-            if (vathmosErgasthriou.getFoititis().equals(foititis)) {
-                return Optional.of(vathmosErgasthriou.getVathmos());
-            }
+    public Optional<Double> getVathmoErgasthriou(Foititis foititis) {
+        VathmosErgasthriou vathmosErgasthriou = vathmoiErgasthriou.get(foititis);
+
+        if (vathmosErgasthriou != null) {
+            return Optional.of(vathmosErgasthriou.getVathmos());
         }
 
         return Optional.empty();
     }
 
-    public final void addVathmoErgasthriou(Foititis foititis, double vathmosErgasthriou) {
+    public void addVathmoErgasthriou(Foititis foititis, double vathmosErgasthriou) {
         Objects.requireNonNull(foititis, "To antikeimeno foititis einai null.");
 
         if(Double.compare(MIN_VATHMOS, vathmosErgasthriou) > 0 || Double.compare(MAX_VATHMOS, vathmosErgasthriou) < 0) {
@@ -157,20 +81,14 @@ public class Ergasthrio {
                     +MIN_VATHMOS+","+MAX_VATHMOS+"]"
             );
         }
-        
-        for (VathmosErgasthriou vathmos : vathmoiErgasthriou) {
-            if (vathmos.getFoititis().equals(foititis)) {
-                vathmos.setVathmos(vathmosErgasthriou);
-                return;
-            }
+
+        if (vathmoiErgasthriou.replace(foititis, new VathmosErgasthriou(foititis, this, vathmosErgasthriou)) == null) {
+            throw new IllegalArgumentException("Den mporw na dextw ton vathmo gia foititi/tria" + foititis
+                    + " o/h opoios/oia den parakolouthei to ergasthrio.");
         }
-
-        throw new IllegalArgumentException("Den mporw na dextw ton vathmo gia foititi/tria" + foititis
-                + " o/h opoios/oia den parakolouthei to ergasthrio.");
-
     }
 
-    public final boolean parakolouthei(Foititis foititis) {
+    public boolean parakolouthei(Foititis foititis) {
         return foitites.contains(foititis);
     }
 
