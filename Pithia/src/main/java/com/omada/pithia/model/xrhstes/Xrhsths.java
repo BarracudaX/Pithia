@@ -16,11 +16,12 @@ public class Xrhsths {
 
 	private final LocalDate hmeromhniaGennhshs;
 
-	private final String kwdikos;
 
 	private final String email;
 
 	private final Set<Rolos> roloi = new HashSet<>();
+	
+	private String kwdikos;
 
 	public Xrhsths(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos,String email) {
 		this.onoma = onoma;
@@ -59,15 +60,19 @@ public class Xrhsths {
 		return email;
 	}
 
-	public final void addRolo(Rolos role) {
+	public void setKwdikos(String kwdikos) {
+		this.kwdikos = kwdikos;
+	}
+
+	public void addRolo(Rolos role) {
 		roloi.add(role);
 	}
 
-	public final void removeRolo(Rolos role) {
+	public void removeRolo(Rolos role) {
 		roloi.remove(role);
 	}
 
-	public final boolean hasRole(Rolos role) {
+	public boolean hasRole(Rolos role) {
 		return roloi.contains(role);
 	}
 
