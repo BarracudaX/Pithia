@@ -9,20 +9,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "KATHIGITES")
-@PrimaryKeyJoinColumn(name = "onoma_xrhsth_kathigiti",foreignKey = @ForeignKey(name = "FK_KATHIGITES_ONOMA_XRHSTH_KATHIGITI"))
-public class Kathigitis extends Xrhsths {
+public final class Kathigitis extends Xrhsths {
 
-	@OneToMany(mappedBy = "kathigitisThewrias")
-	private Set<Thewria> thewries = new HashSet<>();
+	private final Set<Thewria> thewries = new HashSet<>();
 
-	@ManyToMany(mappedBy = "kathigitesErgasthriwn")
-	private Set<Thewria> ergasthria_thewrias = new HashSet<>();
-
-	protected Kathigitis(){
-		super();
-	}
+	private final Set<Thewria> ergasthria_thewrias = new HashSet<>();
 
 	public Kathigitis(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos,String email) {
 		super(onoma, epwnhmo, hmeromhniaGennhshs, onomaXrhsth, kwdikos, email);

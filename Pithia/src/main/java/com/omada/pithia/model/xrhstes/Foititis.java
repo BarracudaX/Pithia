@@ -7,17 +7,9 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-@Entity
-@Table(name = "FOITITES")
-@PrimaryKeyJoinColumn(name = "onoma_xrhsth_foititi",foreignKey = @ForeignKey(name = "FK_FOITITES_ONOMA_XRHSTH_FOITITI"))
-public class Foititis extends Xrhsths {
+public final class Foititis extends Xrhsths {
 
-	@ManyToMany(mappedBy = "foitites")
-	private Set<Thewria> thewries = new HashSet<>();
-
-	protected Foititis(){
-		super();
-	}
+	private final Set<Thewria> thewries = new HashSet<>();
 
 	public Foititis(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos, String email){
 		super(onoma, epwnhmo, hmeromhniaGennhshs, onomaXrhsth, kwdikos, email);
@@ -28,11 +20,11 @@ public class Foititis extends Xrhsths {
 		return Collections.unmodifiableSet(thewries);
 	}
 
-	public final void addThewria(Thewria thewria) {
+	public void addThewria(Thewria thewria) {
 		thewries.add(thewria);
 	}
 
-	public final Map<String,Double> getVathmous(){
+	public Map<String,Double> getVathmous(){
 
 		Map<String, Double> vathmoi = new HashMap<>();
 

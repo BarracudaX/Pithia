@@ -6,39 +6,21 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "XRHSTES")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Xrhsths {
 
-	@Id
-	@Column(name = "onoma_xrhsth",updatable = false)
-	private volatile String onomaXrhsth;
+	private final String onomaXrhsth;
 
-	private volatile String onoma;
+	private final String onoma;
 
-	private volatile String epwnhmo;
+	private final String epwnhmo;
 
-	@Column(name = "hmeromhnia_gennhshs")
-	private volatile LocalDate hmeromhniaGennhshs;
+	private final LocalDate hmeromhniaGennhshs;
 
-	private volatile String kwdikos;
+	private final String kwdikos;
 
-	private volatile String email;
+	private final String email;
 
-	@ElementCollection
-	@CollectionTable(
-			name = "ROLOI_XRISTWN",
-			joinColumns = {@JoinColumn(name = "onoma_xrhsth")},
-			foreignKey = @ForeignKey(name = "FK_ROLOI_XRISTWN_ONOMA_XRHSTH")
-	)
-	@Enumerated(EnumType.STRING)
-	@Column(name = "rolos")
-	private volatile Set<Rolos> roloi = new HashSet<>();
-
-	protected Xrhsths(){
-
-	}
+	private final Set<Rolos> roloi = new HashSet<>();
 
 	public Xrhsths(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos,String email) {
 		this.onoma = onoma;
@@ -76,24 +58,6 @@ public class Xrhsths {
 	public String getEmail() {
 		return email;
 	}
-
-	public void setOnoma(String onoma) {
-		this.onoma = onoma;
-	}
-
-	public void setEpwnhmo(String epwnhmo) {
-		this.epwnhmo = epwnhmo;
-	}
-
-	public void setHmeromhniaGennhshs(LocalDate hmeromhniaGennhshs) {
-		this.hmeromhniaGennhshs = hmeromhniaGennhshs;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setKwdikos(String kwdikos) {this.kwdikos = kwdikos;}
 
 	public final void addRolo(Rolos role) {
 		roloi.add(role);
