@@ -16,12 +16,14 @@ public class LogariasmosController {
     }
         public void requestForApothikeusiKwdikou(String text1,String text2) {
             String newPass=text1;
-            if(text1==text2) {
+            if(text1.equals(text2)) {
                 xrhsths.getLoginXrhsth().setKwdikos(newPass);
+                viewController.requestForShowMessage("O kwdikos allakse epituxws");
             }
-            /*
-             else show error message explaining
-             */
+            else{
+                viewController.requestForShowErrorMessage("Oi kwdikoi den einai idioi");
+            }
+            viewController.requestForLogout();
         }
         public void requestForBackPage(){
             viewController.requestForHomePage();
