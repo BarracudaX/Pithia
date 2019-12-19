@@ -223,6 +223,10 @@ public final class Thewria {
                 && getKathigiti().equals(thewria.getKathigiti());
     }
 
+    public boolean parakolouthei(Foititis foititis) {
+        return foitites.contains(foititis);
+    }
+
     @Override
     public int hashCode() {
         int result = getOnomaMathimatos().hashCode();
@@ -243,4 +247,5 @@ public final class Thewria {
                 ",ergasthria="+ergasthria+
                 ']';
     }
+
 }

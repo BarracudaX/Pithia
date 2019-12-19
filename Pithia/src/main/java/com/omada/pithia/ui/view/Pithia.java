@@ -28,7 +28,7 @@ public class Pithia extends JFrame {
     private static final String HOME_PAGE_CARD_NAME = "HOME_PAGE";
     private static final String MATHIMATA_MOU_PAGE_CARD_NAME = "MATHIMATA_MOU_PAGE";
     private static final String PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME = "PROSTHIKI_MATHIMATOS_PAGE";
-    private static final String KATSTASH_PAGE_CARD_NAME = "KATSTASH_PAGE";
+    private static final String KATASTASH_PAGE_CARD_NAME = "KATSTASH_PAGE";
     private static final String DHLWSH_MATHIMATWN_PAGE_CARD_NAME = "DHLWSH_MATHIMATWN_PAGE";
     private static final String FOITITES_PAGE_CARD_NAME = "FOITITES_PAGE";
     private static final String LOGARIASMOS_MOU_PAGE_CARD_NAME = "LOGARIASMOS_MOU_PAGE";
@@ -59,6 +59,8 @@ public class Pithia extends JFrame {
     private final ProsthikiErgasthriouController prosthikiErgasthriouController;
     private final GeneralServiceController generalServiceController;
     private final ProsthikiThewriasController prosthikiThewriasController;
+    private final KatastashController katastashController;
+    private final DhlwshMathimatwnController dhlwshMathimatwnController;
 
     private final CardLayout cardLayout = new CardLayout();
 
@@ -81,7 +83,9 @@ public class Pithia extends JFrame {
         this.prosthikiMathimatosController = new ProsthikiMathimatosController(viewController);
         this.generalServiceController = new GeneralServiceController(ergasthrioService,thewriesService,xrhstesService);
         this.prosthikiErgasthriouController = new ProsthikiErgasthriouController(viewController, generalServiceController);
-        this.prosthikiThewriasController = new ProsthikiThewriasController(viewController,generalServiceController);
+        this.prosthikiThewriasController = new ProsthikiThewriasController(viewController, generalServiceController);
+        this.katastashController = new KatastashController(viewController, xrhstesService);
+        this.dhlwshMathimatwnController = new DhlwshMathimatwnController(viewController,xrhstesService,thewriesService);
         this.backToHomeAction = this::switchToHomePageGUI;
 
         this.loginPageUI = new LoginPageUI(loginController);
@@ -136,10 +140,14 @@ public class Pithia extends JFrame {
     }
 
     public void switchToKatastashGUI() {
-        cardLayout.show(mainPanel, KATSTASH_PAGE_CARD_NAME);
+        KatastashPageUI view = new KatastashPageUI(katastashController);
+        mainPanel.add(view, KATASTASH_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel, KATASTASH_PAGE_CARD_NAME);
     }
 
     public void switchToDhlwshMathimatwnGUI() {
+        DhlwshMathimatwnPageUI view = new DhlwshMathimatwnPageUI(dhlwshMathimatwnController);
+        mainPanel.add(view, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
     }
 
