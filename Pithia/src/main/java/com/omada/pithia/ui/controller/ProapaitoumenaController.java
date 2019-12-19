@@ -42,6 +42,6 @@ public class ProapaitoumenaController {
     }
 
     public List<Thewria> getProapaitoumena() {
-        return thewriesService.getPithataProapaitoumena(thewria);
+        return thewriesService.getPithanaProapaitoumena(thewria);
     }
 }

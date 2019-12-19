@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 
 
 public class DhlwsiAlgorithmouUI extends JPanel {
+
         private final DhlwshAlgorithmouController controller;
 
         private final JLabel posostoThewriasLabel = new JLabel("Ποσοστό Θεωρίας");

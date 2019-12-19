@@ -20,7 +20,7 @@ public class Xrhsths {
 	private final String email;
 
 	private final Set<Rolos> roloi = new HashSet<>();
-	
+
 	private String kwdikos;
 
 	public Xrhsths(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos,String email) {

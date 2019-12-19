@@ -1,5 +1,6 @@
 package com.omada.pithia.service;
 
+import com.omada.pithia.model.mathimata.Eksamhno;
 import com.omada.pithia.model.mathimata.Thewria;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ThewriesServiceInMemory implements ThewriesService {
     }
 
     @Override
-    public List<Thewria> getPithataProapaitoumena(Thewria thewria) {
+    public List<Thewria> getPithanaProapaitoumena(Thewria thewria) {
         List<Thewria> proapaitoumena = new ArrayList<>();
 
         List<Thewria> olesThewries = getAll();
@@ -51,6 +52,19 @@ public class ThewriesServiceInMemory implements ThewriesService {
         for (Thewria pithanoProapaitoumeno : olesThewries) {
             if (thewria.getEksamhno().einaiMegaluteroEksamhno(pithanoProapaitoumeno.getEksamhno())) {
                 proapaitoumena.add(pithanoProapaitoumeno);
+            }
+        }
+
+        return proapaitoumena;
+    }
+
+    @Override
+    public List<Thewria> getPithanaProapaitoumena(Eksamhno eksamhno) {
+        List<Thewria> proapaitoumena = new ArrayList<>();
+
+        for (Thewria thewria : thewries.values()) {
+            if (eksamhno.einaiMegaluteroEksamhno(thewria.getEksamhno())) {
+                proapaitoumena.add(thewria);
             }
         }
 

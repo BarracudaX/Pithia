@@ -23,7 +23,7 @@ public class ThewriaPageUI extends JPanel {
     private final JLabel onomaKathigitiLabel = new JLabel("Ονομα Καθηγητη Θεωριας:");
     private final JLabel eksamhnoLabel = new JLabel("Εξαμηνο:");
     private final JLabel sunoloFoititwnLabel = new JLabel("Αριθμος Φοιτητων:");
-    private final JLabel ergasthriaLabel = new JLabel("Αριθμος Εργαστηριων:");
+    private final JLabel ergasthriaLabel = new JLabel("Εργαστηρια:");
     private final JLabel proapaitoumenaLabel = new JLabel("Προαπαιτουμενα:");
 
     private final JButton eisagwghVathmwnButton = new JButton("Εισαγωγη Βαθμολογιας");
@@ -43,8 +43,9 @@ public class ThewriaPageUI extends JPanel {
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
         styleBuilder
                 .setFont(onomaThewrias,onomaKathigiti,eksamhno,sunoloFoititwn,proapaitoumena,ergasthria,
-                    onomaThewriasLabel, onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel,ergasthriaLabel,
-                    eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton,backButton)
+                    onomaThewriasLabel, onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel
+                        ,ergasthriaLabel,eisagwghVathmwnButton,dhlwshAlgorithmouButton,prosthikiProapaitoumenouButton,
+                        backButton)
                 .setNotEditable(onomaThewrias,onomaKathigiti,eksamhno,sunoloFoititwn)
                 .setBackgroundAsGrey(ergasthria,proapaitoumena)
                 .setForegroundAsWhite(onomaThewriasLabel,onomaKathigitiLabel,eksamhnoLabel,sunoloFoititwnLabel,proapaitoumenaLabel,
@@ -98,7 +99,7 @@ public class ThewriaPageUI extends JPanel {
             add(fields[row - 1], builder.build());
         }
 
-        for (int row = labels.length + 2; row < labels.length + 1 + buttons.length; row++) {
+        for (int row = labels.length + 1; row < labels.length + 1 + buttons.length; row++) {
             builder.reset().setColumn(0).setRow(row).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)
                     .setInsets(new Insets(5, 5, 5, 5)).setColumnWeight(1).setRowWeight(1).setColumnWidth(2);
             add(buttons[row - (labels.length + 1)], builder.build());

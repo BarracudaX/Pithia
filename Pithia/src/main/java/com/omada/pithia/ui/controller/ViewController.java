@@ -92,4 +92,12 @@ public class ViewController {
     public void requestForDiaxeiristhApousiwn(Ergasthrio ergasthrio) {
         pithia.switchToDiaxeirishApousiwn(ergasthrio);
     }
+
+    public void requestForProsthikiErgasthriou() {
+        pithia.switchToProsthikiErgasthriou();
+    }
+
+    public void requestForProsthikiThewrias() {
+        pithia.switchToProsthikiThewrias();
+    }
 }

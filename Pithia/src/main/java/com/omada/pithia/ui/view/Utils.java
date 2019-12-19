@@ -1,5 +1,7 @@
 package com.omada.pithia.ui.view;
 
+import com.omada.pithia.model.mathimata.Eksamhno;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -61,15 +61,6 @@ public class HomePageUI extends JPanel {
                         logariasmosButton,logoutButton
                 );
 
-        homeButton.addActionListener(this::homeButtonClick);
-        mathimataMouButton.addActionListener(this::mathimataMouClick);
-        prosthikiMathimatosButton.addActionListener(this::prosthikiMathimatosClick);
-        katastashButton.addActionListener(this::katastashClick);
-        dhlwshMathimatwnButton.addActionListener(this::dhlwshMathimatwnClick);
-        foititesButton.addActionListener(this::foititesClick);
-        logariasmosButton.addActionListener(this::logariasmosMouClick);
-        logoutButton.addActionListener(this::logoutClick);
-
         int row = 0;
 
         Utils.GridBagConstraintBuilder gridBagConstraintBuilder = new Utils.GridBagConstraintBuilder().setColumn(0).setRow(row++).setAnchor(Utils.Anchor.CENTER)
@@ -111,6 +102,16 @@ public class HomePageUI extends JPanel {
         gridBagConstraintBuilder.setRow(row++);
         constraints = gridBagConstraintBuilder.build();
         add(logoutButton, constraints);
+
+
+        homeButton.addActionListener(this::homeButtonClick);
+        mathimataMouButton.addActionListener(this::mathimataMouClick);
+        prosthikiMathimatosButton.addActionListener(this::prosthikiMathimatosClick);
+        katastashButton.addActionListener(this::katastashClick);
+        dhlwshMathimatwnButton.addActionListener(this::dhlwshMathimatwnClick);
+        foititesButton.addActionListener(this::foititesClick);
+        logariasmosButton.addActionListener(this::logariasmosMouClick);
+        logoutButton.addActionListener(this::logoutClick);
     }
 
     private void logoutClick(ActionEvent actionEvent) {

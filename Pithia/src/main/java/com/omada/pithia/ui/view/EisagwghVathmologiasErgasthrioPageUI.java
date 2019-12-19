@@ -11,7 +11,6 @@ import java.util.List;
 
 public class EisagwghVathmologiasErgasthrioPageUI extends JPanel  {
 
-
     private final EisagwghVathmologiasErgasthrioController controller;
 
     private final JPanel inputs = new JPanel(new GridBagLayout());
