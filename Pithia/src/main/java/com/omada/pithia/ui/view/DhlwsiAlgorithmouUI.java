@@ -35,6 +35,34 @@ public class DhlwsiAlgorithmouUI extends JPanel {
 
         Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
 
+        builder.setRow(0).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
+        add(posostoThewriasLabel,builder.build());
+
+        builder.reset();
+
+        builder.setRow(0).setColumn(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
+        add(posostoThewrias,builder.build());
+
+        builder.reset();
+
+        builder.setRow(1).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
+        add(posostoErgastiriouLabel,builder.build());
+
+        builder.reset();
+
+        builder.setRow(1).setColumn(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
+        add(posostoErgastiriou,builder.build());
+
+        builder.reset();
+
+        builder.setRow(1).setColumn(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
+        add(eisagwghVathmologias,builder.build());
+
         eisagwghVathmologias.addActionListener(this::eisagwghVathmologiasClick);
     }
         private void eisagwghVathmologiasClick(ActionEvent actionEvent) {

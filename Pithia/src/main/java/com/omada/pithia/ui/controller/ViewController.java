@@ -100,4 +100,6 @@ public class ViewController {
     public void requestForProsthikiThewrias() {
         pithia.switchToProsthikiThewrias();
     }
+
+    public void requestForDhlwshAlgorithmou() { pithia.switchToHomePageGUI();}
 }

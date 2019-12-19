@@ -108,6 +108,8 @@ public class ThewriaPageUI extends JPanel {
         backButton.addActionListener(this::backButtonClick);
         prosthikiProapaitoumenouButton.addActionListener(this::prosthikiProapaitoumenouClick);
         eisagwghVathmwnButton.addActionListener(this::eisagwghVathmologiasClick);
+        dhlwshAlgorithmouButton.addActionListener(this::dhlwshAlgorithmouButtonClick);
+
     }
 
     private void eisagwghVathmologiasClick(ActionEvent actionEvent) {
@@ -122,5 +124,7 @@ public class ThewriaPageUI extends JPanel {
         controller.requestForBackPage();
     }
 
-
+    private void dhlwshAlgorithmouButtonClick(ActionEvent actionEvent){
+        controller.requestDhlwshAlgorithmou();
+    }
 }

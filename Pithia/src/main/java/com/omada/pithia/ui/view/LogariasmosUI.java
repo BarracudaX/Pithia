@@ -13,14 +13,13 @@ public class LogariasmosUI extends JPanel {
 
     private final LogariasmosController controller;
 
-    private final JLabel infoLabel = new JLabel("Genikes plirofories");
-    private final JLabel formaAllagisLabel = new JLabel("Forma allagis kwdikou");
-    private final JLabel neosKwdikosLabel = new JLabel("Neos Kwdikos");
-    private final JLabel epanalhpshKwdikouLabel = new JLabel("Epanalhpsh Kwdikou");
-    private final JTextField neosKwdikos = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
-    private final JTextField epanalhpshKwdikou = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
-    private final JButton apothikeushKwdikou = new JButton("Apothikeush Kwdikou");
-    private final JButton backButton = new JButton("Epistrofi stin arxiki");
+    private final JLabel neosKwdikosLabel = new JLabel("Νεος κωδικος");
+    private final JLabel epanalhpshKwdikouLabel = new JLabel("Επαναληψη κωδικου");
+
+    private final JPasswordField neosKwdikos = new JPasswordField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
+    private final JPasswordField epanalhpshKwdikou = new JPasswordField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
+    private final JButton apothikeushKwdikou = new JButton("Αποθηκευση κωδικου");
+    private final JButton backButton = new JButton("Επιστροφη στην αρχικη");
 
 
     public LogariasmosUI(LogariasmosController controller) {
@@ -33,57 +32,53 @@ public class LogariasmosUI extends JPanel {
         setBackground(GeneralStyle.DARK_COLOR);
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
-        styleBuilder.setFont(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
+        styleBuilder.setFont(neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
                 epanalhpshKwdikou,apothikeushKwdikou,backButton)
-                .setForegroundAsWhite(infoLabel,formaAllagisLabel,neosKwdikosLabel
-                ,epanalhpshKwdikouLabel,
-                neosKwdikos , epanalhpshKwdikou,apothikeushKwdikou,backButton)
-                .setBackgroundAsGrey(infoLabel,formaAllagisLabel,neosKwdikosLabel,epanalhpshKwdikouLabel,neosKwdikos ,
-                epanalhpshKwdikou,apothikeushKwdikou,backButton);
+                .setForegroundAsWhite(neosKwdikosLabel
+                        ,epanalhpshKwdikouLabel,
+                        apothikeushKwdikou,backButton)
+                .setBackgroundAsBlue(apothikeushKwdikou)
+                .setBackgroundAsRed(backButton);
+
+
 
         Utils.GridBagConstraintBuilder builder = new Utils.GridBagConstraintBuilder();
 
-        builder.setRow(0).setColumn(0).setColumnWidth(2).setFill(Utils.Fill.BOTH).setInsets(
-                new Insets(5, 5, 20, 5)).setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
-        add(infoLabel,builder.build());
+
+        builder.setRow(0).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(2);
+        add(backButton,builder.build());
 
         builder.reset();
 
-        builder.setRow(1).setColumn(0).setColumnWidth(2).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
-        add(formaAllagisLabel,builder.build());
-
-        builder.reset();
-
-        builder.setRow(2).setColumn(0).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+        builder.setRow(1).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1).setColumnWeight(1);
         add(neosKwdikosLabel,builder.build());
 
         builder.reset();
-        builder.setRow(2).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+
+        builder.setRow(1).setColumn(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1).setColumnWeight(2);
         add(neosKwdikos,builder.build());
 
         builder.reset();
-        builder.setRow(3).setColumn(0).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+
+        builder.setRow(2).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
         add(epanalhpshKwdikouLabel,builder.build());
 
         builder.reset();
-        builder.setRow(3).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+
+        builder.setRow(2).setColumn(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(1);
         add(epanalhpshKwdikou,builder.build());
 
         builder.reset();
-        builder.setRow(4).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
+
+        builder.setRow(3).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(2);
+
         add(apothikeushKwdikou,builder.build());
-
-        builder.reset();
-        builder.setRow(5).setColumn(1).setColumnWidth(1).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 20, 5))
-                .setAnchor(Utils.Anchor.CENTER).setRowWeight(1);
-        add(backButton,builder.build());
-
 
         apothikeushKwdikou.addActionListener(this::apothikeushKwdikouClick);
         backButton.addActionListener(this::backButtonClick);
@@ -91,14 +86,10 @@ public class LogariasmosUI extends JPanel {
     }
 
     private void apothikeushKwdikouClick(ActionEvent actionEvent) {
-
                 controller.requestForApothikeusiKwdikou(neosKwdikos.getText(),epanalhpshKwdikou.getText());
-
         }
     private void backButtonClick(ActionEvent actionEvent) {
-
         controller.requestForBackPage();
-
     }
     }
 
