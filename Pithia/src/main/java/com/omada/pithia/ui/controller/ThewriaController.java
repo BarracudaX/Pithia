@@ -34,6 +34,6 @@ public class ThewriaController {
         return thewria;
     }
 
-    public void requestDhlwshAlgorithmou() {viewController.requestForDhlwshAlgorithmou();}
+    public void requestDhlwshAlgorithmou() {viewController.requestForDhlwshAlgorithmou(thewria);}
 
 }
