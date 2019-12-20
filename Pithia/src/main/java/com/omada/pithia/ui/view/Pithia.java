@@ -292,7 +292,7 @@ public class Pithia extends JFrame {
 
             String epitheto = epitheta[ThreadLocalRandom.current().nextInt(epitheta.length)];
 
-            LocalDate birthDate = LocalDate.now().minusYears(18).plusYears(ThreadLocalRandom.current().nextInt(5));
+            LocalDate birthDate = LocalDate.now().minusYears(18).minusYears(ThreadLocalRandom.current().nextInt(5));
 
             StringBuilder onomaXrhsth = new StringBuilder();
             StringBuilder kwdikos = new StringBuilder();
@@ -445,8 +445,8 @@ public class Pithia extends JFrame {
         thewriesOutputStream.close();
         kathigitesOutputStream.close();
 
-        Xrhsths admin = new Xrhsths("ADMIN", "ADMIN", LocalDate.now().minusYears(20),
-                "admin", "admin", "admin@academia.gr");
+        Xrhsths admin = new Xrhsths("ADMIN1234567", "ADMIN1234567", LocalDate.now().minusYears(20),
+                "ADMIN1234567", "ADMIN1234567", "admin@academia.gr");
         admin.addRolo(Rolos.DIAXEIRISTIS);
 
         xrhstesService.add(admin);

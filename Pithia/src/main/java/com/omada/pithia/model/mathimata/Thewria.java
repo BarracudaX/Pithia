@@ -78,7 +78,8 @@ public final class Thewria {
             if (!proapaitoumeno.getVathmoThewrias(foititis).isPresent()
                     || proapaitoumeno.getVathmoThewrias(foititis).get() < 5.0) {
                 exceptions.addSuppressed(new IllegalArgumentException(
-                        "O foititis " + foititis + " den exei perasei to proapaitoumeno mathima " +
+                        "Ο/η φοιτητης/τρια με ονομα χρηστη " + foititis.getOnomaXrhsth()
+                                + " δεν εχει περασει το προαπαιτουμενο μαθημα " +
                                 proapaitoumeno.getOnomaMathimatos()));
             }
         }
@@ -157,11 +158,14 @@ public final class Thewria {
         Objects.requireNonNull(ergasthrio, "To antikeimeno ergasthrio einai null.");
 
         if (!ergasthria.contains(ergasthrio)) {
-            throw new IllegalArgumentException("To ergasthrio " + ergasthrio + "  den anoikei sthn thewria "+this+".");
+            throw new IllegalArgumentException("Το εργαστηριο " + ergasthrio.getOnomaErgasthriou()
+                    + "  δεν ανηκει στην θεωρια "+this.getOnomaMathimatos()+".");
         }
 
         if (!foitites.contains(foititis)) {
-            throw new IllegalArgumentException("O foititis " + foititis + " den parakolouthei thn thewria "+this+".");
+            throw new IllegalArgumentException("Ο/η φοιτητης/τρια με ονομα χρηστη " + foititis.getOnomaXrhsth()
+                    + " δεν παρακολουθει την θεωρια "+this.getOnomaMathimatos()
+                    +",οποτε δεν μπορει να δηλωσει κανενα εργαστηριο.");
         }
 
         ergasthrio.addFoititi(foititis);
