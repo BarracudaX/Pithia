@@ -97,4 +97,9 @@ public class ViewController {
     }
 
     public void requestForDhlwshAlgorithmouView(Thewria thewria) { pithia.switchToDhlwshAlgorithmou(thewria);}
+    
+    public int requestForDialogBox(){
+        int answer =pithia.requestForDialogBox();
+        return answer;
+    }
 }

@@ -460,6 +460,9 @@ public class Pithia extends JFrame {
         JOptionPane.showMessageDialog(this,message,"Message",JOptionPane.PLAIN_MESSAGE);
     }
 
-
+    public int requestForDialogBox(){
+             int answer =    JOptionPane.showConfirmDialog(this,"Θελετε να αποθηκευθει;","Ναι",0,JOptionPane.YES_NO_OPTION);
+             return answer;
+    }
 
 }
