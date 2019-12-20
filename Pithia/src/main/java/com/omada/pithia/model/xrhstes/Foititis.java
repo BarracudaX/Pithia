@@ -3,7 +3,6 @@ package com.omada.pithia.model.xrhstes;
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 

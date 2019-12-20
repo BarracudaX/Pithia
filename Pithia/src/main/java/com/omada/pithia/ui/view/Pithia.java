@@ -298,12 +298,12 @@ public class Pithia extends JFrame {
             StringBuilder kwdikos = new StringBuilder();
 
             //dhmoiourgia 7-pshfiou onomatos xrhsth
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 8; j++) {
                 onomaXrhsth.append(ThreadLocalRandom.current().nextInt(10));
             }
 
             //dhmiourgia 7-pshfiou kwdikou
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 8; j++) {
                 kwdikos.append(ThreadLocalRandom.current().nextInt(10));
             }
 

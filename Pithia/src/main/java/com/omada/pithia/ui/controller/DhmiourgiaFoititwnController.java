@@ -64,7 +64,7 @@ public class DhmiourgiaFoititwnController {
 
                         if (service.find(onomaXrhsth.toString()) == null) {
                             StringBuilder kwdikos = new StringBuilder();
-                            for (int i = 0; i < 5; i++) {
+                            for (int i = 0; i < 7; i++) {
                                 kwdikos.append(ThreadLocalRandom.current().nextInt(10));
                             }
 

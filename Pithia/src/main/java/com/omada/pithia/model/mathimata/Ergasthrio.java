@@ -3,7 +3,6 @@ package com.omada.pithia.model.mathimata;
 import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.model.xrhstes.Kathigitis;
 
-import javax.persistence.*;
 import java.util.*;
 
 public final class Ergasthrio {

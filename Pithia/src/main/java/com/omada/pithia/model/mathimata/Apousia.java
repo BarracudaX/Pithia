@@ -1,7 +1,6 @@
 package com.omada.pithia.model.mathimata;
 
 import com.omada.pithia.model.xrhstes.Foititis;
-import javax.persistence.*;
 import java.util.Objects;
 
 public final class Apousia {
