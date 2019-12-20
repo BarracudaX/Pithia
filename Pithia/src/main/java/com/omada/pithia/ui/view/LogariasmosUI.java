@@ -46,7 +46,7 @@ public class LogariasmosUI extends JPanel {
 
 
         builder.setRow(0).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
-                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(2);
+                .setAnchor(Utils.Anchor.CENTER).setColumnWidth(2).setColumnWeight(2);
         add(backButton,builder.build());
 
         builder.reset();
