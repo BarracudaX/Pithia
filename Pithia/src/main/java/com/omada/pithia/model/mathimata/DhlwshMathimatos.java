@@ -9,7 +9,7 @@ public final class DhlwshMathimatos {
     private final Optional<Ergasthrio> ergasthrio;
 
     public DhlwshMathimatos(Thewria thewria, Optional<Ergasthrio> ergasthrio) {
-        if (ergasthrio.isPresent() && !thewria.getErgasthria().contains(ergasthrio)) {
+        if (ergasthrio.isPresent() && !thewria.getErgasthria().contains(ergasthrio.get())) {
             throw new IllegalArgumentException("To ergasthrio den anhkei sthn thewria.");
         }
         this.thewria = thewria;
