@@ -9,14 +9,14 @@ public class ProsthikiMathimatosController {
     }
 
     public void requestForProsthikiErgasthriou() {
-        viewController.requestForProsthikiErgasthriou();
+        viewController.requestForProsthikiErgasthriouView();
     }
 
     public void requestForProsthikiThewrias() {
-        viewController.requestForProsthikiThewrias();
+        viewController.requestForProsthikiThewriasView();
     }
 
     public void requestForBackPage(){
-        viewController.requestForHomePage();
+        viewController.requestForHomeView();
     }
 }

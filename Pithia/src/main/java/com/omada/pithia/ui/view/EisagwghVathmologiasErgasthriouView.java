@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.List;
 
-public class EisagwghVathmologiasergasthriouView extends JPanel  {
+public class EisagwghVathmologiasErgasthriouView extends JPanel  {
 
     private final EisagwghVathmologiasErgasthriouController controller;
 
@@ -24,7 +24,7 @@ public class EisagwghVathmologiasergasthriouView extends JPanel  {
     private final List<InputVathmo> inputVathmoi = new ArrayList<>();
 
 
-    public EisagwghVathmologiasergasthriouView(EisagwghVathmologiasErgasthriouController controller) {
+    public EisagwghVathmologiasErgasthriouView(EisagwghVathmologiasErgasthriouController controller) {
         this.controller = controller;
         this.scrollPane = new JScrollPane(inputs);
         prepareView();

@@ -3,8 +3,6 @@ package com.omada.pithia.ui.controller;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.model.xrhstes.Foititis;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +18,7 @@ public class EisagwghVathmologiasThewriasController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForThewria(thewria);
+        viewController.requestForThewriaView(thewria);
     }
 
     public Set<Foititis> getFoitites() {
@@ -36,6 +34,6 @@ public class EisagwghVathmologiasThewriasController {
             thewria.addVathmoThewrias(vathmos.getValue(), vathmos.getKey());
         }
         viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια.");
-        viewController.requestForThewria(thewria);
+        viewController.requestForThewriaView(thewria);
     }
 }

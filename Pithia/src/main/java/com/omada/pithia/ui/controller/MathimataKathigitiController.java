@@ -9,10 +9,10 @@ public class MathimataKathigitiController {
     }
 
     public void requestForThewries() {
-        viewController.requestForThewries();
+        viewController.requestForThewriesView();
     }
 
     public void requestForErgasthria() {
-        viewController.requestForErgasthria();
+        viewController.requestForErgasthriaView();
     }
 }

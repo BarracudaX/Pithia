@@ -25,6 +25,6 @@ public class DiaxeirishApousiwnController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForErgasthrio(ergasthrio);
+        viewController.requestForErgasthrioView(ergasthrio);
     }
 }

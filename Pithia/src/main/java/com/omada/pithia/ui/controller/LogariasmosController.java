@@ -1,7 +1,5 @@
 package com.omada.pithia.ui.controller;
 
-import com.omada.pithia.model.xrhstes.Foititis;
-import com.omada.pithia.model.xrhstes.Xrhsths;
 import com.omada.pithia.service.XrhstesService;
 
 ;
@@ -28,7 +26,7 @@ public class LogariasmosController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForHomePage();
+        viewController.requestForHomeView();
     }
 
 }

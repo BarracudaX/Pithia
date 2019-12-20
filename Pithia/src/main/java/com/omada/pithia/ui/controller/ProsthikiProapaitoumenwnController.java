@@ -18,7 +18,7 @@ public class ProsthikiProapaitoumenwnController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForThewria(thewria);
+        viewController.requestForThewriaView(thewria);
     }
 
     public void requestForProsthikiProapaitoumenwn(List<Thewria> telikaProapaitoumena) {

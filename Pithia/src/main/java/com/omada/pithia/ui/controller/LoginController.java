@@ -16,7 +16,7 @@ public class LoginController {
     public void requestForLogin(String onomaXrhsth, char[] kwdikos) {
         if (service.canLogin(onomaXrhsth, new String(kwdikos))) {
             service.login(onomaXrhsth,new String(kwdikos));
-            controller.requestForHomePage();
+            controller.requestForHomeView();
         }else{
             controller.requestForShowErrorMessage(
                     "Το ονομα χρηστη "+onomaXrhsth

@@ -22,12 +22,12 @@ public class ThewriesController {
     }
 
     public void requestForBack() {
-        viewController.requestForMathimataMou();
+        viewController.requestForMathimataKathigitiView();
     }
 
 
     public void requestForThewria(String onomaThewrias) {
-        viewController.requestForThewria(thewriesService.find(onomaThewrias));
+        viewController.requestForThewriaView(thewriesService.find(onomaThewrias));
     }
 
     public List<Thewria> getThewries() {

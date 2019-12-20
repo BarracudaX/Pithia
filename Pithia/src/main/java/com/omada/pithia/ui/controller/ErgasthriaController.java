@@ -23,11 +23,11 @@ public class ErgasthriaController {
     }
 
     public void requestForBack() {
-        viewController.requestForMathimataMou();
+        viewController.requestForMathimataKathigitiView();
     }
 
     public void requestForErgasthrio(String ergasthrio) {
-        viewController.requestForErgasthrio(ergasthriaService.find(ergasthrio));
+        viewController.requestForErgasthrioView(ergasthriaService.find(ergasthrio));
     }
 
     public List<Ergasthrio> getErgasthria() {

@@ -1,11 +1,6 @@
 package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.mathimata.Thewria;
-import com.omada.pithia.service.ThewriesService;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ThewriaController {
 
@@ -18,15 +13,15 @@ public class ThewriaController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForThewries();
+        viewController.requestForThewriesView();
     }
 
     public void requestForProsthikiProapaitoumenwn() {
-        viewController.requestForProsthikiProapaitoumenwn(thewria);
+        viewController.requestForProsthikiProapaitoumenwnView(thewria);
     }
 
     public void requestForEisagwghVathmologias() {
-        viewController.requestForEisagwghVathmologiasThewrias(thewria);
+        viewController.requestForEisagwghVathmologiasThewriasView(thewria);
     }
 
 
@@ -34,6 +29,6 @@ public class ThewriaController {
         return thewria;
     }
 
-    public void requestDhlwshAlgorithmou() {viewController.requestForDhlwshAlgorithmou(thewria);}
+    public void requestDhlwshAlgorithmou() {viewController.requestForDhlwshAlgorithmouView(thewria);}
 
 }

@@ -14,11 +14,11 @@ public class ErgasthrioController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForErgasthria();
+        viewController.requestForErgasthriaView();
     }
 
     public void requestForEisagwghVathmologias() {
-        viewController.requestForEisagwghVathmologiasErgasthriou(ergasthrio);
+        viewController.requestForEisagwghVathmologiasErgasthriouView(ergasthrio);
     }
 
     public Ergasthrio getErgasthrio() {
@@ -26,10 +26,10 @@ public class ErgasthrioController {
     }
 
     public void requestForProsthikiFoititwn() {
-        viewController.requestForProsthikiFoititwnStoErgasthrio(ergasthrio, ergasthrio.getThewria());
+        viewController.requestForProsthikiFoititwnStoErgasthrioView(ergasthrio, ergasthrio.getThewria());
     }
 
     public void requestForDiaxeirishApousiwn() {
-        viewController.requestForDiaxeiristhApousiwn(ergasthrio);
+        viewController.requestForDiaxeiristhApousiwnView(ergasthrio);
     }
 }

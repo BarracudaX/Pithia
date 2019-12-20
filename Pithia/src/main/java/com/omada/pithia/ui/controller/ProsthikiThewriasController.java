@@ -3,7 +3,6 @@ package com.omada.pithia.ui.controller;
 import com.omada.pithia.model.mathimata.Eksamhno;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.model.xrhstes.Kathigitis;
-import com.omada.pithia.service.ThewriesService;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class ProsthikiThewriasController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForProsthikiMathimatos();
+        viewController.requestForProsthikiMathimatosView();
     }
 
     public List<Thewria> getProapaitoumena(Eksamhno eksamhno) {
@@ -54,6 +53,6 @@ public class ProsthikiThewriasController {
 
         viewController.requestForShowMessage("Το μαθημα θεωριας προστεθηκε επιτυχως!");
 
-        viewController.requestForProsthikiMathimatos();
+        viewController.requestForProsthikiMathimatosView();
     }
 }

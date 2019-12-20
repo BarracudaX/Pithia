@@ -1,7 +1,6 @@
 package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.xrhstes.Foititis;
-import com.omada.pithia.model.xrhstes.Xrhsths;
 import com.omada.pithia.service.XrhstesService;
 
 import java.util.Map;
@@ -25,6 +24,6 @@ public class KatastashFoitithController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForHomePage();
+        viewController.requestForHomeView();
     }
 }

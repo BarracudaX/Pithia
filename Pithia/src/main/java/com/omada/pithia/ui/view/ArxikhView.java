@@ -119,31 +119,31 @@ public class ArxikhView extends JPanel {
     }
 
     private void logariasmosMouClick(ActionEvent actionEvent) {
-        controller.requestForLogariasmosMou();
+        controller.requestForLogariasmoView();
     }
 
     private void foititesClick(ActionEvent actionEvent) {
-        controller.requestForFoitites();
+        controller.requestForDhmiourgiaFoititwnView();
     }
 
     private void dhlwshMathimatwnClick(ActionEvent actionEvent) {
-        controller.requestForDhlwshMathimatwn();
+        controller.requestForDhlwshMathimatwnView();
     }
 
     private void katastashClick(ActionEvent actionEvent) {
-        controller.requestForKatastash();
+        controller.requestForKatastashView();
     }
 
     private void prosthikiMathimatosClick(ActionEvent actionEvent) {
-        controller.requestForProsthikiMathimatos();
+        controller.requestForProsthikiMathimatosView();
     }
 
     private void mathimataMouClick(ActionEvent actionEvent) {
-        controller.requestForMathimataMou();
+        controller.requestForMathimataKathigitiView();
     }
 
     private void homeButtonClick(ActionEvent actionEvent) {
-        controller.requestForHomePage();
+        controller.requestForHomeView();
     }
 
 }

@@ -6,7 +6,6 @@ import com.omada.pithia.model.xrhstes.Foititis;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 public class ProsthikiFoititwnStoErgasthrioController {
 
@@ -24,7 +23,7 @@ public class ProsthikiFoititwnStoErgasthrioController {
 
 
     public void requestForBackPage() {
-        viewController.requestForErgasthrio(ergasthrio);
+        viewController.requestForErgasthrioView(ergasthrio);
     }
 
     public Collection<Foititis> getFoititesXwrisErgasthrio() {
@@ -39,6 +38,6 @@ public class ProsthikiFoititwnStoErgasthrioController {
                     .append(foititis.getOnoma()).append("\n");
         }
         viewController.requestForShowMessage(builder.toString());
-        viewController.requestForErgasthrio(ergasthrio);
+        viewController.requestForErgasthrioView(ergasthrio);
     }
 }

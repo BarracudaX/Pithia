@@ -5,7 +5,6 @@ import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Mathima;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.model.xrhstes.Foititis;
-import com.omada.pithia.model.xrhstes.Xrhsths;
 import com.omada.pithia.service.ThewriesService;
 import com.omada.pithia.service.XrhstesService;
 
@@ -42,7 +41,7 @@ public class DhlwshMathimatwnController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForHomePage();
+        viewController.requestForHomeView();
     }
 
     public void requestForDhlwshMathimatwn(List<DhlwshMathimatos> dhlwmenaMathimata) {
@@ -67,7 +66,7 @@ public class DhlwshMathimatwnController {
 
         viewController.requestForShowMessage(output.toString());
 
-        viewController.requestForHomePage();
+        viewController.requestForHomeView();
 
     }
 }

@@ -26,7 +26,7 @@ public class EisagwghVathmologiasErgasthriouController {
     }
 
     public void requestForBackPage() {
-        viewController.requestForErgasthrio(ergasthrio);
+        viewController.requestForErgasthrioView(ergasthrio);
     }
 
     public void requestForApothikeushVathmwn(Map<Foititis, Double> vathmoi) {
@@ -34,6 +34,6 @@ public class EisagwghVathmologiasErgasthriouController {
             ergasthrio.addVathmoErgasthriou(vathmos.getKey(), vathmos.getValue());
         }
         viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια!");
-        viewController.requestForErgasthrio(ergasthrio);
+        viewController.requestForErgasthrioView(ergasthrio);
     }
 }

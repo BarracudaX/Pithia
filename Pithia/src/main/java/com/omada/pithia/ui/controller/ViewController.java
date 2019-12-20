@@ -2,12 +2,7 @@ package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
-import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.ui.view.Pithia;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-import java.util.Set;
 
 public class ViewController {
 
@@ -17,52 +12,52 @@ public class ViewController {
         this.pithia = pithia;
     }
 
-    public void requestForHomePage() {
+    public void requestForHomeView() {
         pithia.switchToHomePageGUI();
     }
 
-    public void requestForMathimataMou() {
-        pithia.switchToMathimataMouGUI();
+    public void requestForMathimataKathigitiView() {
+        pithia.switchToMathimataKathigitiView();
     }
 
-    public void requestForProsthikiMathimatos() {
-        pithia.switchToProsthikiMathimatosGUI();
+    public void requestForProsthikiMathimatosView() {
+        pithia.switchToProsthikiMathimatosView();
     }
 
-    public void requestForKatastash() {
-        pithia.switchToKatastashGUI();
+    public void requestForKatastashView() {
+        pithia.switchToKatastashView();
     }
 
-    public void requestForDhlwshMathimatwn() {
-        pithia.switchToDhlwshMathimatwnGUI();
+    public void requestForDhlwshMathimatwnView() {
+        pithia.switchToDhlwshMathimatwnView();
     }
 
-    public void requestForFoitites() {
-        pithia.switchToFoititesGUI();
+    public void requestForDhmiourgiaFoititwnView() {
+        pithia.switchToDhmiourgiaFoititwnView();
     }
 
-    public void requestForLogariasmosMou() {
-        pithia.switchToLogariasmosMouGUI();
+    public void requestForLogariasmoView() {
+        pithia.switchToLogariasmosView();
     }
 
     public void requestForLogout() {
         pithia.logout();
     }
 
-    public void requestForThewries() {
-        pithia.switchToThewriesGUI();
+    public void requestForThewriesView() {
+        pithia.switchToThewriesView();
     }
 
-    public void requestForErgasthria() {
-        pithia.switchToErgasthriaGUI();
+    public void requestForErgasthriaView() {
+        pithia.switchToErgasthriaView();
     }
 
-    public void requestForThewria(Thewria thewria) {
-        pithia.switchToThewriaGUI(thewria);
+    public void requestForThewriaView(Thewria thewria) {
+        pithia.switchToThewriaView(thewria);
     }
 
-    public void requestForErgasthrio(Ergasthrio ergasthrio) {
-        pithia.switchToErgasthrioGUI(ergasthrio);
+    public void requestForErgasthrioView(Ergasthrio ergasthrio) {
+        pithia.switchToErgasthrioView(ergasthrio);
     }
 
     public void requestForShowErrorMessage(String error) {
@@ -73,33 +68,33 @@ public class ViewController {
         pithia.showMessage(message);
     }
 
-    public void requestForProsthikiProapaitoumenwn(Thewria thewria) {
-        pithia.switchToProsthikiProapaitoumenou(thewria);
+    public void requestForProsthikiProapaitoumenwnView(Thewria thewria) {
+        pithia.switchToProsthikiProapaitoumenwnView(thewria);
     }
 
-    public void requestForEisagwghVathmologiasThewrias(Thewria thewria) {
-        pithia.switchToEisagwghVathmologias(thewria);
+    public void requestForEisagwghVathmologiasThewriasView(Thewria thewria) {
+        pithia.switchToEisagwghVathmologiasThewriasView(thewria);
     }
 
-    public void requestForEisagwghVathmologiasErgasthriou(Ergasthrio ergasthrio) {
-        pithia.switchToEisagwghVathmologias(ergasthrio);
+    public void requestForEisagwghVathmologiasErgasthriouView(Ergasthrio ergasthrio) {
+        pithia.switchEisagwghVathmologiasErgasthriouView(ergasthrio);
     }
 
-    public void requestForProsthikiFoititwnStoErgasthrio(Ergasthrio ergasthrio, Thewria thewria) {
-        pithia.switchToProsthikiFoititwnStoErgasthrio(ergasthrio, thewria);
+    public void requestForProsthikiFoititwnStoErgasthrioView(Ergasthrio ergasthrio, Thewria thewria) {
+        pithia.switchToProsthikiFoititwnStoErgasthrioView(ergasthrio, thewria);
     }
 
-    public void requestForDiaxeiristhApousiwn(Ergasthrio ergasthrio) {
-        pithia.switchToDiaxeirishApousiwn(ergasthrio);
+    public void requestForDiaxeiristhApousiwnView(Ergasthrio ergasthrio) {
+        pithia.switchToDiaxeirishApousiwnView(ergasthrio);
     }
 
-    public void requestForProsthikiErgasthriou() {
-        pithia.switchToProsthikiErgasthriou();
+    public void requestForProsthikiErgasthriouView() {
+        pithia.switchToProsthikiErgasthriouView();
     }
 
-    public void requestForProsthikiThewrias() {
-        pithia.switchToProsthikiThewrias();
+    public void requestForProsthikiThewriasView() {
+        pithia.switchToProsthikiThewriasView();
     }
 
-    public void requestForDhlwshAlgorithmou(Thewria thewria) { pithia.switchToHomePageGUI();}
+    public void requestForDhlwshAlgorithmouView(Thewria thewria) { pithia.switchToHomePageGUI();}
 }

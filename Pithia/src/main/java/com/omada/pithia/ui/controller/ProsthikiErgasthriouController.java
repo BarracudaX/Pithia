@@ -18,7 +18,7 @@ public class ProsthikiErgasthriouController {
 
 
     public void requestForBackPage() {
-        viewController.requestForProsthikiMathimatos();
+        viewController.requestForProsthikiMathimatosView();
     }
 
     public void requestForProsthiki(String onomaThewrias, String onomaKathigiti, String onomaErgasthriou) {
@@ -45,7 +45,7 @@ public class ProsthikiErgasthriouController {
 
         viewController.requestForShowMessage("Το εργαστηριο προστεθηκε επιτυχως.");
 
-        viewController.requestForProsthikiMathimatos();
+        viewController.requestForProsthikiMathimatosView();
     }
 
 

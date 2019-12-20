@@ -131,31 +131,31 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel, HOME_PAGE_CARD_NAME);
     }
 
-    public void switchToMathimataMouGUI() {
+    public void switchToMathimataKathigitiView() {
         cardLayout.show(mainPanel, MATHIMATA_MOU_PAGE_CARD_NAME);
     }
 
-    public void switchToProsthikiMathimatosGUI() {
+    public void switchToProsthikiMathimatosView() {
         cardLayout.show(mainPanel, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
     }
 
-    public void switchToKatastashGUI() {
+    public void switchToKatastashView() {
         KatastashFoitithView view = new KatastashFoitithView(katastashFoitithController);
         mainPanel.add(view, KATASTASH_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, KATASTASH_PAGE_CARD_NAME);
     }
 
-    public void switchToDhlwshMathimatwnGUI() {
+    public void switchToDhlwshMathimatwnView() {
         DhlwshMathimatwnView view = new DhlwshMathimatwnView(dhlwshMathimatwnController);
         mainPanel.add(view, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
     }
 
-    public void switchToFoititesGUI() {
+    public void switchToDhmiourgiaFoititwnView() {
         cardLayout.show(mainPanel, FOITITES_PAGE_CARD_NAME);
     }
 
-    public void switchToLogariasmosMouGUI() {
+    public void switchToLogariasmosView() {
         LogariasmosController controller = new LogariasmosController(viewController,xrhstesService);
         LogariasmosUI view = new LogariasmosUI(controller);
         mainPanel.add(view, LOGARIASMOS_MOU_PAGE_CARD_NAME);
@@ -166,27 +166,27 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel, LOGIN_PAGE_CARD_NAME);
     }
 
-    public void switchToThewriesGUI() {
+    public void switchToThewriesView() {
         ThewriesView thewriesView = new ThewriesView(thewriesController);
         mainPanel.add(thewriesView, THEWRIES_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIES_PAGE_CARD_NAME);
 
     }
 
-    public void switchToErgasthriaGUI() {
+    public void switchToErgasthriaView() {
         ErgasthriaView ergasthriaView = new ErgasthriaView(ergasthriaController);
         mainPanel.add(ergasthriaView, ERGASTHRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIA_PAGE_CARD_NAME);
     }
 
-    public void switchToThewriaGUI(Thewria thewria) {
+    public void switchToThewriaView(Thewria thewria) {
         ThewriaController controller = new ThewriaController(viewController,thewria);
         ThewriaView view = new ThewriaView(controller);
         mainPanel.add(view, THEWRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIA_PAGE_CARD_NAME);
     }
 
-    public void switchToErgasthrioGUI(Ergasthrio ergasthrio) {
+    public void switchToErgasthrioView(Ergasthrio ergasthrio) {
         ErgasthrioController controller = new ErgasthrioController(viewController,ergasthrio);
         ErgasthrioView view = new ErgasthrioView(controller);
         mainPanel.add(view, ERGASTHRIO_PAGE_CARD_NAME);
@@ -194,14 +194,14 @@ public class Pithia extends JFrame {
     }
 
 
-    public void switchToProsthikiProapaitoumenou(Thewria thewria) {
+    public void switchToProsthikiProapaitoumenwnView(Thewria thewria) {
         ProsthikiProapaitoumenwnController controller = new ProsthikiProapaitoumenwnController(viewController,thewria,thewriesService);
         ProsthikiProapaitoumenwnView view = new ProsthikiProapaitoumenwnView(controller);
         mainPanel.add(view, PROAPAITOUMENA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel,PROAPAITOUMENA_PAGE_CARD_NAME);
     }
 
-    public void switchToEisagwghVathmologias(Thewria thewria) {
+    public void switchToEisagwghVathmologiasThewriasView(Thewria thewria) {
         EisagwghVathmologiasThewriasController controller = new EisagwghVathmologiasThewriasController(viewController, thewria);
         EisagwghVathmologiasThewriasView view = new EisagwghVathmologiasThewriasView(controller);
 
@@ -209,15 +209,15 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_THEWRIA);
     }
 
-    public void switchToEisagwghVathmologias(Ergasthrio ergasthrio) {
+    public void switchEisagwghVathmologiasErgasthriouView(Ergasthrio ergasthrio) {
         EisagwghVathmologiasErgasthriouController controller = new EisagwghVathmologiasErgasthriouController(viewController, ergasthrio);
-        EisagwghVathmologiasergasthriouView view = new EisagwghVathmologiasergasthriouView(controller);
+        EisagwghVathmologiasErgasthriouView view = new EisagwghVathmologiasErgasthriouView(controller);
 
         mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
         cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
     }
 
-    public void switchToProsthikiFoititwnStoErgasthrio(Ergasthrio ergasthrio, Thewria thewria) {
+    public void switchToProsthikiFoititwnStoErgasthrioView(Ergasthrio ergasthrio, Thewria thewria) {
         ProsthikiFoititwnStoErgasthrioController controller
                 = new ProsthikiFoititwnStoErgasthrioController(viewController, thewria, ergasthrio);
 
@@ -228,7 +228,7 @@ public class Pithia extends JFrame {
     }
 
 
-    public void switchToDiaxeirishApousiwn(Ergasthrio ergasthrio) {
+    public void switchToDiaxeirishApousiwnView(Ergasthrio ergasthrio) {
         DiaxeirishApousiwnController controller = new DiaxeirishApousiwnController(viewController,ergasthrio);
 
         DiaxeirishApousiwnView view = new DiaxeirishApousiwnView(controller);
@@ -238,13 +238,13 @@ public class Pithia extends JFrame {
     }
 
 
-    public void switchToProsthikiErgasthriou() {
+    public void switchToProsthikiErgasthriouView() {
         ProsthikiErgasthriouView view = new ProsthikiErgasthriouView(prosthikiErgasthriouController);
         mainPanel.add(view, PROSTHIKI_ERGASTHRIOU);
         cardLayout.show(mainPanel, PROSTHIKI_ERGASTHRIOU);
     }
 
-    public void switchToProsthikiThewrias() {
+    public void switchToProsthikiThewriasView() {
         ProsthikiThewriasPageUI view = new ProsthikiThewriasPageUI(prosthikiThewriasController);
         mainPanel.add(view, PROSTHIKI_THEWRIAS);
         cardLayout.show(mainPanel, PROSTHIKI_THEWRIAS);
