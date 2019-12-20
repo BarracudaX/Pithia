@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.List;
 
-public class EisagwghVathmologiasThewriasPageUI extends JPanel {
+public class EisagwghVathmologiasThewriasView extends JPanel {
 
     private final EisagwghVathmologiasThewriasController controller;
 
@@ -23,7 +23,7 @@ public class EisagwghVathmologiasThewriasPageUI extends JPanel {
 
     private final List<InputVathmo> inputVathmoi = new ArrayList<>();
 
-    public EisagwghVathmologiasThewriasPageUI(EisagwghVathmologiasThewriasController controller) {
+    public EisagwghVathmologiasThewriasView(EisagwghVathmologiasThewriasController controller) {
         this.controller = controller;
         this.scrollPane = new JScrollPane(inputs);
         prepareView();

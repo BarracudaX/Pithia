@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProsthikiFoititwnStoErgasthrioUI extends AbstractDoubleListView {
+public class ProsthikiFoititwnStoErgasthrioView extends AbstractDoubleListView {
 
     private final ProsthikiFoititwnStoErgasthrioController controller;
 
     private final Map<String, Foititis> foititesMap = new HashMap<>();
 
-    public ProsthikiFoititwnStoErgasthrioUI(ProsthikiFoititwnStoErgasthrioController controller) {
+    public ProsthikiFoititwnStoErgasthrioView(ProsthikiFoititwnStoErgasthrioController controller) {
         this.controller = controller;
         prepareView();
     }

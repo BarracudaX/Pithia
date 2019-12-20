@@ -1,15 +1,15 @@
 package com.omada.pithia.ui.view;
 
 import com.omada.pithia.service.MyAction;
-import com.omada.pithia.ui.controller.MathimataMouController;
+import com.omada.pithia.ui.controller.MathimataKathigitiController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class MathimataMouPageUI extends JPanel {
+public class MathimataKathigitiView extends JPanel {
 
-    private final MathimataMouController controller;
+    private final MathimataKathigitiController controller;
 
     private final MyAction backAction;
 
@@ -17,7 +17,7 @@ public class MathimataMouPageUI extends JPanel {
     private final JButton thewriesButton;
     private final JButton ergasthriaButton;
 
-    public MathimataMouPageUI(MathimataMouController controller,MyAction backAction) {
+    public MathimataKathigitiView(MathimataKathigitiController controller, MyAction backAction) {
         this.controller = controller;
         this.backAction = backAction;
 

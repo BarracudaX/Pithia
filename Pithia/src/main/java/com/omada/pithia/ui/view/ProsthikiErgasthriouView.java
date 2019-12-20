@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ProsthikiErgasthriouPageUI extends JPanel {
+public class ProsthikiErgasthriouView extends JPanel {
 
     private String pickedOnomaThewrias ;
     private String pickedOnomaKathigiti ;
@@ -24,7 +24,7 @@ public class ProsthikiErgasthriouPageUI extends JPanel {
     private final JButton prosthikiButton = new JButton("Προσθηκη Εργαστηριου");
     private final JButton backButton = new JButton("Πισω");
 
-    public ProsthikiErgasthriouPageUI(ProsthikiErgasthriouController controller) {
+    public ProsthikiErgasthriouView(ProsthikiErgasthriouController controller) {
         this.controller = controller;
         this.thewries = new JComboBox<>(controller.getThewries());
         this.kathigites = new JComboBox<>(controller.getKathigites());

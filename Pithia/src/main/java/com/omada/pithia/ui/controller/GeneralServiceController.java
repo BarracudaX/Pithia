@@ -4,7 +4,7 @@ import com.omada.pithia.model.mathimata.Eksamhno;
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.model.xrhstes.Kathigitis;
-import com.omada.pithia.service.ErgasthrioService;
+import com.omada.pithia.service.ErgasthriaService;
 import com.omada.pithia.service.ThewriesService;
 import com.omada.pithia.service.XrhstesService;
 
@@ -13,14 +13,14 @@ import java.util.List;
 public class GeneralServiceController {
 
 
-    private final ErgasthrioService ergasthrioService;
+    private final ErgasthriaService ergasthriaService;
 
     private final ThewriesService thewriesService;
 
     private final XrhstesService xrhstesService;
 
-    public GeneralServiceController(ErgasthrioService ergasthrioService, ThewriesService thewriesService, XrhstesService xrhstesService) {
-        this.ergasthrioService = ergasthrioService;
+    public GeneralServiceController(ErgasthriaService ergasthriaService, ThewriesService thewriesService, XrhstesService xrhstesService) {
+        this.ergasthriaService = ergasthriaService;
         this.thewriesService = thewriesService;
         this.xrhstesService = xrhstesService;
     }
@@ -57,7 +57,7 @@ public class GeneralServiceController {
     }
 
     boolean checkIfExistsErgasthrio(String onomaErgasthriou){
-        return ergasthrioService.find(onomaErgasthriou) != null;
+        return ergasthriaService.find(onomaErgasthriou) != null;
     }
 
     Kathigitis getKathigiti(String onomaKathigiti) {
@@ -69,7 +69,7 @@ public class GeneralServiceController {
     }
 
     void addErgasthrio(Ergasthrio ergasthrio) {
-        ergasthrioService.add(ergasthrio);
+        ergasthriaService.add(ergasthrio);
     }
 
     public String[] getEksamhna() {

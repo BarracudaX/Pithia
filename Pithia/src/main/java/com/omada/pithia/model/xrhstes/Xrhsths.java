@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Xrhsths {
@@ -16,14 +17,19 @@ public class Xrhsths {
 
 	private final LocalDate hmeromhniaGennhshs;
 
-
 	private final String email;
 
 	private final Set<Rolos> roloi = new HashSet<>();
 
 	private String kwdikos;
 
-	public Xrhsths(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos,String email) {
+	public Xrhsths(String onoma, String epwnhmo, LocalDate hmeromhniaGennhshs, String onomaXrhsth, String kwdikos, String email) {
+		Objects.requireNonNull(onoma,"Το ονομα ειναι null.");
+		Objects.requireNonNull(epwnhmo,"Το επωνυμο ειναι null.");
+		Objects.requireNonNull(hmeromhniaGennhshs,"Η ημερομηνια γεννησης ειναι null.");
+		Objects.requireNonNull(onomaXrhsth,"Το ονομα χρηστη ειναι null.");
+		Objects.requireNonNull(kwdikos,"Ο κωδικος ειναι null.");
+		Objects.requireNonNull(email,"Το εμαιλ ειναι null.");
 		this.onoma = onoma;
 		this.epwnhmo = epwnhmo;
 		this.hmeromhniaGennhshs = hmeromhniaGennhshs;

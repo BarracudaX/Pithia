@@ -1,8 +1,5 @@
 package com.omada.pithia.ui.controller;
 
-import com.omada.pithia.service.ErgasthrioService;
-import com.omada.pithia.service.ThewriesService;
-
 public class ProsthikiMathimatosController {
 
     private final ViewController viewController;

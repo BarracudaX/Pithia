@@ -2,31 +2,30 @@ package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.service.XrhstesService;
-import com.omada.pithia.ui.view.ParagwghFoititwnPageUI;
+import com.omada.pithia.ui.view.DhmiourgiaFoititwnView;
 
 import javax.swing.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.concurrent.*;
 
-public class ParagwghFoititwnController {
+public class DhmiourgiaFoititwnController {
 
     private final ViewController viewController;
 
     private final XrhstesService service;
 
-    private ParagwghFoititwnPageUI view;
+    private DhmiourgiaFoititwnView view;
 
     private volatile Future<?> executingWork;
 
-    public ParagwghFoititwnController(ViewController viewController, XrhstesService service) {
+    public DhmiourgiaFoititwnController(ViewController viewController, XrhstesService service) {
         this.viewController = viewController;
         this.service = service;
     }
 
-    public void setView(ParagwghFoititwnPageUI view) {
+    public void setView(DhmiourgiaFoititwnView view) {
         this.view = view;
     }
 

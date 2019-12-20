@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ThewriaPageUI extends JPanel {
+public class ThewriaView extends JPanel {
 
     private final ThewriaController controller;
 
@@ -31,7 +31,7 @@ public class ThewriaPageUI extends JPanel {
     private final JButton prosthikiProapaitoumenouButton = new JButton("Προσθηκη Προαπαιτουμενου");
     private final JButton backButton = new JButton("Πισω");
 
-    public ThewriaPageUI(ThewriaController controller) {
+    public ThewriaView(ThewriaController controller) {
         this.controller = controller;
         prepareView(controller.getThewria());
     }

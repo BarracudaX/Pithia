@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DhlwshMathimatwnPageUI extends JPanel {
+public class DhlwshMathimatwnView extends JPanel {
 
     private final DhlwshMathimatwnController controller;
 
@@ -20,7 +20,7 @@ public class DhlwshMathimatwnPageUI extends JPanel {
     private final List<Dhlwsh> dhlwshs = new ArrayList<>();
     private final JScrollPane dhlwshScrollPane;
 
-    public DhlwshMathimatwnPageUI(DhlwshMathimatwnController controller) {
+    public DhlwshMathimatwnView(DhlwshMathimatwnController controller) {
         this.controller = controller;
         this.dhlwshScrollPane = new JScrollPane(dhlwshsJpanel);
         prepareView();

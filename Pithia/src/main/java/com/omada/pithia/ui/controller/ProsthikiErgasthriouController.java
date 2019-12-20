@@ -43,8 +43,7 @@ public class ProsthikiErgasthriouController {
 
         serviceController.addErgasthrio(ergasthrio);
 
-        viewController.requestForShowMessage("Το εργαστηριο προστεθηκε επιτυχως" +
-                ".Πληροφοριες Εργαστηριου : \n" + ergasthrio);
+        viewController.requestForShowMessage("Το εργαστηριο προστεθηκε επιτυχως.");
 
         viewController.requestForProsthikiMathimatos();
     }

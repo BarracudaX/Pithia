@@ -1,9 +1,10 @@
 package com.omada.pithia.ui.controller;
 
-public class MathimataMouController {
+public class MathimataKathigitiController {
+    
     private final ViewController viewController;
 
-    public MathimataMouController(ViewController viewController) {
+    public MathimataKathigitiController(ViewController viewController) {
         this.viewController = viewController;
     }
 

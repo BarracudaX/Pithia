@@ -10,7 +10,7 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ThewriesPageUI extends JPanel {
+public class ThewriesView extends JPanel {
 
     private final ThewriesController controller;
 
@@ -21,7 +21,7 @@ public class ThewriesPageUI extends JPanel {
 
     private volatile String lastThewria = null;
 
-    public ThewriesPageUI(ThewriesController controller) {
+    public ThewriesView(ThewriesController controller) {
         this.controller = controller;
         this.thewries = new JList<>();
         this.listScrollPane = new JScrollPane(thewries);

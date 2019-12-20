@@ -1,24 +1,21 @@
 package com.omada.pithia.ui.view;
 
 import com.omada.pithia.model.mathimata.Thewria;
-import com.omada.pithia.service.ThewriesService;
-import com.omada.pithia.ui.controller.ProapaitoumenaController;
+import com.omada.pithia.ui.controller.ProsthikiProapaitoumenwnController;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class ProapaitoumenaPageUI extends AbstractDoubleListView {
+public final class ProsthikiProapaitoumenwnView extends AbstractDoubleListView {
 
-    private final ProapaitoumenaController controller;
+    private final ProsthikiProapaitoumenwnController controller;
 
     private final Map<String, Thewria> proapaitoumenaMap = new HashMap<>();
 
-    public ProapaitoumenaPageUI(ProapaitoumenaController controller) {
+    public ProsthikiProapaitoumenwnView(ProsthikiProapaitoumenwnController controller) {
         this.controller = controller;
         prepareView();
     }

@@ -1,17 +1,15 @@
 package com.omada.pithia.ui.view;
 
-import com.omada.pithia.ui.controller.KatastashController;
+import com.omada.pithia.ui.controller.KatastashFoitithController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-public class KatastashPageUI extends JPanel {
+public class KatastashFoitithView extends JPanel {
 
-    private final KatastashController controller;
+    private final KatastashFoitithController controller;
 
     private final JPanel vathmoiInputs = new JPanel();
 
@@ -19,7 +17,7 @@ public class KatastashPageUI extends JPanel {
 
     private final JButton backButton = new JButton("Πισω");
 
-    public KatastashPageUI(KatastashController controller) {
+    public KatastashFoitithView(KatastashFoitithController controller) {
         this.controller = controller;
         vathmoiScroll = new JScrollPane(vathmoiInputs);
         prepareView();

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class LoginPageUI extends JPanel {
+public class LoginView extends JPanel {
 
     private final JButton loginButton = new JButton("Login");
     private final JTextField usernameField = new JTextField();
@@ -16,7 +16,7 @@ public class LoginPageUI extends JPanel {
 
     private final LoginController controller;
 
-    public LoginPageUI(LoginController controller) {
+    public LoginView(LoginController controller) {
         this.controller = controller;
         prepareView();
     }

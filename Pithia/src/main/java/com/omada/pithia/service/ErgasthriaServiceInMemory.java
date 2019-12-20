@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ErgasthrioServiceInMemory implements ErgasthrioService {
+public class ErgasthriaServiceInMemory implements ErgasthriaService {
 
     private final Map<String, Ergasthrio> ergasthria = new ConcurrentHashMap<>();
 
-    public ErgasthrioServiceInMemory(){
+    public ErgasthriaServiceInMemory(){
 
     }
 

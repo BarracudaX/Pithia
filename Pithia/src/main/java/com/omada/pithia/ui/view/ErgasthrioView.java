@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ErgasthrioPageUI extends JPanel {
+public class ErgasthrioView extends JPanel {
 
     private final ErgasthrioController controller;
 
@@ -27,7 +27,7 @@ public class ErgasthrioPageUI extends JPanel {
     private final JTextField arithmosFoititwn = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
 
 
-    public ErgasthrioPageUI(ErgasthrioController controller) {
+    public ErgasthrioView(ErgasthrioController controller) {
         this.controller = controller;
         prepareView();
     }

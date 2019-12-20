@@ -58,7 +58,6 @@ public class DhlwshMathimatwnController {
 
             output.append(thewria.getOnomaMathimatos()).append("\n");
 
-
             if (ergasthrio.isPresent()) {
                 thewria.addFoititiStoErgasthrio(foititis, ergasthrio.get());
                 output.append(ergasthrio.get().getOnomaErgasthriou()).append("\n");

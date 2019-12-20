@@ -2,7 +2,6 @@ package com.omada.pithia.ui.view;
 
 import com.omada.pithia.model.mathimata.Eksamhno;
 import com.omada.pithia.model.mathimata.Thewria;
-import com.omada.pithia.ui.controller.ProapaitoumenaController;
 import com.omada.pithia.ui.controller.ProsthikiThewriasController;
 
 import javax.swing.*;

@@ -7,14 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class DiaxeirishApousiwnPageUI extends JPanel {
+public class DiaxeirishApousiwnView extends JPanel {
 
     private final DiaxeirishApousiwnController controller;
 
     private final JButton backButton = new JButton("Πισω");
     private final JPanel inputs = new JPanel(new GridBagLayout());
 
-    public DiaxeirishApousiwnPageUI(DiaxeirishApousiwnController controller) {
+    public DiaxeirishApousiwnView(DiaxeirishApousiwnController controller) {
         this.controller = controller;
         prepareView();
     }

@@ -35,7 +35,7 @@ public class EisagwghVathmologiasThewriasController {
         for (Map.Entry<Foititis, Double> vathmos : vathmoi.entrySet()) {
             thewria.addVathmoThewrias(vathmos.getValue(), vathmos.getKey());
         }
-        viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν επιτυχως.");
+        viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια.");
         viewController.requestForThewria(thewria);
     }
 }

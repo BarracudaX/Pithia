@@ -6,13 +6,13 @@ import com.omada.pithia.model.xrhstes.Foititis;
 import java.util.Map;
 import java.util.Set;
 
-public class EisagwghVathmologiasErgasthrioController {
+public class EisagwghVathmologiasErgasthriouController {
 
     private final ViewController viewController;
 
     private final Ergasthrio ergasthrio;
 
-    public EisagwghVathmologiasErgasthrioController(ViewController viewController, Ergasthrio ergasthrio) {
+    public EisagwghVathmologiasErgasthriouController(ViewController viewController, Ergasthrio ergasthrio) {
         this.viewController = viewController;
         this.ergasthrio = ergasthrio;
     }

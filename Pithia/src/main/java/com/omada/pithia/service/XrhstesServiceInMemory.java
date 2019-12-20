@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class XrhstesServiceInMemor implements XrhstesService {
+public class XrhstesServiceInMemory implements XrhstesService {
 
     private final Map<String,Xrhsths> xrhstes = new ConcurrentHashMap<>();
 
     private volatile Xrhsths loginXrhsths;
 
-    public XrhstesServiceInMemor() {
+    public XrhstesServiceInMemory() {
 
     }
 

@@ -22,7 +22,7 @@ public class Pithia extends JFrame {
 
     private final XrhstesService xrhstesService;
     private final ThewriesService thewriesService;
-    private final ErgasthrioService ergasthrioService;
+    private final ErgasthriaService ergasthriaService;
 
     private static final String LOGIN_PAGE_CARD_NAME = "LOGIN_PAGE";
     private static final String HOME_PAGE_CARD_NAME = "HOME_PAGE";
@@ -44,14 +44,14 @@ public class Pithia extends JFrame {
     private static final String PROSTHIKI_ERGASTHRIOU = "PROSTHIKI_ERGASTHRIOU";
     private static final String PROSTHIKI_THEWRIAS = "PROSTHIKI_THEWRIAS";
 
-    private final ParagwghFoititwnPageUI paragwghFoititwnPageUI;
-    private final LoginPageUI loginPageUI;
-    private final MathimataMouPageUI mathimataMouPageUI;
-    private final ProsthikiMathimatosPageUI prosthikiMathimatosPageUI;
+    private final DhmiourgiaFoititwnView dhmiourgiaFoititwnView;
+    private final LoginView loginView;
+    private final MathimataKathigitiView mathimataKathigitiView;
+    private final ProsthikiMathimatosView prosthikiMathimatosView;
 
     private final ViewController viewController;
-    private final MathimataMouController mathimataMouController;
-    private final ParagwghFoititwnController paragwghFoititwnController;
+    private final MathimataKathigitiController mathimataKathigitiController;
+    private final DhmiourgiaFoititwnController dhmiourgiaFoititwnController;
     private final LoginController loginController;
     private final ThewriesController thewriesController;
     private final ErgasthriaController ergasthriaController;
@@ -59,7 +59,7 @@ public class Pithia extends JFrame {
     private final ProsthikiErgasthriouController prosthikiErgasthriouController;
     private final GeneralServiceController generalServiceController;
     private final ProsthikiThewriasController prosthikiThewriasController;
-    private final KatastashController katastashController;
+    private final KatastashFoitithController katastashFoitithController;
     private final DhlwshMathimatwnController dhlwshMathimatwnController;
 
     private final CardLayout cardLayout = new CardLayout();
@@ -69,38 +69,38 @@ public class Pithia extends JFrame {
     private final MyAction backToHomeAction;
 
 
-    public Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthrioService ergasthrioService) {
+    public Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthriaService ergasthriaService) {
         this.xrhstesService = xrhstesService;
         this.thewriesService = thewriesService;
-        this.ergasthrioService = ergasthrioService;
+        this.ergasthriaService = ergasthriaService;
 
         this.viewController = new ViewController(this);
-        this.mathimataMouController = new MathimataMouController(viewController);
+        this.mathimataKathigitiController = new MathimataKathigitiController(viewController);
         this.loginController = new LoginController(viewController,xrhstesService);
         this.thewriesController = new ThewriesController(viewController,thewriesService,xrhstesService);
-        this.ergasthriaController = new ErgasthriaController(viewController,ergasthrioService,xrhstesService);
-        this.paragwghFoititwnController = new ParagwghFoititwnController(viewController, xrhstesService);
+        this.ergasthriaController = new ErgasthriaController(viewController, ergasthriaService,xrhstesService);
+        this.dhmiourgiaFoititwnController = new DhmiourgiaFoititwnController(viewController, xrhstesService);
         this.prosthikiMathimatosController = new ProsthikiMathimatosController(viewController);
-        this.generalServiceController = new GeneralServiceController(ergasthrioService,thewriesService,xrhstesService);
+        this.generalServiceController = new GeneralServiceController(ergasthriaService,thewriesService,xrhstesService);
         this.prosthikiErgasthriouController = new ProsthikiErgasthriouController(viewController, generalServiceController);
         this.prosthikiThewriasController = new ProsthikiThewriasController(viewController, generalServiceController);
-        this.katastashController = new KatastashController(viewController, xrhstesService);
+        this.katastashFoitithController = new KatastashFoitithController(viewController, xrhstesService);
         this.dhlwshMathimatwnController = new DhlwshMathimatwnController(viewController,xrhstesService,thewriesService);
         this.backToHomeAction = this::switchToHomePageGUI;
 
-        this.loginPageUI = new LoginPageUI(loginController);
-        this.paragwghFoititwnPageUI = new ParagwghFoititwnPageUI(paragwghFoititwnController, backToHomeAction);
-        this.mathimataMouPageUI = new MathimataMouPageUI(mathimataMouController, backToHomeAction);
-        this.prosthikiMathimatosPageUI = new ProsthikiMathimatosPageUI(prosthikiMathimatosController);
+        this.loginView = new LoginView(loginController);
+        this.dhmiourgiaFoititwnView = new DhmiourgiaFoititwnView(dhmiourgiaFoititwnController, backToHomeAction);
+        this.mathimataKathigitiView = new MathimataKathigitiView(mathimataKathigitiController, backToHomeAction);
+        this.prosthikiMathimatosView = new ProsthikiMathimatosView(prosthikiMathimatosController);
 
     }
 
 
     public static void main(String[] args) throws InvocationTargetException, InterruptedException, IOException {
-        XrhstesService xrhstesService = new XrhstesServiceInMemor();
+        XrhstesService xrhstesService = new XrhstesServiceInMemory();
         ThewriesService thewriesService = new ThewriesServiceInMemory();
-        ErgasthrioService ergasthrioService = new ErgasthrioServiceInMemory();
-        Pithia pithia = new Pithia(xrhstesService,thewriesService,ergasthrioService);
+        ErgasthriaService ergasthriaService = new ErgasthriaServiceInMemory();
+        Pithia pithia = new Pithia(xrhstesService,thewriesService, ergasthriaService);
         pithia.start();
     }
 
@@ -111,10 +111,10 @@ public class Pithia extends JFrame {
 
             mainPanel.setLayout(cardLayout);
 
-            mainPanel.add(loginPageUI, LOGIN_PAGE_CARD_NAME);
-            mainPanel.add(paragwghFoititwnPageUI, FOITITES_PAGE_CARD_NAME);
-            mainPanel.add(mathimataMouPageUI, MATHIMATA_MOU_PAGE_CARD_NAME);
-            mainPanel.add(prosthikiMathimatosPageUI, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
+            mainPanel.add(loginView, LOGIN_PAGE_CARD_NAME);
+            mainPanel.add(dhmiourgiaFoititwnView, FOITITES_PAGE_CARD_NAME);
+            mainPanel.add(mathimataKathigitiView, MATHIMATA_MOU_PAGE_CARD_NAME);
+            mainPanel.add(prosthikiMathimatosView, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
 
             this.getContentPane().setBackground(GeneralStyle.DARK_COLOR);
             this.setContentPane(mainPanel);
@@ -126,7 +126,7 @@ public class Pithia extends JFrame {
     }
 
     public void switchToHomePageGUI() {
-        HomePageUI view = new HomePageUI(viewController,xrhstesService);
+        ArxikhView view = new ArxikhView(viewController,xrhstesService);
         mainPanel.add(view, HOME_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, HOME_PAGE_CARD_NAME);
     }
@@ -140,13 +140,13 @@ public class Pithia extends JFrame {
     }
 
     public void switchToKatastashGUI() {
-        KatastashPageUI view = new KatastashPageUI(katastashController);
+        KatastashFoitithView view = new KatastashFoitithView(katastashFoitithController);
         mainPanel.add(view, KATASTASH_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, KATASTASH_PAGE_CARD_NAME);
     }
 
     public void switchToDhlwshMathimatwnGUI() {
-        DhlwshMathimatwnPageUI view = new DhlwshMathimatwnPageUI(dhlwshMathimatwnController);
+        DhlwshMathimatwnView view = new DhlwshMathimatwnView(dhlwshMathimatwnController);
         mainPanel.add(view, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, DHLWSH_MATHIMATWN_PAGE_CARD_NAME);
     }
@@ -167,51 +167,51 @@ public class Pithia extends JFrame {
     }
 
     public void switchToThewriesGUI() {
-        ThewriesPageUI thewriesPageUI = new ThewriesPageUI(thewriesController);
-        mainPanel.add(thewriesPageUI, THEWRIES_PAGE_CARD_NAME);
+        ThewriesView thewriesView = new ThewriesView(thewriesController);
+        mainPanel.add(thewriesView, THEWRIES_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIES_PAGE_CARD_NAME);
 
     }
 
     public void switchToErgasthriaGUI() {
-        ErgasthriaPageUI ergasthriaPageUI = new ErgasthriaPageUI(ergasthriaController);
-        mainPanel.add(ergasthriaPageUI, ERGASTHRIA_PAGE_CARD_NAME);
+        ErgasthriaView ergasthriaView = new ErgasthriaView(ergasthriaController);
+        mainPanel.add(ergasthriaView, ERGASTHRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIA_PAGE_CARD_NAME);
     }
 
     public void switchToThewriaGUI(Thewria thewria) {
         ThewriaController controller = new ThewriaController(viewController,thewria);
-        ThewriaPageUI view = new ThewriaPageUI(controller);
+        ThewriaView view = new ThewriaView(controller);
         mainPanel.add(view, THEWRIA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, THEWRIA_PAGE_CARD_NAME);
     }
 
     public void switchToErgasthrioGUI(Ergasthrio ergasthrio) {
         ErgasthrioController controller = new ErgasthrioController(viewController,ergasthrio);
-        ErgasthrioPageUI view = new ErgasthrioPageUI(controller);
+        ErgasthrioView view = new ErgasthrioView(controller);
         mainPanel.add(view, ERGASTHRIO_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, ERGASTHRIO_PAGE_CARD_NAME);
     }
 
 
     public void switchToProsthikiProapaitoumenou(Thewria thewria) {
-        ProapaitoumenaController controller = new ProapaitoumenaController(viewController,thewria,thewriesService);
-        ProapaitoumenaPageUI view = new ProapaitoumenaPageUI(controller);
+        ProsthikiProapaitoumenwnController controller = new ProsthikiProapaitoumenwnController(viewController,thewria,thewriesService);
+        ProsthikiProapaitoumenwnView view = new ProsthikiProapaitoumenwnView(controller);
         mainPanel.add(view, PROAPAITOUMENA_PAGE_CARD_NAME);
         cardLayout.show(mainPanel,PROAPAITOUMENA_PAGE_CARD_NAME);
     }
 
     public void switchToEisagwghVathmologias(Thewria thewria) {
         EisagwghVathmologiasThewriasController controller = new EisagwghVathmologiasThewriasController(viewController, thewria);
-        EisagwghVathmologiasThewriasPageUI view = new EisagwghVathmologiasThewriasPageUI(controller);
+        EisagwghVathmologiasThewriasView view = new EisagwghVathmologiasThewriasView(controller);
 
         mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_THEWRIA);
         cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_THEWRIA);
     }
 
     public void switchToEisagwghVathmologias(Ergasthrio ergasthrio) {
-        EisagwghVathmologiasErgasthrioController controller = new EisagwghVathmologiasErgasthrioController(viewController, ergasthrio);
-        EisagwghVathmologiasErgasthrioPageUI view = new EisagwghVathmologiasErgasthrioPageUI(controller);
+        EisagwghVathmologiasErgasthriouController controller = new EisagwghVathmologiasErgasthriouController(viewController, ergasthrio);
+        EisagwghVathmologiasergasthriouView view = new EisagwghVathmologiasergasthriouView(controller);
 
         mainPanel.add(view, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
         cardLayout.show(mainPanel, EISAGWGH_VATHMOLOGIAS_ERGASTHRIO);
@@ -221,7 +221,7 @@ public class Pithia extends JFrame {
         ProsthikiFoititwnStoErgasthrioController controller
                 = new ProsthikiFoititwnStoErgasthrioController(viewController, thewria, ergasthrio);
 
-        ProsthikiFoititwnStoErgasthrioUI view = new ProsthikiFoititwnStoErgasthrioUI(controller);
+        ProsthikiFoititwnStoErgasthrioView view = new ProsthikiFoititwnStoErgasthrioView(controller);
 
         mainPanel.add(view,PROSTHIKI_FOITITWN_STO_ERGASTHRIO);
         cardLayout.show(mainPanel, PROSTHIKI_FOITITWN_STO_ERGASTHRIO);
@@ -231,7 +231,7 @@ public class Pithia extends JFrame {
     public void switchToDiaxeirishApousiwn(Ergasthrio ergasthrio) {
         DiaxeirishApousiwnController controller = new DiaxeirishApousiwnController(viewController,ergasthrio);
 
-        DiaxeirishApousiwnPageUI view = new DiaxeirishApousiwnPageUI(controller);
+        DiaxeirishApousiwnView view = new DiaxeirishApousiwnView(controller);
 
         mainPanel.add(view, DIAXEIRISH_APOUSIWN);
         cardLayout.show(mainPanel,DIAXEIRISH_APOUSIWN);
@@ -239,7 +239,7 @@ public class Pithia extends JFrame {
 
 
     public void switchToProsthikiErgasthriou() {
-        ProsthikiErgasthriouPageUI view = new ProsthikiErgasthriouPageUI(prosthikiErgasthriouController);
+        ProsthikiErgasthriouView view = new ProsthikiErgasthriouView(prosthikiErgasthriouController);
         mainPanel.add(view, PROSTHIKI_ERGASTHRIOU);
         cardLayout.show(mainPanel, PROSTHIKI_ERGASTHRIOU);
     }
@@ -391,7 +391,7 @@ public class Pithia extends JFrame {
             for (int i = 0; i < ThreadLocalRandom.current().nextInt(7); i++) {
                 Kathigitis kathigitisErgasthriou = kathigites[ThreadLocalRandom.current().nextInt(kathigites.length)];
                 Ergasthrio ergasthrio = new Ergasthrio(thewria.getOnomaMathimatos() + " ε" + i, kathigitisErgasthriou, thewria);
-                ergasthrioService.add(ergasthrio);
+                ergasthriaService.add(ergasthrio);
                 thewria.addErgasthrio(ergasthrio);
             }
 

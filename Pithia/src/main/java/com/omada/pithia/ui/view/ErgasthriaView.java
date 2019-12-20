@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-public class ErgasthriaPageUI extends JPanel {
+public class ErgasthriaView extends JPanel {
 
     private final ErgasthriaController controller;
 
@@ -21,7 +21,7 @@ public class ErgasthriaPageUI extends JPanel {
     private final JScrollPane listScrollPane;
     private volatile String teleutaioErgasthrio = null;
 
-    public ErgasthriaPageUI(ErgasthriaController controller) {
+    public ErgasthriaView(ErgasthriaController controller) {
         this.controller = controller;
         this.ergasthria = new JList<>();
         this.listScrollPane = new JScrollPane(ergasthria);

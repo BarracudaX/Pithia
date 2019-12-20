@@ -6,13 +6,13 @@ import com.omada.pithia.service.XrhstesService;
 
 import java.util.Map;
 
-public class KatastashController {
+public class KatastashFoitithController {
 
     private final ViewController viewController;
 
     private final XrhstesService xrhstesService;
 
-    public KatastashController(ViewController viewController, XrhstesService xrhstesService) {
+    public KatastashFoitithController(ViewController viewController, XrhstesService xrhstesService) {
         this.viewController = viewController;
         this.xrhstesService = xrhstesService;
     }

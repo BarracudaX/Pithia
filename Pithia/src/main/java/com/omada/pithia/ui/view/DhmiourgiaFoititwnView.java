@@ -1,17 +1,16 @@
 package com.omada.pithia.ui.view;
 
-import com.omada.pithia.model.xrhstes.Foititis;
 import com.omada.pithia.service.MyAction;
-import com.omada.pithia.ui.controller.ParagwghFoititwnController;
+import com.omada.pithia.ui.controller.DhmiourgiaFoititwnController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.NumberFormat;
 
-public class ParagwghFoititwnPageUI extends JPanel {
+public class DhmiourgiaFoititwnView extends JPanel {
 
-    private final ParagwghFoititwnController controller;
+    private final DhmiourgiaFoititwnController controller;
 
     private final MyAction backAction;
 
@@ -23,7 +22,7 @@ public class ParagwghFoititwnPageUI extends JPanel {
     private final JScrollPane outputAreaScrollPane;
     private final JButton stopButton = new JButton("Σταματημα Παραγωγης");
 
-    public ParagwghFoititwnPageUI(ParagwghFoititwnController controller, MyAction backAction) {
+    public DhmiourgiaFoititwnView(DhmiourgiaFoititwnController controller, MyAction backAction) {
         this.controller = controller;
         this.backAction = backAction;
         this.outputAreaScrollPane = new JScrollPane(outputArea);

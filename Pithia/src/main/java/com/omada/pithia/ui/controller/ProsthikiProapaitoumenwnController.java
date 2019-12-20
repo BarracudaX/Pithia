@@ -5,13 +5,13 @@ import com.omada.pithia.service.ThewriesService;
 
 import java.util.List;
 
-public class ProapaitoumenaController {
+public class ProsthikiProapaitoumenwnController {
 
     private final ViewController viewController;
     private final Thewria thewria;
     private final ThewriesService thewriesService;
 
-    public ProapaitoumenaController(ViewController viewController, Thewria thewria, ThewriesService thewriesService) {
+    public ProsthikiProapaitoumenwnController(ViewController viewController, Thewria thewria, ThewriesService thewriesService) {
         this.viewController = viewController;
         this.thewria = thewria;
         this.thewriesService = thewriesService;

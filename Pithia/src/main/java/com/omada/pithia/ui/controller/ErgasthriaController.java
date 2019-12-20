@@ -2,7 +2,7 @@ package com.omada.pithia.ui.controller;
 
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.xrhstes.Kathigitis;
-import com.omada.pithia.service.ErgasthrioService;
+import com.omada.pithia.service.ErgasthriaService;
 import com.omada.pithia.service.XrhstesService;
 
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ public class ErgasthriaController {
 
     private final ViewController viewController;
 
-    private final ErgasthrioService ergasthrioService;
+    private final ErgasthriaService ergasthriaService;
     private final XrhstesService xrhstesService;
 
 
-    public ErgasthriaController(ViewController viewController, ErgasthrioService ergasthrioService, XrhstesService xrhstesService) {
-        this.ergasthrioService = ergasthrioService;
+    public ErgasthriaController(ViewController viewController, ErgasthriaService ergasthriaService, XrhstesService xrhstesService) {
+        this.ergasthriaService = ergasthriaService;
         this.xrhstesService = xrhstesService;
         this.viewController = viewController;
     }
@@ -27,7 +27,7 @@ public class ErgasthriaController {
     }
 
     public void requestForErgasthrio(String ergasthrio) {
-        viewController.requestForErgasthrio(ergasthrioService.find(ergasthrio));
+        viewController.requestForErgasthrio(ergasthriaService.find(ergasthrio));
     }
 
     public List<Ergasthrio> getErgasthria() {

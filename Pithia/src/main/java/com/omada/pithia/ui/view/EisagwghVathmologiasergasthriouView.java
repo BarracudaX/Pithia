@@ -1,7 +1,7 @@
 package com.omada.pithia.ui.view;
 
 import com.omada.pithia.model.xrhstes.Foititis;
-import com.omada.pithia.ui.controller.EisagwghVathmologiasErgasthrioController;
+import com.omada.pithia.ui.controller.EisagwghVathmologiasErgasthriouController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.List;
 
-public class EisagwghVathmologiasErgasthrioPageUI extends JPanel  {
+public class EisagwghVathmologiasergasthriouView extends JPanel  {
 
-    private final EisagwghVathmologiasErgasthrioController controller;
+    private final EisagwghVathmologiasErgasthriouController controller;
 
     private final JPanel inputs = new JPanel(new GridBagLayout());
 
@@ -24,7 +24,7 @@ public class EisagwghVathmologiasErgasthrioPageUI extends JPanel  {
     private final List<InputVathmo> inputVathmoi = new ArrayList<>();
 
 
-    public EisagwghVathmologiasErgasthrioPageUI(EisagwghVathmologiasErgasthrioController controller) {
+    public EisagwghVathmologiasergasthriouView(EisagwghVathmologiasErgasthriouController controller) {
         this.controller = controller;
         this.scrollPane = new JScrollPane(inputs);
         prepareView();

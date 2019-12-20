@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 import static com.omada.pithia.ui.view.GeneralStyle.*;
 
-public class HomePageUI extends JPanel {
+public class ArxikhView extends JPanel {
 
     private final JButton homeButton;
     private final JButton mathimataMouButton ;
@@ -27,7 +27,7 @@ public class HomePageUI extends JPanel {
     private final XrhstesService xrhstesService;
 
 
-    public HomePageUI(ViewController controller, XrhstesService xrhstesService) {
+    public ArxikhView(ViewController controller, XrhstesService xrhstesService) {
         this.controller = controller;
         this.xrhstesService = xrhstesService;
 

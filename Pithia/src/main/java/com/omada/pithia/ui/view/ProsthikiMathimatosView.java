@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ProsthikiMathimatosPageUI extends JPanel {
+public class ProsthikiMathimatosView extends JPanel {
 
     private final ProsthikiMathimatosController controller;
 
@@ -16,7 +16,7 @@ public class ProsthikiMathimatosPageUI extends JPanel {
 
     private final JButton backButton = new JButton("Πισω");
 
-    public ProsthikiMathimatosPageUI(ProsthikiMathimatosController controller) {
+    public ProsthikiMathimatosView(ProsthikiMathimatosController controller) {
         this.controller = controller;
         prepareView();
     }
