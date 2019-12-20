@@ -42,6 +42,7 @@ public class Pithia extends JFrame {
     private static final String PROSTHIKI_FOITITWN_STO_ERGASTHRIO = "PROSTHIKI_FOITITWN_STO_ERGASTHRIO_PAGE";
     private static final String DIAXEIRISH_APOUSIWN = "DIAXEIRISH_APOUSIWN_PAGE";
     private static final String PROSTHIKI_ERGASTHRIOU = "PROSTHIKI_ERGASTHRIOU";
+    private static final String DHLWSH_ALGORITHMOU_VIEW = "DHLWSH_ALGORITHMOU_VIEW";
     private static final String PROSTHIKI_THEWRIAS = "PROSTHIKI_THEWRIAS";
 
     private final DhmiourgiaFoititwnView dhmiourgiaFoititwnView;
@@ -85,7 +86,7 @@ public class Pithia extends JFrame {
         this.prosthikiErgasthriouController = new ProsthikiErgasthriouController(viewController, generalServiceController);
         this.prosthikiThewriasController = new ProsthikiThewriasController(viewController, generalServiceController);
         this.katastashFoitithController = new KatastashFoitithController(viewController, xrhstesService);
-        this.dhlwshMathimatwnController = new DhlwshMathimatwnController(viewController,xrhstesService,thewriesService);
+        this.dhlwshMathimatwnController = new DhlwshMathimatwnController(viewController, xrhstesService, thewriesService);
         this.backToHomeAction = this::switchToHomePageGUI;
 
         this.loginView = new LoginView(loginController);
@@ -248,6 +249,14 @@ public class Pithia extends JFrame {
         ProsthikiThewriasPageUI view = new ProsthikiThewriasPageUI(prosthikiThewriasController);
         mainPanel.add(view, PROSTHIKI_THEWRIAS);
         cardLayout.show(mainPanel, PROSTHIKI_THEWRIAS);
+    }
+
+    public void switchToDhlwshAlgorithmou(Thewria thewria) {
+        DhlwshAlgorithmouController controller = new DhlwshAlgorithmouController(viewController,thewria);
+        DhlwsiAlgorithmouUI view = new DhlwsiAlgorithmouUI(controller);
+
+        mainPanel.add(view, DHLWSH_ALGORITHMOU_VIEW);
+        cardLayout.show(mainPanel,DHLWSH_ALGORITHMOU_VIEW);
     }
 
     private void prepareData() throws IOException {
