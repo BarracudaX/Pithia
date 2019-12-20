@@ -18,11 +18,12 @@ public class LogariasmosController {
         String newPass = text1;
         if (text1.equals(text2)) {
             xrhsths.getLoginXrhsth().setKwdikos(newPass);
-            viewController.requestForShowMessage("O kwdikos allakse epituxws");
+            viewController.requestForShowMessage("Ο κωδικος αλλαξε επιτυχως");
+            viewController.requestForLogout();
         } else {
-            viewController.requestForShowErrorMessage("Oi kwdikoi den einai idioi");
+            viewController.requestForShowErrorMessage("Οι κωδικοι δεν ειναι ιδιοι παρακαλω εισαγεται τους ξανα");
         }
-        viewController.requestForLogout();
+
     }
 
     public void requestForBackPage() {
