@@ -11,11 +11,12 @@ public class DiaxeirishApousiwnView extends JPanel {
 
     private final DiaxeirishApousiwnController controller;
 
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton backButton ;
     private final JPanel inputs = new JPanel(new GridBagLayout());
 
     public DiaxeirishApousiwnView(DiaxeirishApousiwnController controller) {
         this.controller = controller;
+        this.backButton = new JButton(controller.getMessage("DiaxeiristhApousiwn.View.Back.Button",new Object[]{}));
         prepareView();
     }
 
@@ -43,7 +44,7 @@ public class DiaxeirishApousiwnView extends JPanel {
         for (Foititis foititis : controller.getFoitites()) {
             builder.reset().setRow(row++).setColumn(0).setRowWeight(1).setColumnWeight(1).setColumn(1).setFill(Utils.Fill.HORIZONTAL)
                     .setAnchor(Utils.Anchor.CENTER).setInsets(new Insets(10, 10, 10, 10));
-            inputs.add(new InputApousia(foititis, controller.getArithmoApousiwn(foititis)),builder.build());
+            inputs.add(new InputApousia(foititis, controller.getArithmoApousiwn(foititis),controller),builder.build());
         }
 
         builder.reset().setRow(1).setColumn(0).setRowWeight(20).setColumnWeight(1).setFill(Utils.Fill.BOTH).setAnchor(Utils.Anchor.CENTER)

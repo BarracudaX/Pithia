@@ -9,21 +9,33 @@ package com.omada.pithia.ui.view;
         import java.awt.event.ActionEvent;
 
 
-public class LogariasmosUI extends JPanel {
+public class LogariasmosView extends JPanel {
 
     private final LogariasmosController controller;
 
-    private final JLabel neosKwdikosLabel = new JLabel("Νεος κωδικος");
-    private final JLabel epanalhpshKwdikouLabel = new JLabel("Επαναληψη κωδικου");
+    private final JLabel neosKwdikosLabel ;
+    private final JLabel epanalhpshKwdikouLabel ;
 
     private final JPasswordField neosKwdikos = new JPasswordField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
     private final JPasswordField epanalhpshKwdikou = new JPasswordField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
-    private final JButton apothikeushKwdikou = new JButton("Αποθηκευση κωδικου");
-    private final JButton backButton = new JButton("Επιστροφη στην αρχικη");
+    private final JButton apothikeushKwdikou ;
+    private final JButton backButton ;
 
 
-    public LogariasmosUI(LogariasmosController controller) {
+    public LogariasmosView(LogariasmosController controller) {
         this.controller = controller;
+        this.neosKwdikosLabel = new JLabel(
+                controller.getMessage("Logariasmos.View.NeosKwdikos.Label", new Object[]{})
+        );
+        this.epanalhpshKwdikouLabel = new JLabel(
+                controller.getMessage("Logariasmos.View.EpanalhpshKwdikou.Label", new Object[]{})
+        );
+        this.apothikeushKwdikou = new JButton(
+                controller.getMessage("Logariasmos.View.ApothikeushKwdikou.Button", new Object[]{})
+        );
+        this.backButton = new JButton(
+                controller.getMessage("Logariasmos.View.Back.Button", new Object[]{})
+        );
         prepareView();
     }
 

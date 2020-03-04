@@ -7,19 +7,31 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
-public class DhlwsiAlgorithmouUI extends JPanel {
+public class DhlwsiAlgorithmouView extends JPanel {
 
         private final DhlwshAlgorithmouController controller;
 
-        private final JLabel posostoThewriasLabel = new JLabel("Ποσοστο Θεωριας");
-        private final JLabel posostoErgastiriouLabel = new JLabel("Ποσοστό Εργαστηριου");
+        private final JLabel posostoThewriasLabel ;
+        private final JLabel posostoErgastiriouLabel ;
         private final JTextField posostoThewrias = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
         private final JTextField posostoErgastiriou = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
-        private final JButton eisagwghVathmologias = new JButton("Εισαγωγη Βαθμολογιας");
-        private final JButton backButton = new JButton("Επιστροφη στην αρχικη");
+        private final JButton apothikeushAlgorithmouButton;
+        private final JButton backButton ;
 
-        public DhlwsiAlgorithmouUI(DhlwshAlgorithmouController controller) {
+        public DhlwsiAlgorithmouView(DhlwshAlgorithmouController controller) {
             this.controller = controller;
+            this.posostoThewriasLabel = new JLabel(
+                    controller.getMessage("DhlwshAlgorithmou.View.PosostoThewrias.Label", new Object[]{})
+            );
+            this.posostoErgastiriouLabel = new JLabel(
+                    controller.getMessage("DhlwshAlgorithmou.View.PosostoErgasthriou.Label", new Object[]{})
+            );
+            this.apothikeushAlgorithmouButton = new JButton(
+                    controller.getMessage("DhlwshAlgorithmou.View.ApothikeushAlgorithmou.Button",new Object[]{})
+            );
+            this.backButton = new JButton(
+                    controller.getMessage("DhlwshAlgorithmou.View.Back.Button", new Object[]{})
+            );
             prepareView();
         }
 
@@ -28,9 +40,9 @@ public class DhlwsiAlgorithmouUI extends JPanel {
         setLayout(new GridBagLayout());
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
-        styleBuilder.setFont(posostoThewriasLabel, posostoErgastiriouLabel, eisagwghVathmologias,backButton)
-                .setForegroundAsWhite(backButton,posostoThewriasLabel,posostoErgastiriouLabel, eisagwghVathmologias)
-                .setBackgroundAsBlue(posostoThewriasLabel, posostoErgastiriouLabel,eisagwghVathmologias)
+        styleBuilder.setFont(posostoThewriasLabel, posostoErgastiriouLabel, apothikeushAlgorithmouButton,backButton)
+                .setForegroundAsWhite(backButton,posostoThewriasLabel,posostoErgastiriouLabel, apothikeushAlgorithmouButton)
+                .setBackgroundAsBlue(posostoThewriasLabel, posostoErgastiriouLabel, apothikeushAlgorithmouButton)
                 .setHorizontalAlignmentToRight(posostoThewriasLabel, posostoErgastiriouLabel)
                 .setTextFieldSize(posostoThewrias, posostoErgastiriou)
                 .setBackgroundAsRed(backButton);
@@ -69,9 +81,9 @@ public class DhlwsiAlgorithmouUI extends JPanel {
 
         builder.setRow(3).setColumn(0).setFill(Utils.Fill.BOTH).setInsets(new Insets(5, 5, 5, 5))
                 .setAnchor(Utils.Anchor.CENTER).setColumnWidth(2);
-        add(eisagwghVathmologias,builder.build());
+        add(apothikeushAlgorithmouButton,builder.build());
 
-        eisagwghVathmologias.addActionListener(this::eisagwghVathmologiasClick);
+        apothikeushAlgorithmouButton.addActionListener(this::eisagwghVathmologiasClick);
         backButton.addActionListener(this::backButtonClick);
     }
         private void eisagwghVathmologiasClick(ActionEvent actionEvent) {

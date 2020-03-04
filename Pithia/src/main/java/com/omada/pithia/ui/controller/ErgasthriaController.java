@@ -34,4 +34,7 @@ public class ErgasthriaController {
         return new ArrayList<>( ((Kathigitis) xrhstesService.getLoginXrhsth()).getErgasthria() );
     }
 
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

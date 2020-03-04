@@ -31,14 +31,14 @@ public class ArxikhView extends JPanel {
         this.controller = controller;
         this.xrhstesService = xrhstesService;
 
-        homeButton = new JButton("Αρχικη");
-        mathimataMouButton = new JButton("Μαθηματα μου");
-        dhlwshMathimatwnButton = new JButton("Δηλωση Μαθηματων");
-        prosthikiMathimatosButton = new JButton("Προσθηκη Μαθηματος");
-        katastashButton = new JButton("Κατάσταση");
-        foititesButton = new JButton("Διαχειριση Φοιτητων");
-        logariasmosButton = new JButton("Ο Λογαριασμος μου");
-        logoutButton = new JButton("Logout");
+        homeButton = new JButton(controller.getMessage("Home.View.Home.Button",new Object[]{}));
+        mathimataMouButton = new JButton(controller.getMessage("Home.View.Courses.Button",new Object[]{}));
+        dhlwshMathimatwnButton = new JButton(controller.getMessage("Home.View.SpecifyCourses.Button",new Object[]{}));
+        prosthikiMathimatosButton = new JButton(controller.getMessage("Home.View.AddCourse.Button",new Object[]{}));
+        katastashButton = new JButton(controller.getMessage("Home.View.Status.Button",new Object[]{}));
+        foititesButton = new JButton(controller.getMessage("Home.View.StudentsManage.Button",new Object[]{}));
+        logariasmosButton = new JButton(controller.getMessage("Home.View.Account.Button",new Object[]{}));
+        logoutButton = new JButton(controller.getMessage("Home.View.Logout.Button",new Object[]{}));
 
         prepareView();
     }

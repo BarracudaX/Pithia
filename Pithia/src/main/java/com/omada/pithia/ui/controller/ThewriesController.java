@@ -33,4 +33,8 @@ public class ThewriesController {
     public List<Thewria> getThewries() {
         return new ArrayList<>(((Kathigitis) xrhstesService.getLoginXrhsth()).getThewries());
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code,args);
+    }
 }

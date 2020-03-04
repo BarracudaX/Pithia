@@ -3,10 +3,18 @@ package com.omada.pithia.ui.controller;
 import com.omada.pithia.model.mathimata.Ergasthrio;
 import com.omada.pithia.model.mathimata.Thewria;
 import com.omada.pithia.ui.view.Pithia;
+import org.springframework.context.MessageSource;
+import org.springframework.context.MessageSourceAware;
 
-public class ViewController {
+import java.util.Locale;
+
+public class ViewController implements MessageSourceAware{
 
     private final Pithia pithia;
+
+    private Locale locale = Locale.ENGLISH;
+
+    private MessageSource messageSource;
 
     public ViewController(Pithia pithia) {
         this.pithia = pithia;
@@ -101,5 +109,26 @@ public class ViewController {
     public int requestForDialogBox(){
         int answer =pithia.requestForDialogBox();
         return answer;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    @Override
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
+    public String getMessage(String code, Object[] args) {
+        return messageSource.getMessage(code, args, locale);
+    }
+
+    public void requestForLoginView() {
+        pithia.switchToLoginView();
+    }
+
+    public void requestForLanguageView() {
+        pithia.switchToLanguageView();
     }
 }

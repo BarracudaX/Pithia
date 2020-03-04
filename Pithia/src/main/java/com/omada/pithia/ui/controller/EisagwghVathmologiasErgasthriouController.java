@@ -36,4 +36,8 @@ public class EisagwghVathmologiasErgasthriouController {
         viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια!");
         viewController.requestForErgasthrioView(ergasthrio);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

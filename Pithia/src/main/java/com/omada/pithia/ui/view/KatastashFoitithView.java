@@ -15,11 +15,14 @@ public class KatastashFoitithView extends JPanel {
 
     private final JScrollPane vathmoiScroll;
 
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton backButton ;
 
     public KatastashFoitithView(KatastashFoitithController controller) {
         this.controller = controller;
-        vathmoiScroll = new JScrollPane(vathmoiInputs);
+        this.vathmoiScroll = new JScrollPane(vathmoiInputs);
+        this.backButton = new JButton(
+                controller.getMessage("KatastashFoithtwn.View.Back.Button", new Object[]{})
+        );
         prepareView();
     }
 

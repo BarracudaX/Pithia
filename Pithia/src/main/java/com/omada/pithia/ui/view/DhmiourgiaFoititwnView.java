@@ -12,8 +12,6 @@ public class DhmiourgiaFoititwnView extends JPanel {
 
     private final DhmiourgiaFoititwnController controller;
 
-    private final MyAction backAction;
-
     private final JLabel arithmos_foititwn_label = new JLabel("Αριθμος Φοιτιτων:");
     private JFormattedTextField arithmos_foititwn ;
     private final JButton paragwghButton = new JButton("Παραγωγη Λογαριασμων");
@@ -22,9 +20,8 @@ public class DhmiourgiaFoititwnView extends JPanel {
     private final JScrollPane outputAreaScrollPane;
     private final JButton stopButton = new JButton("Σταματημα Παραγωγης");
 
-    public DhmiourgiaFoititwnView(DhmiourgiaFoititwnController controller, MyAction backAction) {
+    public DhmiourgiaFoititwnView(DhmiourgiaFoititwnController controller) {
         this.controller = controller;
-        this.backAction = backAction;
         this.outputAreaScrollPane = new JScrollPane(outputArea);
         prepareView();
         this.controller.setView(this);
@@ -99,7 +96,7 @@ public class DhmiourgiaFoititwnView extends JPanel {
     }
 
     private void backButtonClick(ActionEvent actionEvent) {
-        backAction.action();
+        controller.requestForBackView();
     }
 
     public void showMessage(String message) {

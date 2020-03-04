@@ -11,15 +11,15 @@ public class ErgasthrioView extends JPanel {
 
     private final ErgasthrioController controller;
 
-    private final JLabel onomaMathimatosLabel = new JLabel("Ονομα Μαθηματος:");
-    private final JLabel onomaMathimatosThewriasLabel = new JLabel("Ονομα Μαθηματος Θεωριας:");
-    private final JLabel onomaKathigitiLabel = new JLabel("Ονομα Καθηγητη:");
-    private final JLabel eksamhnoLabel = new JLabel("Εξαμηνο:");
-    private final JLabel arithmosFoititwnLabel = new JLabel("Αριθμος Φοιτητων:");
-    private final JButton eisagwghVathmologias = new JButton("Εισαγωγη Βαθμολογιας");
-    private final JButton prosthikiFoititi = new JButton("Προσθηκη Φοιτητων Στο Εργαστηριο");
-    private final JButton apousies = new JButton("Διαχειριση Απουσιων");
-    private final JButton backButton = new JButton("Πισω");
+    private final JLabel onomaMathimatosLabel;
+    private final JLabel onomaMathimatosThewriasLabel ;
+    private final JLabel onomaKathigitiLabel;
+    private final JLabel eksamhnoLabel ;
+    private final JLabel arithmosFoititwnLabel ;
+    private final JButton eisagwghVathmologias ;
+    private final JButton prosthikiFoititi ;
+    private final JButton apousies ;
+    private final JButton backButton ;
     private final JTextField onomaMathimatos = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
     private final JTextField onomaMathimatosThewrias = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
     private final JTextField onomaKathigiti = new JTextField(GeneralStyle.DEFAULT_TEXT_FIELD_SIZE);
@@ -29,6 +29,33 @@ public class ErgasthrioView extends JPanel {
 
     public ErgasthrioView(ErgasthrioController controller) {
         this.controller = controller;
+        this.onomaMathimatosLabel = new JLabel(controller.getMessage(
+                "Ergasthrio.View.OnomaMathimatos.Label", new Object[]{}
+        ));
+        this.onomaMathimatosThewriasLabel = new JLabel(
+                controller.getMessage("Ergasthrio.View.OnomaMathimatosThewrias.Label", new Object[]{})
+        );
+        this.onomaKathigitiLabel = new JLabel(
+                controller.getMessage("Ergasthrio.View.OnomaKathigiti.Label", new Object[]{})
+        );
+        this.eksamhnoLabel = new JLabel(
+                controller.getMessage("Ergasthrio.View.Eksamhno.Label", new Object[]{})
+        );
+        this.arithmosFoititwnLabel = new JLabel(
+                controller.getMessage("Ergasthrio.View.ArithmosFoithtwn.Label", new Object[]{})
+        );
+        this.eisagwghVathmologias = new JButton(
+                controller.getMessage("Ergasthrio.View.EisagwghVathmologias.Button", new Object[]{})
+        );
+        this.prosthikiFoititi = new JButton(
+                controller.getMessage("Ergasthrio.View.ProsthikiFoithth.Button", new Object[]{})
+        );
+        this.apousies = new JButton(
+                controller.getMessage("Ergasthrio.View.Apousies.Button", new Object[]{})
+        );
+        this.backButton = new JButton(
+                controller.getMessage("Ergasthrio.View.Back.Button", new Object[]{})
+        );
         prepareView();
     }
 

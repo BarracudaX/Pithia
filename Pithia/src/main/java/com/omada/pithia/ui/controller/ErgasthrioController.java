@@ -32,4 +32,8 @@ public class ErgasthrioController {
     public void requestForDiaxeirishApousiwn() {
         viewController.requestForDiaxeiristhApousiwnView(ergasthrio);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

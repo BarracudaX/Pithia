@@ -9,7 +9,10 @@ import com.omada.pithia.model.xrhstes.Rolos;
 import com.omada.pithia.model.xrhstes.Xrhsths;
 import com.omada.pithia.service.*;
 import com.omada.pithia.ui.controller.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -18,12 +21,14 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Component
 public class Pithia extends JFrame {
 
     private final XrhstesService xrhstesService;
     private final ThewriesService thewriesService;
     private final ErgasthriaService ergasthriaService;
 
+    private static final String LANGUAGE_PAGE_CARD_NAME = "LANGUAGE_PAGE";
     private static final String LOGIN_PAGE_CARD_NAME = "LOGIN_PAGE";
     private static final String HOME_PAGE_CARD_NAME = "HOME_PAGE";
     private static final String MATHIMATA_MOU_PAGE_CARD_NAME = "MATHIMATA_MOU_PAGE";
@@ -45,66 +50,33 @@ public class Pithia extends JFrame {
     private static final String DHLWSH_ALGORITHMOU_VIEW = "DHLWSH_ALGORITHMOU_VIEW";
     private static final String PROSTHIKI_THEWRIAS = "PROSTHIKI_THEWRIAS";
 
-    private final DhmiourgiaFoititwnView dhmiourgiaFoititwnView;
-    private final LoginView loginView;
-    private final MathimataKathigitiView mathimataKathigitiView;
-    private final ProsthikiMathimatosView prosthikiMathimatosView;
+    private LanguageView languageView;
 
-    private final ViewController viewController;
-    private final MathimataKathigitiController mathimataKathigitiController;
-    private final DhmiourgiaFoititwnController dhmiourgiaFoititwnController;
-    private final LoginController loginController;
-    private final ThewriesController thewriesController;
-    private final ErgasthriaController ergasthriaController;
-    private final ProsthikiMathimatosController prosthikiMathimatosController;
-    private final ProsthikiErgasthriouController prosthikiErgasthriouController;
-    private final GeneralServiceController generalServiceController;
-    private final ProsthikiThewriasController prosthikiThewriasController;
-    private final KatastashFoitithController katastashFoitithController;
-    private final DhlwshMathimatwnController dhlwshMathimatwnController;
+    private ViewController viewController;
+    private MathimataKathigitiController mathimataKathigitiController;
+    private DhmiourgiaFoititwnController dhmiourgiaFoititwnController;
+    private LoginController loginController;
+    private ThewriesController thewriesController;
+    private ErgasthriaController ergasthriaController;
+    private ProsthikiMathimatosController prosthikiMathimatosController;
+    private ProsthikiErgasthriouController prosthikiErgasthriouController;
+    private GeneralServiceController generalServiceController;
+    private ProsthikiThewriasController prosthikiThewriasController;
+    private KatastashFoitithController katastashFoitithController;
+    private DhlwshMathimatwnController dhlwshMathimatwnController;
+    private LanguageController languageController;
 
     private final CardLayout cardLayout = new CardLayout();
 
     private final JPanel mainPanel = new JPanel();
 
-    private final MyAction backToHomeAction;
-
-
-    public Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthriaService ergasthriaService) {
+    private Pithia(XrhstesService xrhstesService, ThewriesService thewriesService, ErgasthriaService ergasthriaService) {
         this.xrhstesService = xrhstesService;
         this.thewriesService = thewriesService;
         this.ergasthriaService = ergasthriaService;
-
-        this.viewController = new ViewController(this);
-        this.mathimataKathigitiController = new MathimataKathigitiController(viewController);
-        this.loginController = new LoginController(viewController,xrhstesService);
-        this.thewriesController = new ThewriesController(viewController,thewriesService,xrhstesService);
-        this.ergasthriaController = new ErgasthriaController(viewController, ergasthriaService,xrhstesService);
-        this.dhmiourgiaFoititwnController = new DhmiourgiaFoititwnController(viewController, xrhstesService);
-        this.prosthikiMathimatosController = new ProsthikiMathimatosController(viewController);
-        this.generalServiceController = new GeneralServiceController(ergasthriaService,thewriesService,xrhstesService);
-        this.prosthikiErgasthriouController = new ProsthikiErgasthriouController(viewController, generalServiceController);
-        this.prosthikiThewriasController = new ProsthikiThewriasController(viewController, generalServiceController);
-        this.katastashFoitithController = new KatastashFoitithController(viewController, xrhstesService);
-        this.dhlwshMathimatwnController = new DhlwshMathimatwnController(viewController, xrhstesService, thewriesService);
-        this.backToHomeAction = this::switchToHomePageGUI;
-
-        this.loginView = new LoginView(loginController);
-        this.dhmiourgiaFoititwnView = new DhmiourgiaFoititwnView(dhmiourgiaFoititwnController, backToHomeAction);
-        this.mathimataKathigitiView = new MathimataKathigitiView(mathimataKathigitiController, backToHomeAction);
-        this.prosthikiMathimatosView = new ProsthikiMathimatosView(prosthikiMathimatosController);
-
     }
 
-
-    public static void main(String[] args) throws InvocationTargetException, InterruptedException, IOException {
-        XrhstesService xrhstesService = new XrhstesServiceInMemory();
-        ThewriesService thewriesService = new ThewriesServiceInMemory();
-        ErgasthriaService ergasthriaService = new ErgasthriaServiceInMemory();
-        Pithia pithia = new Pithia(xrhstesService,thewriesService, ergasthriaService);
-        pithia.start();
-    }
-
+    @PostConstruct
     public void start() throws InvocationTargetException, InterruptedException, IOException {
         prepareData();
 
@@ -112,10 +84,7 @@ public class Pithia extends JFrame {
 
             mainPanel.setLayout(cardLayout);
 
-            mainPanel.add(loginView, LOGIN_PAGE_CARD_NAME);
-            mainPanel.add(dhmiourgiaFoititwnView, FOITITES_PAGE_CARD_NAME);
-            mainPanel.add(mathimataKathigitiView, MATHIMATA_MOU_PAGE_CARD_NAME);
-            mainPanel.add(prosthikiMathimatosView, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
+            mainPanel.add(languageView, LANGUAGE_PAGE_CARD_NAME);
 
             this.getContentPane().setBackground(GeneralStyle.DARK_COLOR);
             this.setContentPane(mainPanel);
@@ -158,7 +127,7 @@ public class Pithia extends JFrame {
 
     public void switchToLogariasmosView() {
         LogariasmosController controller = new LogariasmosController(viewController,xrhstesService);
-        LogariasmosUI view = new LogariasmosUI(controller);
+        LogariasmosView view = new LogariasmosView(controller);
         mainPanel.add(view, LOGARIASMOS_MOU_PAGE_CARD_NAME);
         cardLayout.show(mainPanel, LOGARIASMOS_MOU_PAGE_CARD_NAME);
     }
@@ -194,7 +163,6 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel, ERGASTHRIO_PAGE_CARD_NAME);
     }
 
-
     public void switchToProsthikiProapaitoumenwnView(Thewria thewria) {
         ProsthikiProapaitoumenwnController controller = new ProsthikiProapaitoumenwnController(viewController,thewria,thewriesService);
         ProsthikiProapaitoumenwnView view = new ProsthikiProapaitoumenwnView(controller);
@@ -228,7 +196,6 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel, PROSTHIKI_FOITITWN_STO_ERGASTHRIO);
     }
 
-
     public void switchToDiaxeirishApousiwnView(Ergasthrio ergasthrio) {
         DiaxeirishApousiwnController controller = new DiaxeirishApousiwnController(viewController,ergasthrio);
 
@@ -238,7 +205,6 @@ public class Pithia extends JFrame {
         cardLayout.show(mainPanel,DIAXEIRISH_APOUSIWN);
     }
 
-
     public void switchToProsthikiErgasthriouView() {
         ProsthikiErgasthriouView view = new ProsthikiErgasthriouView(prosthikiErgasthriouController);
         mainPanel.add(view, PROSTHIKI_ERGASTHRIOU);
@@ -246,17 +212,44 @@ public class Pithia extends JFrame {
     }
 
     public void switchToProsthikiThewriasView() {
-        ProsthikiThewriasPageUI view = new ProsthikiThewriasPageUI(prosthikiThewriasController);
+        ProsthikiThewriasView view = new ProsthikiThewriasView(prosthikiThewriasController);
         mainPanel.add(view, PROSTHIKI_THEWRIAS);
         cardLayout.show(mainPanel, PROSTHIKI_THEWRIAS);
     }
 
     public void switchToDhlwshAlgorithmou(Thewria thewria) {
         DhlwshAlgorithmouController controller = new DhlwshAlgorithmouController(viewController,thewria);
-        DhlwsiAlgorithmouUI view = new DhlwsiAlgorithmouUI(controller);
+        DhlwsiAlgorithmouView view = new DhlwsiAlgorithmouView(controller);
 
         mainPanel.add(view, DHLWSH_ALGORITHMOU_VIEW);
         cardLayout.show(mainPanel,DHLWSH_ALGORITHMOU_VIEW);
+    }
+
+    public void switchToLoginView() {
+        LoginView loginView = new LoginView(loginController);
+        ProsthikiMathimatosView prosthikiMathimatosView = new ProsthikiMathimatosView(prosthikiMathimatosController);
+        DhmiourgiaFoititwnView dhmiourgiaFoititwnView = new DhmiourgiaFoititwnView(dhmiourgiaFoititwnController);
+        MathimataKathigitiView mathimataKathigitiView = new MathimataKathigitiView(mathimataKathigitiController);
+
+        mainPanel.add(loginView, LOGIN_PAGE_CARD_NAME);
+        mainPanel.add(dhmiourgiaFoititwnView, FOITITES_PAGE_CARD_NAME);
+        mainPanel.add(mathimataKathigitiView, MATHIMATA_MOU_PAGE_CARD_NAME);
+        mainPanel.add(prosthikiMathimatosView, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel,LOGIN_PAGE_CARD_NAME);
+    }
+
+
+    public void switchToLanguageView() {
+        LoginView loginView = new LoginView(loginController);
+        ProsthikiMathimatosView prosthikiMathimatosView = new ProsthikiMathimatosView(prosthikiMathimatosController);
+        DhmiourgiaFoititwnView dhmiourgiaFoititwnView = new DhmiourgiaFoititwnView(dhmiourgiaFoititwnController);
+        MathimataKathigitiView mathimataKathigitiView = new MathimataKathigitiView(mathimataKathigitiController);
+
+        mainPanel.add(loginView, LOGIN_PAGE_CARD_NAME);
+        mainPanel.add(dhmiourgiaFoititwnView, FOITITES_PAGE_CARD_NAME);
+        mainPanel.add(mathimataKathigitiView, MATHIMATA_MOU_PAGE_CARD_NAME);
+        mainPanel.add(prosthikiMathimatosView, PROSTHIKI_MATHIMATOS_PAGE_CARD_NAME);
+        cardLayout.show(mainPanel,LANGUAGE_PAGE_CARD_NAME);
     }
 
     private void prepareData() throws IOException {
@@ -463,6 +456,78 @@ public class Pithia extends JFrame {
     public int requestForDialogBox(){
              int answer =    JOptionPane.showConfirmDialog(this,"Θελετε να αποθηκευθει;","Ναι",0,JOptionPane.YES_NO_OPTION);
              return answer;
+    }
+
+//    SETTERS
+
+    @Autowired
+    public void setViewController(ViewController viewController) {
+        this.viewController = viewController;
+    }
+
+    @Autowired
+    public void setMathimataKathigitiController(MathimataKathigitiController mathimataKathigitiController) {
+        this.mathimataKathigitiController = mathimataKathigitiController;
+    }
+
+    @Autowired
+    public void setDhmiourgiaFoititwnController(DhmiourgiaFoititwnController dhmiourgiaFoititwnController) {
+        this.dhmiourgiaFoititwnController = dhmiourgiaFoititwnController;
+    }
+
+    @Autowired
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    @Autowired
+    public void setThewriesController(ThewriesController thewriesController) {
+        this.thewriesController = thewriesController;
+    }
+
+    @Autowired
+    public void setErgasthriaController(ErgasthriaController ergasthriaController) {
+        this.ergasthriaController = ergasthriaController;
+    }
+
+    @Autowired
+    public void setProsthikiMathimatosController(ProsthikiMathimatosController prosthikiMathimatosController) {
+        this.prosthikiMathimatosController = prosthikiMathimatosController;
+    }
+
+    @Autowired
+    public void setProsthikiErgasthriouController(ProsthikiErgasthriouController prosthikiErgasthriouController) {
+        this.prosthikiErgasthriouController = prosthikiErgasthriouController;
+    }
+
+    @Autowired
+    public void setGeneralServiceController(GeneralServiceController generalServiceController) {
+        this.generalServiceController = generalServiceController;
+    }
+
+    @Autowired
+    public void setProsthikiThewriasController(ProsthikiThewriasController prosthikiThewriasController) {
+        this.prosthikiThewriasController = prosthikiThewriasController;
+    }
+
+    @Autowired
+    public void setKatastashFoitithController(KatastashFoitithController katastashFoitithController) {
+        this.katastashFoitithController = katastashFoitithController;
+    }
+
+    @Autowired
+    public void setDhlwshMathimatwnController(DhlwshMathimatwnController dhlwshMathimatwnController) {
+        this.dhlwshMathimatwnController = dhlwshMathimatwnController;
+    }
+
+    @Autowired
+    public void setLanguageController(LanguageController languageController) {
+        this.languageController = languageController;
+    }
+
+    @Autowired
+    public void setLanguageView(LanguageView languageView) {
+        this.languageView = languageView;
     }
 
 }

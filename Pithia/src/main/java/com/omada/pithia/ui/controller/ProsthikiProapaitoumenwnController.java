@@ -44,4 +44,8 @@ public class ProsthikiProapaitoumenwnController {
     public List<Thewria> getProapaitoumena() {
         return thewriesService.getPithanaProapaitoumena(thewria);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

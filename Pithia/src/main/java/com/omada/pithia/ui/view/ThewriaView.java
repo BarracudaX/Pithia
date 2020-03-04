@@ -19,20 +19,51 @@ public class ThewriaView extends JPanel {
     private final JList<String> ergasthria = new JList<>();
     private final JList<String> proapaitoumena = new JList<>();
 
-    private final JLabel onomaThewriasLabel = new JLabel("Ονομα Μαθηματος:");
-    private final JLabel onomaKathigitiLabel = new JLabel("Ονομα Καθηγητη Θεωριας:");
-    private final JLabel eksamhnoLabel = new JLabel("Εξαμηνο:");
-    private final JLabel sunoloFoititwnLabel = new JLabel("Αριθμος Φοιτητων:");
-    private final JLabel ergasthriaLabel = new JLabel("Εργαστηρια:");
-    private final JLabel proapaitoumenaLabel = new JLabel("Προαπαιτουμενα:");
+    private final JLabel onomaThewriasLabel ;
+    private final JLabel onomaKathigitiLabel;
+    private final JLabel eksamhnoLabel ;
+    private final JLabel sunoloFoititwnLabel ;
+    private final JLabel ergasthriaLabel ;
+    private final JLabel proapaitoumenaLabel ;
 
-    private final JButton eisagwghVathmwnButton = new JButton("Εισαγωγη Βαθμολογιας");
-    private final JButton dhlwshAlgorithmouButton = new JButton("Δηλωση Αλγοριθμου Τελικου Βαθμου");
-    private final JButton prosthikiProapaitoumenouButton = new JButton("Προσθηκη Προαπαιτουμενου");
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton eisagwghVathmwnButton ;
+    private final JButton dhlwshAlgorithmouButton ;
+    private final JButton prosthikiProapaitoumenouButton ;
+    private final JButton backButton ;
 
     public ThewriaView(ThewriaController controller) {
         this.controller = controller;
+        this.onomaThewriasLabel = new JLabel(
+                controller.getMessage("Thewria.View.OnomaThewrias.Label", new Object[]{})
+        );
+        this.onomaKathigitiLabel = new JLabel(
+                controller.getMessage("Thewria.View.OnomaKathigiti.Label", new Object[]{})
+        );
+        this.eksamhnoLabel = new JLabel(
+                controller.getMessage("Thewria.View.Eksamhno.Label", new Object[]{})
+        );
+        this.sunoloFoititwnLabel = new JLabel(
+                controller.getMessage("Thewria.View.SunoloFoithtwn.Label", new Object[]{})
+        );
+        this.ergasthriaLabel = new JLabel(
+                controller.getMessage("Thewria.View.Ergasthria.Label", new Object[]{})
+        );
+        this.proapaitoumenaLabel = new JLabel(
+                controller.getMessage("Thewria.View.Proapaitoumena.Label", new Object[]{})
+        );
+        this.eisagwghVathmwnButton = new JButton(
+                controller.getMessage("Thewria.View.EisagwghVathmologias.Button", new Object[]{})
+        );
+        this.dhlwshAlgorithmouButton = new JButton(
+                controller.getMessage("Thewria.View.DhlwshAlgorithmou.Button", new Object[]{})
+        );
+        this.prosthikiProapaitoumenouButton = new JButton(
+                controller.getMessage("Thewria.View.ProsthikiProapaitoumenwn.Button",new Object[]{})
+        );
+        this.backButton = new JButton(
+                controller.getMessage("Thewria.View.Back.Button",new Object[]{})
+        );
+
         prepareView(controller.getThewria());
     }
 

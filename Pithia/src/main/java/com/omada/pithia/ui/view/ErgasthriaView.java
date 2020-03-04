@@ -15,8 +15,8 @@ public class ErgasthriaView extends JPanel {
 
     private final ErgasthriaController controller;
 
-    private final JButton backButton = new JButton("Πισω");
-    private final JButton showButton = new JButton("Λεπτρομεριες");
+    private final JButton backButton ;
+    private final JButton showButton ;
     private final JList<String> ergasthria;
     private final JScrollPane listScrollPane;
     private volatile String teleutaioErgasthrio = null;
@@ -25,6 +25,9 @@ public class ErgasthriaView extends JPanel {
         this.controller = controller;
         this.ergasthria = new JList<>();
         this.listScrollPane = new JScrollPane(ergasthria);
+        this.backButton = new JButton(controller.getMessage("Ergasthria.View.Back.Button", new Object[]{}));
+        this.showButton = new JButton(controller.getMessage("Ergasthria.View.Leptomereies.Button",
+                new Object[]{}));
         prepareView();
     }
 

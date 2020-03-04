@@ -11,19 +11,22 @@ public class MathimataKathigitiView extends JPanel {
 
     private final MathimataKathigitiController controller;
 
-    private final MyAction backAction;
-
     private final JButton backButton;
     private final JButton thewriesButton;
     private final JButton ergasthriaButton;
 
-    public MathimataKathigitiView(MathimataKathigitiController controller, MyAction backAction) {
+    public MathimataKathigitiView(MathimataKathigitiController controller) {
         this.controller = controller;
-        this.backAction = backAction;
 
-        backButton = new JButton("Πισω");
-        thewriesButton = new JButton("Θεωριες");
-        ergasthriaButton = new JButton("Εργαστηρια");
+        backButton = new JButton(
+                controller.getMessage("MathimataKathigiti.View.Back.Button", new Object[]{})
+        );
+        thewriesButton = new JButton(
+                controller.getMessage("MathimataKathigiti.View.Thewries.Button", new Object[]{})
+        );
+        ergasthriaButton = new JButton(
+                controller.getMessage("MathimataKathigiti.View.Ergasthria.Button", new Object[]{})
+        );
 
         prepareView();
     }
@@ -70,7 +73,7 @@ public class MathimataKathigitiView extends JPanel {
     }
 
     private void backButtonClick(ActionEvent actionEvent) {
-        backAction.action();
+        controller.requestForBackView();
     }
 
 

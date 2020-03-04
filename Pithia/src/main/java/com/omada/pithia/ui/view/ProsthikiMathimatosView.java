@@ -10,14 +10,23 @@ public class ProsthikiMathimatosView extends JPanel {
 
     private final ProsthikiMathimatosController controller;
 
-    private final JButton prosthikiErgasthriou = new JButton("Προσθηκη Εργαστηριου");
+    private final JButton prosthikiErgasthriou ;
 
-    private final JButton prosthikiThewrias = new JButton("Προσθηκη Θεωριας");
+    private final JButton prosthikiThewrias ;
 
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton backButton ;
 
     public ProsthikiMathimatosView(ProsthikiMathimatosController controller) {
         this.controller = controller;
+        this.prosthikiErgasthriou = new JButton(
+                controller.getMessage("ProsthikiMathimatos.View.ProsthikiErgasthriou.Button", new Object[]{})
+        );
+        this.prosthikiThewrias = new JButton(
+                controller.getMessage("ProsthikiMathimatos.View.ProsthikiThewrias.Button", new Object[]{})
+        );
+        this.backButton = new JButton(
+                controller.getMessage("ProsthikiMathimatos.View.Back.Button", new Object[]{})
+        );
         prepareView();
     }
 

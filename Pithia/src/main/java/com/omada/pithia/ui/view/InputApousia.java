@@ -2,6 +2,7 @@ package com.omada.pithia.ui.view;
 
 import com.omada.pithia.model.mathimata.Apousia;
 import com.omada.pithia.model.xrhstes.Foititis;
+import com.omada.pithia.ui.controller.DiaxeirishApousiwnController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,17 +11,25 @@ import java.awt.event.ActionEvent;
 class InputApousia extends JPanel {
 
     private final Foititis foititis;
-    private Apousia apousies;
+    private final Apousia apousies;
+    private final DiaxeirishApousiwnController controller;
 
     private final JTextField input = new JTextField();
     private final JLabel label ;
-    private final JButton aukshsh = new JButton("Αυξηση");
-    private final JButton meiwsh = new JButton("Μειωση");
+    private final JButton aukshsh ;
+    private final JButton meiwsh ;
 
-    public InputApousia(Foititis foititis,Apousia apousies) {
+    public InputApousia(Foititis foititis, Apousia apousies, DiaxeirishApousiwnController controller) {
         this.foititis = foititis;
         this.apousies = apousies;
-        label = new JLabel(foititis.getOnomaXrhsth() + "(" + foititis.getEpwnhmo() + " " + foititis.getOnoma()+")");
+        this.controller = controller;
+        label = new JLabel(foititis.getOnomaXrhsth() + "(" + foititis.getEpwnhmo() + " " + foititis.getOnoma() + ")");
+        this.aukshsh = new JButton(
+                controller.getMessage("InputApousia.View.Aukshsh.Button", new Object[]{})
+        );
+        this.meiwsh = new JButton(
+                controller.getMessage("InputApousia.View.Meiwsh.Button", new Object[]{})
+        );
         prepareView();
     }
 

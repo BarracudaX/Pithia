@@ -81,15 +81,15 @@ public class DhmiourgiaFoititwnController {
                         }
 
                     }
-                    view.showMessage("Δημιουργια Ολοκληρωθηκε.Ονομα αρχειου με κωδικους φοιτητων = "+file.getAbsolutePath());
                 }catch (InterruptedException e){
-                    if (created > 0) {
-                        view.showMessage("Δημιουργια Ολοκληρωθηκε.Ονομα αρχειου με κωδικους φοιτητων = "+file.getAbsolutePath());
-                    }
                     Thread.currentThread().interrupt();
                 }catch (FileNotFoundException e) {
                     viewController.requestForShowErrorMessage("Exception : \n" + e.getMessage());
                 } finally {
+                    if (created > 0) {
+                        view.showMessage("Δημιουργια Ολοκληρωθηκε.Ονομα αρχειου με κωδικους φοιτητων = "
+                                +file.getAbsolutePath());
+                    }
                     view.doneCreation();
                 }
 
@@ -105,5 +105,9 @@ public class DhmiourgiaFoititwnController {
         if (executingWork != null) {
             executingWork.cancel(true);
         }
+    }
+
+    public void requestForBackView() {
+        viewController.requestForHomeView();
     }
 }

@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * An abstract view class that represents a view with two lists of element where user can move elements from
+ * one list to another.
+ * This view uses JPanel along with GridBagLayout.Rows from 0 to 4 are used by this view.
+ */
 public abstract class AbstractDoubleListView extends JPanel{
 
-    private final JButton backButton = new JButton("Πισω");
-    private final JButton addButton = new JButton("Μετακινηση Σστην Λιστα Επιλογων");
-    private final JButton removeButton = new JButton("Αφαιρεση Απο Την Λιστα");
-    private final JButton finishButton = new JButton("Τελικη Αποθηκευση");
     private final JList<String> firstList = new JList<>();
     private final JList<String> secondList = new JList<>();
     private final DefaultListModel<String> firstListModel = new DefaultListModel<>();
@@ -24,10 +24,17 @@ public abstract class AbstractDoubleListView extends JPanel{
     private final JLabel secondLabel = new JLabel("");
 
     public AbstractDoubleListView() {
-
     }
 
+    /**
+     * Call this method after subclasses object is ready in order to make the view.
+     */
     public final void prepareView() {
+        JButton backButton = new JButton(getBackButtonText());
+        JButton addButton = new JButton(getAddToTheListButtonText());
+        JButton removeButton = new JButton(getRemoveFromTheListButtonText());
+        JButton finishButton = new JButton(getFinishButtonText());
+
         setLayout(new GridBagLayout());
         setBackground(GeneralStyle.DARK_COLOR);
 
@@ -48,12 +55,12 @@ public abstract class AbstractDoubleListView extends JPanel{
         JScrollPane firstScrollPane = new JScrollPane(firstList);
         JScrollPane secondScrollPane = new JScrollPane(secondList);
 
-        firstScrollPane.setMinimumSize(new Dimension(200,100));
-        secondScrollPane.setMinimumSize(new Dimension(200,100));
+        firstScrollPane.setMinimumSize(new Dimension(200, 100));
+        secondScrollPane.setMinimumSize(new Dimension(200, 100));
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
         styleBuilder.setCursorAsHand(backButton, addButton, removeButton, finishButton)
-                .setFont(backButton, addButton, removeButton, finishButton, firstList, secondList,firstLabel,secondLabel)
+                .setFont(backButton, addButton, removeButton, finishButton, firstList, secondList, firstLabel, secondLabel)
                 .setBackgroundAsBlue(addButton, finishButton).setBackgroundAsRed(backButton, removeButton)
                 .setHorizontalAlignmentToCenter(firstLabel, secondLabel)
                 .setForegroundAsWhite(
@@ -131,5 +138,21 @@ public abstract class AbstractDoubleListView extends JPanel{
 
     public final DefaultListModel<String> getFirstListModel(){
         return firstListModel;
+    }
+
+    protected String getBackButtonText(){
+        return "Πισω";
+    }
+
+    protected String getAddToTheListButtonText(){
+        return "Μετακινηση Σστην Λιστα Επιλογων";
+    }
+
+    protected String getRemoveFromTheListButtonText(){
+        return "Αφαιρεση Απο Την Λιστα";
+    }
+
+    protected String getFinishButtonText(){
+        return "Τελικη Αποθηκευση";
     }
 }

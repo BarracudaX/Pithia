@@ -19,4 +19,8 @@ public class ProsthikiMathimatosController {
     public void requestForBackPage(){
         viewController.requestForHomeView();
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

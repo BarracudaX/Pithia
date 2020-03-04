@@ -24,4 +24,11 @@ public class LoginController {
         }
     }
 
+    public String getMessage(String code) {
+        return controller.getMessage(code, new Object[]{});
+    }
+
+    public void requestForLanguageView() {
+        controller.requestForLanguageView();
+    }
 }

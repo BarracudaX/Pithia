@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProsthikiThewriasPageUI extends JPanel {
+public class ProsthikiThewriasView extends JPanel {
 
     private final ProsthikiThewriasController controller;
 
@@ -37,7 +37,7 @@ public class ProsthikiThewriasPageUI extends JPanel {
     private final JScrollPane proapaitoumenaScrollPane ;
     private final JScrollPane epilogesScrollPane ;
 
-    public ProsthikiThewriasPageUI(ProsthikiThewriasController controller) {
+    public ProsthikiThewriasView(ProsthikiThewriasController controller) {
         this.controller = controller;
         this.kathigites = new JComboBox<>(controller.getKathigites());
         this.eksamhhna = new JComboBox<>(controller.getEksamhna());

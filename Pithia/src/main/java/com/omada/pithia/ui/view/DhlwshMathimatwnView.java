@@ -14,8 +14,8 @@ public class DhlwshMathimatwnView extends JPanel {
 
     private final DhlwshMathimatwnController controller;
 
-    private final JButton backButton = new JButton("Πισω");
-    private final JButton ypovolhButton = new JButton("Υποβολη Δηλωσης");
+    private final JButton backButton ;
+    private final JButton ypovolhButton ;
     private final JPanel dhlwshsJpanel = new JPanel(new GridBagLayout());
     private final List<Dhlwsh> dhlwshs = new ArrayList<>();
     private final JScrollPane dhlwshScrollPane;
@@ -23,6 +23,8 @@ public class DhlwshMathimatwnView extends JPanel {
     public DhlwshMathimatwnView(DhlwshMathimatwnController controller) {
         this.controller = controller;
         this.dhlwshScrollPane = new JScrollPane(dhlwshsJpanel);
+        this.backButton = new JButton(controller.getMessage("DhlwshMathimatwn.View.Back.Button", new Object[]{}));
+        this.ypovolhButton = new JButton(controller.getMessage("DhlwshMathimatwn.View.Submit.Button", new Object[]{}));
         prepareView();
     }
 

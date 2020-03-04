@@ -27,4 +27,8 @@ public class DiaxeirishApousiwnController {
     public void requestForBackPage() {
         viewController.requestForErgasthrioView(ergasthrio);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

@@ -15,4 +15,12 @@ public class MathimataKathigitiController {
     public void requestForErgasthria() {
         viewController.requestForErgasthriaView();
     }
+
+    public void requestForBackView() {
+        viewController.requestForHomeView();
+    }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

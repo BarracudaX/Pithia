@@ -48,12 +48,12 @@ public class ProsthikiFoititwnStoErgasthrioView extends AbstractDoubleListView {
 
     @Override
     public String getFirstLabelName() {
-        return "Φοιτητες Που Δεν Ανηκουν Σε Κανενα Εργαστηριο";
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.NotBelonging.Label", new Object[]{});
     }
 
     @Override
     public String getSecondLabelName() {
-        return "Φοιτητες Που Θα Προστεθουν";
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.WillBelong.Label", new Object[]{});
     }
 
     @Override
@@ -66,5 +66,25 @@ public class ProsthikiFoititwnStoErgasthrioView extends AbstractDoubleListView {
         }
 
         return foitites;
+    }
+
+    @Override
+    protected String getBackButtonText() {
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.Back.Button", new Object[]{});
+    }
+
+    @Override
+    protected String getAddToTheListButtonText() {
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.Add.Button", new Object[]{});
+    }
+
+    @Override
+    protected String getRemoveFromTheListButtonText() {
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.Remove.Button", new Object[]{});
+    }
+
+    @Override
+    protected String getFinishButtonText() {
+        return controller.getMessage("ProsthikiFoithtwnStoErgasthrio.View.Finish.Button", new Object[]{});
     }
 }

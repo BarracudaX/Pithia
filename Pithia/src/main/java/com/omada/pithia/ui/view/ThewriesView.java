@@ -14,8 +14,8 @@ public class ThewriesView extends JPanel {
 
     private final ThewriesController controller;
 
-    private final JButton backButton = new JButton("Πισω");
-    private final JButton showButton = new JButton("Λεπτρομεριες");
+    private final JButton backButton ;
+    private final JButton showButton ;
     private final JList<String> thewries;
     private final JScrollPane listScrollPane;
 
@@ -25,6 +25,12 @@ public class ThewriesView extends JPanel {
         this.controller = controller;
         this.thewries = new JList<>();
         this.listScrollPane = new JScrollPane(thewries);
+        this.backButton = new JButton(
+                controller.getMessage("Thewries.View.Back.Button", new Object[]{})
+        );
+        this.showButton = new JButton(
+                controller.getMessage("Thewries.View.Show.Button", new Object[]{})
+        );
         prepareView();
     }
 

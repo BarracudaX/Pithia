@@ -9,7 +9,8 @@ import java.util.regex.Pattern;
 
 public class Xrhsths {
 
-	private static final Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",Pattern.CASE_INSENSITIVE);
+	private static final Pattern emailPattern
+			= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",Pattern.CASE_INSENSITIVE);
 
 	private final String onomaXrhsth;
 
@@ -142,4 +143,5 @@ public class Xrhsths {
 				", roloi=" + getRoloi() +
 				'}';
 	}
+
 }

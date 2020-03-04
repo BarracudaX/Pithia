@@ -56,4 +56,8 @@ public class ProsthikiErgasthriouController {
     public String[] getKathigites() {
         return serviceController.getKathigites();
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

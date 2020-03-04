@@ -43,12 +43,13 @@ public final class ProsthikiProapaitoumenwnView extends AbstractDoubleListView {
 
     @Override
     public String getFirstLabelName() {
-        return "Πιθανα Προαπαιτουμενα";
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.PithanaProapaitoumena.Label", new Object[]{});
     }
 
     @Override
     public String getSecondLabelName() {
-        return "Επιλογες σας";
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.Epiloges.Label", new Object[]{});
+
     }
 
     @Override
@@ -62,5 +63,23 @@ public final class ProsthikiProapaitoumenwnView extends AbstractDoubleListView {
         return items;
     }
 
+    @Override
+    protected String getBackButtonText() {
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.Back.Button", new Object[]{});
+    }
 
+    @Override
+    protected String getAddToTheListButtonText() {
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.Add.Button", new Object[]{});
+    }
+
+    @Override
+    protected String getRemoveFromTheListButtonText() {
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.Remove.Button", new Object[]{});
+    }
+
+    @Override
+    protected String getFinishButtonText() {
+        return controller.getMessage("ProsthikiProapaitoumenwn.View.Finish.Button", new Object[]{});
+    }
 }

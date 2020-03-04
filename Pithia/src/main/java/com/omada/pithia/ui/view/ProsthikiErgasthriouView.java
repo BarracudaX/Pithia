@@ -17,18 +17,33 @@ public class ProsthikiErgasthriouView extends JPanel {
     private final JComboBox<String> kathigites ;
     private final JTextField onomaErgasthriou = new JTextField();
 
-    private final JLabel thewriesLabel = new JLabel("Θεωριες:");
-    private final JLabel onomaErgasthriouLabel = new JLabel("Ονομα Εργαστηριου:");
-    private final JLabel kathigitesLabel = new JLabel("Καθηγητες:");
+    private final JLabel thewriesLabel ;
+    private final JLabel onomaErgasthriouLabel;
+    private final JLabel kathigitesLabel;
 
-    private final JButton prosthikiButton = new JButton("Προσθηκη Εργαστηριου");
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton prosthikiButton ;
+    private final JButton backButton ;
 
     public ProsthikiErgasthriouView(ProsthikiErgasthriouController controller) {
         this.controller = controller;
         this.thewries = new JComboBox<>(controller.getThewries());
         this.kathigites = new JComboBox<>(controller.getKathigites());
 
+        this.thewriesLabel = new JLabel(
+                controller.getMessage("ProsthikiErgasthriou.View.Thewries.Label", new Object[]{})
+        );
+        this.onomaErgasthriouLabel = new JLabel(
+                controller.getMessage("ProsthikiErgasthriou.View.OnomaErgasthriou.Label", new Object[]{})
+        );
+        this.kathigitesLabel = new JLabel(
+                controller.getMessage("ProsthikiErgasthriou.View.Kathigitis.Label", new Object[]{})
+        );
+        this.prosthikiButton = new JButton(
+                controller.getMessage("ProsthikiErgasthriou.View.Prosthiki.Button", new Object[]{})
+        );
+        this.backButton = new JButton(
+                controller.getMessage("ProsthikiErgasthriou.View.Back.Button", new Object[]{})
+        );
         prepareView();
     }
 

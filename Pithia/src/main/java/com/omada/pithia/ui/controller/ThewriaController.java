@@ -31,4 +31,7 @@ public class ThewriaController {
 
     public void requestDhlwshAlgorithmou() {viewController.requestForDhlwshAlgorithmouView(thewria);}
 
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

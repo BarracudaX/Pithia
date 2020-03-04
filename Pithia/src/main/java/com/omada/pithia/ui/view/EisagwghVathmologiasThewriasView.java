@@ -17,15 +17,19 @@ public class EisagwghVathmologiasThewriasView extends JPanel {
 
     private final JScrollPane scrollPane ;
 
-    private final JButton backButton = new JButton("Πισω");
+    private final JButton backButton ;
 
-    private final JButton apothikeush = new JButton("Αποθηκευση");
+    private final JButton apothikeush ;
 
     private final List<InputVathmo> inputVathmoi = new ArrayList<>();
 
     public EisagwghVathmologiasThewriasView(EisagwghVathmologiasThewriasController controller) {
         this.controller = controller;
         this.scrollPane = new JScrollPane(inputs);
+        this.backButton = new JButton(controller.getMessage("EisagwghVathmologiasThewrias.View.Back.Button",
+                new Object[]{}));
+        this.apothikeush = new JButton(controller.getMessage("EisagwghVathmologiasThewrias.View.Apothikeush.Button",
+                new Object[]{}));
         prepareView();
     }
 

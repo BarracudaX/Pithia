@@ -40,4 +40,8 @@ public class ProsthikiFoititwnStoErgasthrioController {
         viewController.requestForShowMessage(builder.toString());
         viewController.requestForErgasthrioView(ergasthrio);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

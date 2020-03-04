@@ -8,16 +8,21 @@ import java.awt.event.ActionEvent;
 
 public class LoginView extends JPanel {
 
-    private final JButton loginButton = new JButton("Login");
+    private final JButton loginButton;
+    private final JButton switchLanguageButton ;
     private final JTextField usernameField = new JTextField();
     private final JPasswordField passwordField = new JPasswordField();
-    private final JLabel usernameLabel = new JLabel("Ονομα Χρηστη:");
-    private final JLabel passwordLabel = new JLabel("Κωδικος:");
+    private final JLabel usernameLabel ;
+    private final JLabel passwordLabel ;
 
     private final LoginController controller;
 
     public LoginView(LoginController controller) {
         this.controller = controller;
+        loginButton = new JButton(controller.getMessage("Login.View.Login.Button"));
+        usernameLabel = new JLabel(controller.getMessage("Login.View.Username.Label"));
+        passwordLabel = new JLabel(controller.getMessage("Login.View.Password.Label"));
+        switchLanguageButton = new JButton(controller.getMessage("Login.View.Language.Button"));
         prepareView();
     }
 
@@ -26,9 +31,12 @@ public class LoginView extends JPanel {
         setBackground(GeneralStyle.DARK_COLOR);
 
         GeneralStyle.GeneralStyleBuilder styleBuilder = new GeneralStyle.GeneralStyleBuilder();
-        styleBuilder.setCursorAsHand(loginButton).setFont(loginButton,passwordLabel,usernameLabel,passwordField,usernameField)
-                .setForegroundAsWhite(loginButton,passwordLabel,passwordField,usernameField,usernameLabel)
-                .setBackgroundAsBlue(loginButton).setBackgroundAsGrey(usernameField,passwordField)
+        styleBuilder.setCursorAsHand(loginButton,switchLanguageButton)
+                .setFont(loginButton,passwordLabel,usernameLabel,passwordField,usernameField,switchLanguageButton)
+                .setForegroundAsWhite(loginButton,passwordLabel,passwordField,usernameField
+                        ,usernameLabel,switchLanguageButton)
+                .setBackgroundAsBlue(loginButton,switchLanguageButton)
+                .setBackgroundAsGrey(usernameField,passwordField)
                 .setTextFieldSize(usernameField,passwordField);
 
         usernameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -58,7 +66,16 @@ public class LoginView extends JPanel {
                 .setColumnWeight(1).setColumnWidth(2).setInsets(new Insets(5, 5, 5, 5));
         add(loginButton, builder.build());
 
+        builder.reset().setFill(Utils.Fill.HORIZONTAL).setAnchor(Utils.Anchor.CENTER).setColumn(0).setRow(3)
+                .setColumnWeight(1).setColumnWidth(2).setInsets(new Insets(5, 5, 5, 5));
+        add(switchLanguageButton, builder.build());
+
         loginButton.addActionListener(this::loginButtonClick);
+        switchLanguageButton.addActionListener(this::switchLanguageClick);
+    }
+
+    private void switchLanguageClick(ActionEvent actionEvent) {
+        controller.requestForLanguageView();
     }
 
     private void loginButtonClick(ActionEvent actionEvent) {

@@ -36,4 +36,8 @@ public class EisagwghVathmologiasThewriasController {
         viewController.requestForShowMessage("Οι βαθμοι αποθηκευτηκαν με επιτυχια.");
         viewController.requestForThewriaView(thewria);
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code, args);
+    }
 }

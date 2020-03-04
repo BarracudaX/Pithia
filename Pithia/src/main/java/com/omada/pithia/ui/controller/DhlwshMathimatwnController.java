@@ -69,4 +69,10 @@ public class DhlwshMathimatwnController {
         viewController.requestForHomeView();
 
     }
+
+    public String getMessage(String code, Object[] args) {
+        return viewController.getMessage(code,args);
+    }
+
+
 }
